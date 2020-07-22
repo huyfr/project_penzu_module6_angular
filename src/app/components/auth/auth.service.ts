@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {AuthLoginInfo} from '../components/auth/auth-login-info';
+import {environment} from '../../../environments/environment';
+import {AuthLoginInfo} from './auth-login-info';
 import {Observable} from 'rxjs';
-import {JwtResponse} from '../components/auth/jwt-response';
-import {SignUpInfo} from '../components/auth/sign-up-info';
-import {UserForm} from '../components/auth/profile/user-form';
-import {PassForm} from '../components/auth/profile/pass-form';
+import {JwtResponse} from './jwt-response';
+import {SignUpInfo} from './sign-up-info';
+import {UserForm} from './profile/user-form';
+import {PassForm} from './profile/pass-form';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
