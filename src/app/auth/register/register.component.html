@@ -1,0 +1,71 @@
+<article class="card-body mx-auto" style="max-width: 400px;">
+  <h4 class="card-title mt-3 text-center text-info">Create Account</h4>
+  <p class="text-center text-info">Get started with your free account</p>
+  <p>
+    <a href="" class="btn btn-block btn-gmail"> Login with Gmail</a>
+    <a href="" class="btn btn-block btn-facebook"> Login with facebook</a>
+  </p>
+  <p class="divider-text">
+    <span class="bg-light">OR</span>
+  </p>
+  <form [formGroup]="registerForm">
+    <label class="col text-info">Full Name
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+        </div>
+        <input name="name" formControlName="name" class="form-control" placeholder="Full name" type="text">
+        <div class="alert alert-warning" role="alert"
+             *ngIf="registerForm.get('name').invalid &&registerForm.get('name').touched">
+          Name invalid(must longer 3 and smaller 64 character)
+        </div>
+      </div> <!-- form-group// -->
+    </label>
+    <label class="col text-info">User Name
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+        </div>
+        <input name="username" formControlName="username" class="form-control" placeholder="Username" type="text">
+        <div class="alert alert-warning" role="alert"
+             *ngIf="registerForm.get('username').invalid &&registerForm.get('username').touched">
+          UserName invalid(must longer 3 and smaller 64 character)
+        </div>
+      </div> <!-- form-group// -->
+    </label>
+    <label class="col text-info">Email
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+        </div>
+
+        <input name="email text-info" formControlName="email" class="form-control" placeholder="Email" type="email">
+        <div class="alert alert-warning" role="alert"
+             *ngIf="registerForm.get('email').invalid &&registerForm.get('email').touched">
+          Email invalid(must smaller 64 character)
+        </div>
+      </div> <!-- form-group// -->
+    </label>
+    <label class="col text-info"> Password
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+        </div>
+
+        <input class="form-control" placeholder="Password" type="password"
+               name="password" formControlName="password">
+        <div class="alert alert-warning" role="alert"
+             *ngIf="registerForm.get('password').invalid &&registerForm.get('password').touched">
+          Password invalid(must longer 6 and smaller 128 character)
+        </div>
+      </div> <!-- form-group// -->
+    </label>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-block" (click)="signUp()"> Create Account</button>
+      <div *ngIf="isSignUpFailed" class="alert alert-warning">
+        Signup failed!<br/>{{errorMessage}}
+      </div>
+    </div> <!-- form-group// -->
+    <p class="text-center">Have an account? <a [routerLink]="'/login'">Log In</a></p>
+  </form>
+</article>
