@@ -16,11 +16,11 @@ export class TokenStorageService {
 
   constructor() { }
 
-  signOut() {
+  signOut(): void {
     window.sessionStorage.clear();
   }
 
-  public saveToken(token: string) {
+  public saveToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
@@ -29,7 +29,7 @@ export class TokenStorageService {
     return sessionStorage.getItem(TOKEN_KEY);
   }
 
-  public saveAvatar(avatar: string) {
+  public saveAvatar(avatar: string): void {
     window.sessionStorage.removeItem(AVATAR_KEY);
     window.sessionStorage.setItem(AVATAR_KEY , avatar);
   }
@@ -38,7 +38,7 @@ export class TokenStorageService {
     return sessionStorage.getItem(AVATAR_KEY);
   }
 
-  public saveEmail(email: string) {
+  public saveEmail(email: string): void {
     window.sessionStorage.removeItem(EMAIL_KEY);
     window.sessionStorage.setItem(EMAIL_KEY, email);
   }
@@ -51,12 +51,12 @@ export class TokenStorageService {
     return sessionStorage.getItem(NAME_KEY);
   }
 
-  public saveName(name: string) {
+  public saveName(name: string): void {
     window.sessionStorage.removeItem(NAME_KEY);
     window.sessionStorage.setItem(NAME_KEY, name);
   }
 
-  public saveUsername(username: string) {
+  public saveUsername(username: string): void {
     window.sessionStorage.removeItem(USERNAME_KEY);
     window.sessionStorage.setItem(USERNAME_KEY, username);
   }
@@ -65,7 +65,7 @@ export class TokenStorageService {
     return sessionStorage.getItem(USERNAME_KEY);
   }
 
-  public saveAuthorities(authorities: string[]) {
+  public saveAuthorities(authorities: string[]): void {
     window.sessionStorage.removeItem(AUTHORITIES_KEY);
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
@@ -74,7 +74,7 @@ export class TokenStorageService {
     return sessionStorage.getItem(ID_KEY);
   }
 
-  public saveUserId(userId: string) {
+  public saveUserId(userId: string): void {
     window.sessionStorage.removeItem(ID_KEY);
     window.sessionStorage.setItem(ID_KEY, userId);
   }
