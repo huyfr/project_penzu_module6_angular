@@ -20,6 +20,8 @@ import {IsAdmin} from './auth-guard/is-admin';
 import { HomeComponent } from './components/home/home.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserComponent} from "./components/user/user.component";
+import {FooterComponent} from "./components/footer/footer.component";
+import {HeaderComponent} from "./components/header/header.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import {UserComponent} from "./components/user/user.component";
     RegisterComponent,
     DiaryShowComponent,
     UserListComponent,
-    UserComponent
+    UserComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
