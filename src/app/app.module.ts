@@ -18,8 +18,8 @@ import {CanActivateTeam} from './auth-guard/can-activate-team';
 import {NotActivateTeam} from './auth-guard/not-activate-team';
 import {IsAdmin} from './auth-guard/is-admin';
 import { HomeComponent } from './components/home/home.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {UserComponent} from "./components/user/user.component";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserComponent} from './components/user/user.component';
 import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-annoucement/no-have-access-annoucement.component';
 
 @NgModule({
