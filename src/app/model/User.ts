@@ -1,19 +1,14 @@
-// export interface IUser {
-//   id?: number;
-//   avatar: string;
-//   email: string;
-//   name: string;
-//
-//   // id?: number;
-//   // blobstring: string;
-//   // createdate?: string;
-//   // updatedate: string;
-//   // status: number;
-//   // description: string;
-//   // title: string;
-//   // content: string;
-//   // tag;
-//   // reaction;
-//   // user;
-//   // attachment;
-// }
+export interface IUser {
+  id?: number;
+  email: string;
+  name: string;
+  username: string;
+  password: string;
+  role: {
+    id?: string;
+    name?: string;
+  };
+  blobString: string;
+  avatar: string;
+  status: number;
+}
