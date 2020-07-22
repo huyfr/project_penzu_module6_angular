@@ -4,17 +4,18 @@ import {UserListComponent} from './components/user/userComponent/user-list/user-
 import {LoginComponent} from './components/auth/login/login.component';
 import {RegisterComponent} from "./components/auth/register/register.component";import {UserComponent} from "./components/user/user.component";
 import {HomeComponent} from "./components/home/home.component";
+import {NotActivateTeam} from "./auth-guard/not-activate-team";
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'journals', component: UserComponent},
+  {path: 'register', component: RegisterComponent, canActivate: [NotActivateTeam]},
+  {path: 'journals', component: UserComponent, canActivate: [NotActivateTeam]},
   //Anh Linh sửa
   //start
   {path: 'user/list', component: UserListComponent},
   {path: 'user/:id', component: UserListComponent},
-  {path: 'user/block/:id', component: UserListComponent}
+  {path: 'user/block/:id', component: UserListComponent},
   //stop
 ];
 
