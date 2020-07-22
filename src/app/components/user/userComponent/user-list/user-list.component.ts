@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../userService/user.service';
-import {IUser} from '../../../model/User';
+import {UserService} from '../../../../services/user/user.service';
 import {ActivatedRoute} from '@angular/router';
+import {User} from "../../../../models/User";
 
 @Component({
   selector: 'app-user-list',
@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  userList: IUser[] = [];
+  userList: User[] = [];
 
   constructor(private usersService: UserService,
               private activatedRoute: ActivatedRoute) { }
