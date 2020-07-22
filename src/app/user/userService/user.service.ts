@@ -20,6 +20,8 @@ export class UserService {
     return this.http.delete<void>(apiUrl + 'user/' + id);
   }
 
-
+  blockUser(id: number): Observable<void> {
+    return this.http.delete<void>(apiUrl + 'user/block/' + id);
+  }
 
 }
