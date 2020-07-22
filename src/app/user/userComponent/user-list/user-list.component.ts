@@ -23,4 +23,9 @@ export class UserListComponent implements OnInit {
     this.usersService.deleteUser(+id).subscribe(() => console.log('delete ok'), error => console.log(error));
   }
 
+  blockUser(): void{
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.usersService.blockUser(+id).subscribe(() => console.log('block ok'), error => console.log(error));
+  }
+
 }
