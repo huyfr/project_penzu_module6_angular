@@ -16,9 +16,10 @@ export class NotActivateTeam implements CanActivate{
     state: RouterStateSnapshot
   ): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
     if (this.permission.canActivate() === false) {
+      this.router.navigateByUrl('/no-access');
       return true;
     } else {
-      this.router.navigateByUrl('/');
+      // this.router.navigateByUrl('/');
       return false;
     }
   }
