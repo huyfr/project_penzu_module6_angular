@@ -4,6 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './auth/login/login.component';
+import { ProfileComponent } from './auth/profile/profile.component';
+import { RegisterComponent } from './auth/register/register.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {CKEditorModule} from 'ngx-ckeditor';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {Permissions} from './auth-guard/permissions';
+import {CanActivateTeam} from './auth-guard/can-activate-team';
+import {NotActivateTeam} from './auth-guard/not-activate-team';
+import {IsAdmin} from './auth-guard/is-admin';
 import { HomeComponent } from './home/home.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
@@ -11,6 +22,10 @@ import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
+    AppComponent,
+    LoginComponent,
+    ProfileComponent,
+    RegisterComponent
     AppComponent,
     HomeComponent,
     LoginComponent,
@@ -22,8 +37,14 @@ import { RegisterComponent } from './register/register.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule
+    NgbModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CKEditorModule,
+    NgxPaginationModule
   ],
-  providers: [],
+  providers: [Permissions, CanActivateTeam, NotActivateTeam , IsAdmin],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
