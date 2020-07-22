@@ -4,6 +4,9 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {UserListComponent} from './user/userComponent/user-list/user-list.component';
+import {NotActivateTeam} from './auth-guard/not-activate-team';
+import {LoginComponent} from './components/auth/login/login.component';
+import {RegisterComponent} from "./components/auth/register/register.component";
 
 
 const routes: Routes = [

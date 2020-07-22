@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  loginUrl: 'http://localhost:8080/api/sdu/login',
+  signupUrl: 'http://localhost:8080/api/sdu/register',
+  updateProfileUrl: 'http://localhost:8080/api/sdu/update-profile',
+  updatePasswordUrl: 'http://localhost:8080/api/sdu/update-password',
 };
 
 /*
