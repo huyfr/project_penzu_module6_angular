@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../../../services/user/user.service';
+import {UserService} from '../../services/user/user.service';
 import {ActivatedRoute} from '@angular/router';
-import {User} from "../../../../models/User";
+import {User} from "../../models/User";
 
 @Component({
   selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  templateUrl: './admin-show-user-list.component.html',
+  styleUrls: ['./admin-show-user-list.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class AdminShowUserListComponent implements OnInit {
   userList: User[] = [];
 
   constructor(private usersService: UserService,

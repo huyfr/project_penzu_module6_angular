@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {UserListComponent} from './components/user/userComponent/user-list/user-list.component';
+import {AdminShowUserListComponent} from './components/admin/admin-show-user-list.component';
 import {LoginComponent} from './components/auth/login/login.component';
 import {RegisterComponent} from './components/auth/register/register.component';
 import {UserComponent} from './components/user/user.component';
@@ -12,13 +12,14 @@ const routes: Routes = [
   {path: 'no-access', component: NoHaveAccessAnnoucementComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'journals', component: UserComponent},
-  //Anh Linh sửa
-  //start
-  {path: 'user/list', component: UserListComponent},
-  {path: 'user/:id', component: UserListComponent},
-  {path: 'user/block/:id', component: UserListComponent}
-  //stop
+  {path: 'journals', component: UserComponent}, // để show trang user
+  {// phục vụ chức năng admin
+    path: 'admin/userList',
+    component: AdminShowUserListComponent,
+    // canActivate: [isAdmin]
+  },
+  {path: 'admin/user/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
+  {path: 'admin/user/block/:id', component: AdminShowUserListComponent} // phục vụ chức năng admin
 ];
 
 @NgModule({

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { DiaryShowComponent } from './components/diary/diary-show/diary-show.component';
-import { UserListComponent } from './components/user/userComponent/user-list/user-list.component';
+import { AdminShowUserListComponent } from './components/admin/admin-show-user-list.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { ProfileComponent } from './components/auth/profile/profile.component';
 import { RegisterComponent } from './components/auth/register/register.component';
@@ -31,7 +31,7 @@ import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-an
     LoginComponent,
     RegisterComponent,
     DiaryShowComponent,
-    UserListComponent,
+    AdminShowUserListComponent,
     UserComponent,
     NoHaveAccessAnnoucementComponent
   ],
