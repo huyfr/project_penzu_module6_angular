@@ -6,8 +6,9 @@
       <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li *ngIf="!isUserLoggedIn"><a routerLink="/login">Login</a></li>
-          <li *ngIf="isUserLoggedIn"><a (click)="logout()">Logout</a></li>
+          <li *ngIf="isUserLoggedIn"><a>Welcome, {{name}}</a></li>
           <li *ngIf="!isUserLoggedIn"><a routerLink="/register">Sign up</a></li>
+          <li *ngIf="isUserLoggedIn"><a routerLink="/" (click)="logout()">Logout</a></li>
         </ul>
       </div>
     </div>

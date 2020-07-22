@@ -8,7 +8,7 @@ const apiUrl = 'http://localhost:8080/api/sdu/';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class AdminUserService {
 
   constructor(private http: HttpClient) {
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user/user.service';
+import {AdminUserService} from '../../services/admin/admin-user.service';
 import {ActivatedRoute} from '@angular/router';
 import {User} from "../../models/User";
 
@@ -11,7 +11,7 @@ import {User} from "../../models/User";
 export class AdminShowUserListComponent implements OnInit {
   userList: User[] = [];
 
-  constructor(private usersService: UserService,
+  constructor(private usersService: AdminUserService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
