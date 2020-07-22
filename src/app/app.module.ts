@@ -21,6 +21,8 @@ import { HomeComponent } from './components/home/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserComponent} from './components/user/user.component';
 import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-annoucement/no-have-access-annoucement.component';
+import { HeaderComponent } from './components/header/header/header.component';
+import { FooterComponent } from './components/footer/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-an
     DiaryShowComponent,
     AdminShowUserListComponent,
     UserComponent,
-    NoHaveAccessAnnoucementComponent
+    NoHaveAccessAnnoucementComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import {AuthService} from '../auth.service';
 import {TokenStorageService} from '../token-storage.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthLoginInfo} from '../auth-login-info';
+import {DataSharingService} from '../../../services/dataSharing/data-sharing.service';
 
 @Component({
   selector: 'app-login',
@@ -24,23 +25,24 @@ export class LoginComponent implements OnInit {
     private token: TokenStorageService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dataSharingService: DataSharingService
   ) {
   }
 
   ngOnInit(): void {
-    this.loginForm =this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(128)]],
     });
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
-  reloadPage() {
+  reloadPage(): void {
     window.location.reload();
   }
 
-  signIn() {
+  signIn(): void {
     this.submitted = true;
     if (this.loginForm.valid) {
       const {username, password} = this.loginForm.value;
@@ -61,6 +63,7 @@ export class LoginComponent implements OnInit {
           this.isLoggedIn = true;
           this.roles = this.token.getAuthorities();
           this.router.navigateByUrl(this.returnUrl);
+          this.dataSharingService.isUserLoggedIn.next(true);
         },
         error => {
           console.log(error);
@@ -94,7 +97,7 @@ export class LoginComponent implements OnInit {
     );*/
   }
 
-  get rfc() {
+  get rfc(): any {
     return this.loginForm.controls;
   }
 }
