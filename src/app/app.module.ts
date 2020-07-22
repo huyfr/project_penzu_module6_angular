@@ -4,32 +4,46 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './home/home.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { DiaryShowComponent } from './diary/diary-show/diary-show.component';
+
+import { DiaryShowComponent } from './components/diary/diary-show/diary-show.component';
+import { UserListComponent } from './components/user/userComponent/user-list/user-list.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { ProfileComponent } from './components/auth/profile/profile.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
-import { UserListComponent } from './user/userComponent/user-list/user-list.component';
+import {CKEditorModule} from 'ngx-ckeditor';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {Permissions} from './auth-guard/permissions';
+import {CanActivateTeam} from './auth-guard/can-activate-team';
+import {NotActivateTeam} from './auth-guard/not-activate-team';
+import {IsAdmin} from './auth-guard/is-admin';
+import { HomeComponent } from './components/home/home.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {UserComponent} from "./components/user/user.component";
 
 @NgModule({
   declarations: [
+    AppComponent,
+    ProfileComponent,
     AppComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,
     DiaryShowComponent,
-    UserListComponent
+    UserListComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
-    HttpClientModule
+    CKEditorModule,
+    NgxPaginationModule
   ],
-  providers: [],
+  providers: [Permissions, CanActivateTeam, NotActivateTeam , IsAdmin],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

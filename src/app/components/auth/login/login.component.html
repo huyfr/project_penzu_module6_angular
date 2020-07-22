@@ -1,0 +1,46 @@
+<div class="section-top-border">
+  <div class="d-flex justify-content-center align-items-center container">
+    <div class="col-6 text-center">
+      <h3 class="">Sign in</h3>
+      <div class="mt-50">
+        <button style="background-color: #3B5998" class="btn mr-30" type="button"><span class="text-white">Sign in with Facebook</span>
+        </button>
+        <button style="background-color: #DD4B39" class="btn ml-30" type="button"><span class="text-white">Sign in with Google+</span>
+        </button>
+      </div>
+      <p style="text-align:center" class="mt-30"> OR </p>
+      <form [formGroup]="loginForm" (ngSubmit)="signIn()">
+        <small *ngIf="isLoginFailed" style="color:red">
+          An error occurred while signing you in. Please check your email and password then try again.
+        </small>
+        <div class="mt-30">
+          <input type="text" name="username" formControlName="username" placeholder="Username" class="single-input">
+          <div class="float-left" style="color:red" *ngIf="submitted && rfc.username.errors">
+            <small *ngIf="rfc.username.errors.required">Please enter your username.</small>
+            <small *ngIf="rfc.username.errors.minlength">Must be 3-128 characters long.</small>
+          </div>
+        </div>
+
+        <div class="mt-10">
+          <input type="password" name="password" formControlName="password" placeholder="Password" class="single-input">
+          <div class="float-left" style="color:red" *ngIf="submitted && rfc.password.errors">
+            <small *ngIf="rfc.password.errors.required">Please enter your password.</small>
+            <small *ngIf="rfc.password.errors.minlength">Must be 6-36 characters long.</small>
+          </div>
+        </div>
+
+        <div class="mt-50 form-group">
+          <div class="col-md-5 mb-3 float-left">
+            <a href="">Forgot your password?</a>
+          </div>
+          <div class="col-md-4 mb-3 float-right">
+            <button class="genric-btn primary circle" type="submit">Sign in</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+

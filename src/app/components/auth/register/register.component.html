@@ -1,0 +1,50 @@
+<div class="section-top-border">
+  <div class="d-flex justify-content-center align-items-center container">
+    <div class="col-6 text-center">
+      <h2 class="">Welcome to Penzu!<br> Let’s create your free account</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="signUp()">
+        <div class="mt-15">
+          <input type="text" name="name" formControlName="name" placeholder="Name" class="single-input">
+          <div class="float-left" style="color:red" *ngIf="submitted && rfc.name.errors">
+            <small *ngIf="rfc.name.errors.required">Please enter your name.</small>
+            <small *ngIf="rfc.name.errors.minlength">Must be 3-64 characters long.</small>
+          </div>
+        </div>
+        <div class="mt-15">
+          <input type="text" name="email" formControlName="email" placeholder="Email" class="single-input">
+          <div class="float-left" style="color:red" *ngIf="submitted && rfc.email.errors">
+            <small *ngIf="rfc.email.errors.required">Please enter your email.</small>
+            <small *ngIf="rfc.email.errors.email">Email invalid.</small>
+            <small *ngIf="rfc.email.errors.minlength">Must be 3-64 characters long.</small>
+          </div>
+        </div>
+        <div class="mt-15">
+          <input type="text" name="username" formControlName="username" placeholder="Username" class="single-input">
+          <div class="float-left" style="color:red" *ngIf="submitted && rfc.username.errors">
+            <small *ngIf="rfc.username.errors.required">Please enter your username.</small>
+            <small *ngIf="rfc.username.errors.minlength">Must be 3-64 characters long.</small>
+          </div>
+        </div>
+        <div class="mt-15">
+          <input type="password" name="password" formControlName="password" placeholder="Password" class="single-input">
+          <div class="float-left" style="color:red" *ngIf="submitted && rfc.password.errors">
+            <small *ngIf="rfc.password.errors.required">Please enter your password.</small>
+            <small *ngIf="rfc.password.errors.minlength">Must be 6-128 characters long.</small>
+          </div>
+        </div>
+        <div class="mt-15">
+          <input type="password" name="confirmPassword" formControlName="confirmPassword" placeholder="Re-Password" class="single-input">
+          <div class="float-left" style="color:red" *ngIf="submitted && rfc.confirmPassword.errors">
+            <small *ngIf="rfc.confirmPassword.errors.required">Please enter your Re-Password.</small>
+            <small *ngIf="rfc.confirmPassword.errors.mustMatch">The password is not the same.</small>
+          </div>
+        </div>
+        <div class="mt-50 form-group">
+          <div class="">
+            <button type="submit" class="genric-btn primary large circle">Create Account</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
