@@ -1,0 +1,70 @@
+<!--<div id="logreg-forms">
+  <form class="form-signin" [formGroup]="loginForm">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+    <div class="social-login">
+      <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span>
+      </button>
+      <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span>
+      </button>
+    </div>
+    <p style="text-align:center"> OR </p>
+    <input type="text" id="inputEmail" class="form-control" formControlName="username" placeholder="Username"
+           required="" autofocus="">
+    <input type="password" id="inputPassword" class="form-control" formControlName="password" placeholder="Password"
+           required="">
+
+    <button class="btn btn-success btn-block" type="submit" (click)="signIn()"><i class="fas fa-sign-in-alt"></i> Sign in
+    </button>
+    <div *ngIf="isLoginFailed" class="alert alert-warning">
+      Login failed!<br/> Username or Password is incorrect.!
+    </div>
+    <br>
+    <label>
+      <input type="checkbox" class="checkboc mb-3" value="remember-me"> Remember me
+    </label>
+&lt;!&ndash;    <a href="/login" id="forgot_pswd">Forgot password?</a>&ndash;&gt;
+    <hr>
+
+    <button class="btn btn-primary btn-block" type="button" id="btn-signup" [routerLink]="'/register'"><i
+      class="fas fa-user-plus"></i>
+      Sign up New Account
+    </button>
+  </form>
+</div>-->
+
+<div class="section-top-border">
+  <div class="d-flex justify-content-center align-items-center container">
+    <div class="col-6 text-center">
+      <h3 class="">Sign in</h3>
+      <form [formGroup]="loginForm">
+        <div class="social-login">
+          <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span>
+          </button>
+          <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span>
+          </button>
+        </div>
+        <p style="text-align:center"> OR </p>
+        <div class="mt-10">
+          <input type="text" name="username" formControlName="username" placeholder="Username" class="single-input">
+        </div>
+        <div class="mt-10">
+          <input type="password" name="password" formControlName="password" placeholder="Password" class="single-input">
+        </div>
+        <div class="mt-50 form-group">
+          <div class="col-md-5 mb-3 float-left">
+            <a href="">Forgot your password?</a>
+          </div>
+          <div class="col-md-4 mb-3 float-right">
+            <button href="#" class="genric-btn primary circle" (click)="signIn()">Sign in</button>
+          </div>
+        </div>
+        <div *ngIf="isLoginFailed" class="alert alert-warning">
+          Login failed!<br/> Username or Password is incorrect.!
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
