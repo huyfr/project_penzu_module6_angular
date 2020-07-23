@@ -98,7 +98,7 @@
             <div class="top-wrapper ">
               <div class="row d-flex justify-content-between">
                 <h2 class="col-lg-8 col-md-12 text-uppercase">
-                  A Discount Toner Cartridge Is Better Than Ever
+                  {{diary.title}}
                 </h2>
                 <div class="col-lg-4 col-md-12 right-side d-flex justify-content-end">
                   <div class="desc">
@@ -159,16 +159,14 @@
 <!--            =================================================-->
 
             <div class="single-post-content">
-              <div *ngFor="let item of diaries">
-                  <p>{{item.title}}</p>
-              </div>
-
-              <blockquote>Ea possunt paria non esse. Pudebit te, inquam, illius tabulae, quam Cleanthes sane commode
-                verbis depingere solebat. Urgent tamen et nihil remittunt. An vero displicuit ea, quae tributa est animi
-                virtutibus tanta praestantia? Sint ista Graecorum; Cur igitur, cum de re conveniat, non malumus usitate
-                loqui? Huius ego nunc auctoritatem sequens idem faciam.
-                <cite>Wise Man</cite></blockquote>
-
+                <div style="width: 100%">
+                  <p>{{diary.content}}</p>
+                </div>
+                <div *ngIf="diary.description">
+                  <blockquote>
+                    {{diary.description}}
+                    <cite>{{diary.user.name}}</cite></blockquote>
+                </div>
             </div>
 
 <!--            =================================================-->
@@ -418,7 +416,7 @@
             <div class="row">
               <div class="col-10" style="margin-left: 5px">
                 <div *ngFor="let item of diaries">
-                  <a href="">{{item.title}}</a>
+                  <a [routerLink]="['/books/detail/',item.id]">{{item.title}}</a>
                 </div>
               </div>
             </div>

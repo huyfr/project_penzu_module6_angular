@@ -10,15 +10,24 @@ import {Diary} from '../../model/Diary';
 export class DiaryShowComponent implements OnInit {
 
   constructor(private diaryService: DiaryService) { }
+  // @Input() id: 1;
+  diary: Diary;
   diaries: Diary[];
   ngOnInit(): void {
     this.getAllDiaries();
+    this.getDiaryById();
   }
 
   getAllDiaries(): void{
     this.diaryService.getAll().subscribe((result) => {
-      console.log(result);
       this.diaries = result;
+    }, error => {
+    });
+  }
+
+  getDiaryById(): void {
+    this.diaryService.getById(1).subscribe((result) => {
+      this.diary = result;
     }, error => {
     });
   }
