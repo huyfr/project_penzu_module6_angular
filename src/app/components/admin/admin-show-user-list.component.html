@@ -38,10 +38,12 @@
           <td class="text-center">
             <span style="font-size: 25px" *ngIf="user.status == 1" class="fa fa-check text-success">&nbsp;</span>
             <span *ngIf="user.status == 1" class="fa fa-lock text-black-50" (click)="blockUser(+user.id)"></span>
-            <span *ngIf="user.status == 0" class="fa fa-check text-black-50" (click)="activeUser(+user.id)">&nbsp;</span>
+            <span *ngIf="user.status == 0" class="fa fa-check text-black-50"
+                  (click)="activeUser(+user.id)">&nbsp;</span>
             <span style="font-size: 25px" *ngIf="user.status == 0" class="fa fa-lock text-danger"></span>
           </td>
-          <td class="text-center"><span class="fa fa-eye text-primary"></span> | <span class="fa fa-remove text-danger" (click)="deleteUser(+user.id)"></span></td>
+          <td class="text-center"><span style="font-size: 20px" class="fa fa-eye text-primary"></span> |
+            <span class="fa fa-remove text-danger" style="font-size: 20px" (click)="deleteUser(+user.id)"></span></td>
         </tr>
       </table>
       <ul class="nav nav-pills">

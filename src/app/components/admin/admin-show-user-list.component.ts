@@ -46,15 +46,23 @@ export class AdminShowUserListComponent implements OnInit {
   }
 
   deleteUser(id: number): void {
-    this.usersService.deleteUser(id).subscribe(() => this.getAllUserList(), error => console.log(error));
+    if (confirm('Do you really want to delete this user ?')) {
+      this.usersService.deleteUser(id).subscribe(() => this.getAllUserList(), error => console.log(error));
+    }
   }
 
   blockUser(i: number): void {
-    this.usersService.blockUser(i).subscribe(() => {console.log('block ok'); this.getAllUserList(); }, error => console.log(error));
+    this.usersService.blockUser(i).subscribe(() => {
+      console.log('block ok');
+      this.getAllUserList();
+    }, error => console.log(error));
   }
 
 
   activeUser(i: number): void {
-    this.usersService.activeUser(i).subscribe(() => {console.log('active ok'); this.getAllUserList(); }, error => console.log(error));
+    this.usersService.activeUser(i).subscribe(() => {
+      console.log('active ok');
+      this.getAllUserList();
+    }, error => console.log(error));
   }
 }
