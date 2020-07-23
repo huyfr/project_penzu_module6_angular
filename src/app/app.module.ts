@@ -21,9 +21,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserComponent} from './components/user/displayUser/user.component';
 import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-annoucement/no-have-access-annoucement.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {HeaderComponent} from "./components/header/header.component";
+import {HeaderComponent} from './components/header/header.component';
 import { CreateDiaryComponent } from './components/diary/create-diary/create-diary.component';
-import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import { AdminLeftSideBarComponent } from './components/admin/admin-left-side-bar/admin-left-side-bar.component';
 import { AdminMainViewComponent } from './components/admin/admin-main-view/admin-main-view.component';
 @NgModule({
