@@ -11,7 +11,6 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/user/editUser/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
-import {CKEditorModule} from 'ngx-ckeditor';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {Permissions} from './auth-guard/permissions';
 import {CanActivateTeam} from './auth-guard/can-activate-team';
@@ -24,6 +23,7 @@ import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-an
 import { FooterComponent } from './components/footer/footer.component';
 import {HeaderComponent} from "./components/header/header.component";
 import { CreateDiaryComponent } from './components/diary/create-diary/create-diary.component';
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 
 @NgModule({
   declarations: [
@@ -48,8 +48,8 @@ import { CreateDiaryComponent } from './components/diary/create-diary/create-dia
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CKEditorModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CKEditorModule
   ],
   providers: [Permissions, CanActivateTeam, NotActivateTeam , IsAdmin],
   bootstrap: [AppComponent]
