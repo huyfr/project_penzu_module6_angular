@@ -7,11 +7,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { DiaryShowComponent } from './components/diary/diary-show/diary-show.component';
 import { AdminShowUserListComponent } from './components/admin/admin-show-user-list.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { ProfileComponent } from './components/auth/profile/profile.component';
-import { RegisterComponent } from './components/auth/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/user/editUser/profile.component';
+import { RegisterComponent } from './components/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
-import {CKEditorModule} from 'ngx-ckeditor';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {Permissions} from './auth-guard/permissions';
 import {CanActivateTeam} from './auth-guard/can-activate-team';
@@ -19,10 +18,12 @@ import {NotActivateTeam} from './auth-guard/not-activate-team';
 import {IsAdmin} from './auth-guard/is-admin';
 import { HomeComponent } from './components/home/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {UserComponent} from './components/user/user.component';
+import {UserComponent} from './components/user/displayUser/user.component';
 import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-annoucement/no-have-access-annoucement.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {HeaderComponent} from './components/header/header.component';
+import {HeaderComponent} from "./components/header/header.component";
+import { CreateDiaryComponent } from './components/diary/create-diary/create-diary.component';
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import { AdminLeftSideBarComponent } from './components/admin/admin-left-side-bar/admin-left-side-bar.component';
 import { AdminMainViewComponent } from './components/admin/admin-main-view/admin-main-view.component';
 
@@ -41,7 +42,8 @@ import { AdminMainViewComponent } from './components/admin/admin-main-view/admin
     HeaderComponent,
     FooterComponent,
     AdminLeftSideBarComponent,
-    AdminMainViewComponent
+    AdminMainViewComponent,
+    CreateDiaryComponent
   ],
   imports: [
     BrowserModule,
@@ -50,8 +52,8 @@ import { AdminMainViewComponent } from './components/admin/admin-main-view/admin
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CKEditorModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CKEditorModule
   ],
   providers: [Permissions, CanActivateTeam, NotActivateTeam , IsAdmin],
   bootstrap: [AppComponent]

@@ -1,13 +1,15 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminShowUserListComponent} from './components/admin/admin-show-user-list.component';
-import {LoginComponent} from './components/auth/login/login.component';
-import {RegisterComponent} from './components/auth/register/register.component';
-import {UserComponent} from './components/user/user.component';
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
+import {UserComponent} from './components/user/displayUser/user.component';
 import {HomeComponent} from './components/home/home.component';
 import {NoHaveAccessAnnoucementComponent} from './components/no-have-access-annoucement/no-have-access-annoucement.component';
 import {CanActivateTeam} from './auth-guard/can-activate-team';
 import {IsAdmin} from './auth-guard/is-admin';
+import {ProfileComponent} from "./components/user/editUser/profile.component";
+import {CreateDiaryComponent} from "./components/diary/create-diary/create-diary.component";
 import {AdminMainViewComponent} from './components/admin/admin-main-view/admin-main-view.component';
 
 const routes: Routes = [
@@ -25,13 +27,14 @@ const routes: Routes = [
 
   {path: 'admin', component: AdminMainViewComponent},
   {path: 'admin/user/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
-  {path: 'admin/user/block/:id', component: AdminShowUserListComponent} // phục vụ chức năng admin
+  {path: 'admin/user/block/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
+  {path: 'app/account', component: ProfileComponent, canActivate: [CanActivateTeam]},
+  {path: 'journals/new', component: CreateDiaryComponent, canActivate: [CanActivateTeam]}
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }
