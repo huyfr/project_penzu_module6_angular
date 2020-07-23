@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(128)]],
     });
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/journals';
   }
 
   reloadPage(): void {
@@ -69,30 +69,6 @@ export class LoginComponent implements OnInit {
         }
       );
     }
-   /* const {username, password} = this.loginForm.value;
-    const authLoginInfo = new AuthLoginInfo(username, password);
-
-    this.authService.attemptAuth(authLoginInfo).subscribe(
-      data => {
-        this.token.saveToken(data.accessToken);
-        this.token.saveUsername(data.username);
-        this.token.saveAuthorities(data.roles);
-        this.token.saveUserId(data.id);
-        this.token.saveName(data.name);
-        this.token.saveEmail(data.email);
-        this.token.saveAvatar(data.avatar);
-
-        // console.log(this.token);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.token.getAuthorities();
-        this.router.navigateByUrl(this.returnUrl);
-      },
-      error => {
-        console.log(error);
-        this.isLoginFailed = true;
-      }
-    );*/
   }
 
   get rfc(): any {
