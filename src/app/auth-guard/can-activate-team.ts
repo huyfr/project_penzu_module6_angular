@@ -19,7 +19,7 @@ export class CanActivateTeam implements CanActivate  {
     if (this.permission.canActivate()) {
       return this.permission.canActivate();
     } else {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/no-access');
       return false;
     }
   }

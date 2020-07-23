@@ -1,0 +1,17 @@
+<!-- Start Header Area -->
+<header class="default-header">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/">Penzu</a>
+      <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li *ngIf="!isUserLoggedIn"><a routerLink="/login">Login</a></li>
+          <li *ngIf="isUserLoggedIn"><a>Welcome, {{name}}</a></li>
+          <li *ngIf="!isUserLoggedIn"><a routerLink="/register">Sign up</a></li>
+          <li *ngIf="isUserLoggedIn"><a routerLink="/" (click)="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<!-- End Header Area -->
