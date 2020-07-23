@@ -25,6 +25,7 @@ import { CreateDiaryComponent } from './components/diary/create-diary/create-dia
 import { AdminLeftSideBarComponent } from './components/admin/admin-left-side-bar/admin-left-side-bar.component';
 import { AdminMainViewComponent } from './components/admin/admin-main-view/admin-main-view.component';
 import {DiaryShowComponent} from "./components/diary/diary-show/diary-show.component";
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {DiaryShowComponent} from "./components/diary/diary-show/diary-show.compo
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CKEditorModule
   ],
   providers: [Permissions, CanActivateTeam, NotActivateTeam , IsAdmin],
   bootstrap: [AppComponent]
