@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Diary} from '../../model/Diary';
-import {DiaryService} from '../services/diary.service';
+import {Diary} from '../../../model/Diary';
+import {DiaryService} from '../../../services/diary/diary.service';
+
 
 @Component({
   selector: 'app-diary-card',
@@ -8,13 +9,25 @@ import {DiaryService} from '../services/diary.service';
   styleUrls: ['./diary-card.component.scss']
 })
 export class DiaryCardComponent implements OnInit {
-  constructor(private diaryService: DiaryService) { }
+
+  // @Input() id: 1;
   diary: Diary;
+  diaries: Diary[];
+  constructor(private diaryService: DiaryService) { }
+
   ngOnInit(): void {
     this.getDiaryById();
+    this.getAllDiaries();
   }
 
-  private getDiaryById(): void {
+  getAllDiaries(): void{
+    this.diaryService.getAllTitle().subscribe((result) => {
+      this.diaries = result;
+    }, error => {
+    });
+  }
+
+  getDiaryById(): void {
     this.diaryService.getById(1).subscribe((result) => {
       this.diary = result;
     }, error => {

@@ -1,7 +1,5 @@
-import {Tag} from './Tag';
 import {User} from './User';
 import {Attachment} from './Attachment';
-import {Reaction} from './Reaction';
 
 export interface Diary {
   id?: number;

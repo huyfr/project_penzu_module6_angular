@@ -11,9 +11,9 @@ export class DiaryService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // getAll(): Observable<Diary[]>{
-  //   return this.httpClient.get<Diary[]>(apiUrl + '/diaries');
-  // }
+  getAllTitle(): Observable<Diary[]>{
+    return this.httpClient.get<Diary[]>(apiUrl + '/diaries');
+  }
 
   getById(id: number): Observable<Diary>{
     return this.httpClient.get<Diary>(`${apiUrl}/diary/${id}`);
