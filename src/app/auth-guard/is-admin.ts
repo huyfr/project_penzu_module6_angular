@@ -17,7 +17,7 @@ export class IsAdmin implements CanActivate  {
     if (this.permission.isAdmin()) {
       return this.permission.isAdmin();
     } else {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/no-access');
       return false;
     }
   }

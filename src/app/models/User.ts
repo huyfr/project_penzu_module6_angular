@@ -9,5 +9,6 @@ export interface User {
     name?: string;
   };
   avatar?: string;
-  blobString?: string;  status?: number;
+  blobString?: string;
+  status?: number;
 }

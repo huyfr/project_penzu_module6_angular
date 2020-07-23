@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { DiaryShowComponent } from './components/diary/diary-show/diary-show.component';
-import { UserListComponent } from './components/user/userComponent/user-list/user-list.component';
+import { AdminShowUserListComponent } from './components/admin/admin-show-user-list.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { ProfileComponent } from './components/auth/profile/profile.component';
 import { RegisterComponent } from './components/auth/register/register.component';
@@ -18,8 +18,11 @@ import {CanActivateTeam} from './auth-guard/can-activate-team';
 import {NotActivateTeam} from './auth-guard/not-activate-team';
 import {IsAdmin} from './auth-guard/is-admin';
 import { HomeComponent } from './components/home/home.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {UserComponent} from "./components/user/user.component";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserComponent} from './components/user/user.component';
+import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-annoucement/no-have-access-annoucement.component';
+import { FooterComponent } from './components/footer/footer.component';
+import {HeaderComponent} from "./components/header/header.component";
 
 @NgModule({
   declarations: [
@@ -30,8 +33,11 @@ import {UserComponent} from "./components/user/user.component";
     LoginComponent,
     RegisterComponent,
     DiaryShowComponent,
-    UserListComponent,
-    UserComponent
+    AdminShowUserListComponent,
+    UserComponent,
+    NoHaveAccessAnnoucementComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
