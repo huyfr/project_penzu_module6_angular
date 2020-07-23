@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminShowUserListComponent} from './components/admin/admin-show-user-list.component';
-import {LoginComponent} from './components/auth/login/login.component';
-import {RegisterComponent} from './components/auth/register/register.component';
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
 import {UserComponent} from './components/user/user.component';
 import {HomeComponent} from './components/home/home.component';
 import {NoHaveAccessAnnoucementComponent} from './components/no-have-access-annoucement/no-have-access-annoucement.component';

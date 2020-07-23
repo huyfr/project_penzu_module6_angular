@@ -7,9 +7,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { DiaryShowComponent } from './components/diary/diary-show/diary-show.component';
 import { AdminShowUserListComponent } from './components/admin/admin-show-user-list.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { ProfileComponent } from './components/auth/profile/profile.component';
-import { RegisterComponent } from './components/auth/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/user/editUser/profile.component';
+import { RegisterComponent } from './components/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CKEditorModule} from 'ngx-ckeditor';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -23,6 +23,7 @@ import {UserComponent} from './components/user/user.component';
 import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-annoucement/no-have-access-annoucement.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {HeaderComponent} from "./components/header/header.component";
+import { CreateDiaryComponent } from './components/diary/create-diary/create-diary.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {HeaderComponent} from "./components/header/header.component";
     UserComponent,
     NoHaveAccessAnnoucementComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CreateDiaryComponent
   ],
   imports: [
     BrowserModule,

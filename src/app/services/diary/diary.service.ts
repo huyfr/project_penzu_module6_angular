@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Diary} from '../../../models/Diary';
+import {Diary} from '../../models/Diary';
 import {Observable} from 'rxjs';
 
 const apiUrl = 'http://localhost:8080/api/sdu';
