@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataSharingService} from '../../services/dataSharing/data-sharing.service';
 import {Router} from '@angular/router';
-import {TokenStorageService} from '../auth/token-storage.service';
+import {TokenStorageService} from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -15,14 +15,17 @@ export class HeaderComponent implements OnInit {
   constructor(private dataSharingService: DataSharingService,
               private router: Router,
               private tokenStorageService: TokenStorageService) {
-    this.dataSharingService.isUserLoggedIn.subscribe(value =>
-    {
+    this.dataSharingService.isUserLoggedIn.subscribe(value => {
       this.isUserLoggedIn = value;
-      this.username = tokenStorageService.getUsername();
+      this.username = this.tokenStorageService.getUsername();
     });
   }
 
   ngOnInit(): void {
+    if (window.sessionStorage.length > 0) {
+      this.isUserLoggedIn = true;
+      this.username = this.tokenStorageService.getUsername();
+    }
   }
 
   logout(): void {

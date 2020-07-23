@@ -3,15 +3,13 @@
   <div class="container">
     <div class="row justify-content-start align-items-center d-flex">
       <div class="col-lg-8 top-left">
-        <img src="assets/blogger/img/user.jpg" alt="">
-        <h2 class="text-white mb-20 mt-20">USERNAME</h2>
-        <h4 class="lnr lnr-heart text-white">  06 </h4>
+        <img *ngIf="isUserLoggedIn" src="{{avatar}}" width="300px" height="300px">
+        <h1 class="text-white mb-20 mt-20" *ngIf="isUserLoggedIn">{{username}}</h1>
       </div>
     </div>
   </div>
 </section>
 <!-- End top-section Area -->
-
 
 <!-- Start post Area -->
 <div class="post-wrapper pt-100">
@@ -22,22 +20,12 @@
         <div class="col-lg-8">
           <div class="post-lists search-list">
             <div class="single-list flex-row d-flex">
-              <div class="thumb">
-                <div class="date">
-                  <span>20</span><br>Dec
-                </div>
-                <img src="assets/blogger/img/asset/l1.jpg" alt="">
-              </div>
               <div class="detail">
-                <a href="#"><h4 class="pb-20">Addiction When Gambling <br>
-                  Becomes A Problem</h4></a>
+                <a href="#"><h4 class="pb-10">Addiction When Gambling Becomes A Problem</h4></a>
+                <h6 class="pb-10" style="color: black">23/07/2020</h6>
                 <p>
                   inappropriate behavior Lorem ipsum dolor sit amet, consecteturinapprop riate behavior Lorem ipsum
                   dolor sit amet, consectetur.
-                </p>
-                <p class="footer pt-20">
-                  <a><span class="lnr lnr-heart"></span></a> 06 Likes
-                  <a><span class="lnr lnr-bubble ml-30"></span></a> 02 Comments
                 </p>
               </div>
             </div>
@@ -69,7 +57,7 @@
           </div>
 
           <div class="single_widget cat_widget">
-            <h4 class="text-uppercase pb-20">post categories</h4>
+            <h4 class="text-uppercase pb-20">categories</h4>
             <ul>
               <li>
                 <a href="#">Technology <span>37</span></a>
@@ -79,18 +67,6 @@
               </li>
               <li>
                 <a href="#">Fashion <span>37</span></a>
-              </li>
-              <li>
-                <a href="#">Art <span>37</span></a>
-              </li>
-              <li>
-                <a href="#">Food <span>37</span></a>
-              </li>
-              <li>
-                <a href="#">Architecture <span>37</span></a>
-              </li>
-              <li>
-                <a href="#">Adventure <span>37</span></a>
               </li>
             </ul>
           </div>
