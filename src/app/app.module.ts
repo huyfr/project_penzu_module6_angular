@@ -26,6 +26,7 @@ import { CreateDiaryComponent } from './components/diary/create-diary/create-dia
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import { AdminLeftSideBarComponent } from './components/admin/admin-left-side-bar/admin-left-side-bar.component';
 import { AdminMainViewComponent } from './components/admin/admin-main-view/admin-main-view.component';
+import { TagShowComponent } from './components/tag/tag-show/tag-show.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { AdminMainViewComponent } from './components/admin/admin-main-view/admin
     FooterComponent,
     AdminLeftSideBarComponent,
     AdminMainViewComponent,
-    CreateDiaryComponent
+    CreateDiaryComponent,
+    TagShowComponent,
   ],
   imports: [
     BrowserModule,

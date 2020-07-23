@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Diary} from '../../../models/Diary';
-import {DiaryService} from "../../../services/diary/diary.service";
+import {DiaryService} from '../../../services/diary/diary.service';
 
 @Component({
   selector: 'app-diary-show',
