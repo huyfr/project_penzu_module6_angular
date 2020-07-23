@@ -7,9 +7,15 @@
       <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li *ngIf="!isUserLoggedIn"><a routerLink="/login">Login</a></li>
-          <li *ngIf="isUserLoggedIn"><a>Welcome, {{username}}</a></li>
+          <li *ngIf="isUserLoggedIn" class="dropdown">
+            <a class="dropdown-toggle">{{username}}</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="/app/account">Account</a>
+              <a class="dropdown-item" routerLink="/journals/new">New Entry</a>
+              <a class="dropdown-item" routerLink="/" (click)="logout()">Logout</a>
+      </div>
+          </li>
           <li *ngIf="!isUserLoggedIn"><a routerLink="/register">Sign up</a></li>
-          <li *ngIf="isUserLoggedIn"><a routerLink="/" (click)="logout()">Logout</a></li>
         </ul>
       </div>
     </div>
