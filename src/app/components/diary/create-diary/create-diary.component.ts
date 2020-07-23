@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataSharingService} from "../../../services/dataSharing/data-sharing.service";
 
 @Component({
   selector: 'app-create-diary',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateDiaryComponent implements OnInit {
 
-  constructor() { }
+  private isUserLoggedIn: boolean;
+
+  constructor(private dataSharingService: DataSharingService) {
+    this.dataSharingService.isUserLoggedIn.subscribe(value =>
+    {
+      this.isUserLoggedIn = value;
+    });
+  }
 
   ngOnInit(): void {
+    if (window.sessionStorage.length > 0) {
+      this.isUserLoggedIn = true;
+    }
   }
 
 }

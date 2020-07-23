@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Diary} from '../../model/Diary';
-import {DiaryService} from '../services/diary.service';
+import {DiaryService} from "../../services/diary/diary.service";
+import {Diary} from "../../models/Diary";
 
 @Component({
   selector: 'app-diary-card',
@@ -10,6 +10,7 @@ import {DiaryService} from '../services/diary.service';
 export class DiaryCardComponent implements OnInit {
   constructor(private diaryService: DiaryService) { }
   diary: Diary;
+
   ngOnInit(): void {
     this.getDiaryById();
   }
