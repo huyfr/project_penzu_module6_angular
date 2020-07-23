@@ -1,17 +1,36 @@
-import {Tag} from './Tag';
+import {Attachment} from './Attachment';
+
 
 export interface Diary {
   id?: number;
-  blobstring: string;
+  title?: string;
+  description: string;
+  content: string;
+  tag?: {
+    id?: number;
+    name: string;
+  };
   createdate?: string;
   updatedate: string;
+  attachment: Attachment[];
   status: number;
-  description: string;
-  title: string;
-  content: string;
-  tag?: Tag;
-  reaction;
-  user;
-  attachment;
+  user: {
+    id?: string;
+    name?: string;
+    username?: string;
+    password?: string;
+    email?: string;
+    role?: {
+      id?: string;
+      name?: string;
+    };
+    avatar?: string;
+    blobString?: string;  status?: number;
+  };
+  blobstring: string;
+  reaction: {
+    id?: number;
+    reactionname: string;
+  };
 }
 

@@ -8,6 +8,7 @@ import {HomeComponent} from './components/home/home.component';
 import {NoHaveAccessAnnoucementComponent} from './components/no-have-access-annoucement/no-have-access-annoucement.component';
 import {CanActivateTeam} from './auth-guard/can-activate-team';
 import {IsAdmin} from './auth-guard/is-admin';
+import {AdminMainViewComponent} from './components/admin/admin-main-view/admin-main-view.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -15,11 +16,14 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'journals', component: UserComponent, canActivate: [CanActivateTeam]}, // để show trang user
+
   {// phục vụ chức năng admin
     path: 'admin/userList',
     component: AdminShowUserListComponent,
     canActivate: [CanActivateTeam, IsAdmin]
   },
+
+  {path: 'admin', component: AdminMainViewComponent},
   {path: 'admin/user/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
   {path: 'admin/user/block/:id', component: AdminShowUserListComponent} // phục vụ chức năng admin
 ];
@@ -28,4 +32,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+
+export class AppRoutingModule {
+}

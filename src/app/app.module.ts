@@ -22,7 +22,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserComponent} from './components/user/user.component';
 import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-annoucement/no-have-access-annoucement.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {HeaderComponent} from "./components/header/header.component";
+import {HeaderComponent} from './components/header/header.component';
+import { AdminLeftSideBarComponent } from './components/admin/admin-left-side-bar/admin-left-side-bar.component';
+import { AdminMainViewComponent } from './components/admin/admin-main-view/admin-main-view.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {HeaderComponent} from "./components/header/header.component";
     UserComponent,
     NoHaveAccessAnnoucementComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AdminLeftSideBarComponent,
+    AdminMainViewComponent
   ],
   imports: [
     BrowserModule,
