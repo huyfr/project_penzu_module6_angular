@@ -1,0 +1,10 @@
+<div class="container">
+  <div style="width: 100%">
+    <p>{{diary.content}}</p>
+  </div>
+  <div *ngIf="diary.description">
+    <blockquote>
+      {{diary.description}}
+      <cite>{{diary.user.name}}</cite></blockquote>
+  </div>
+</div>
