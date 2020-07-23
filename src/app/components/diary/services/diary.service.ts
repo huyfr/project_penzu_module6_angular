@@ -31,6 +31,9 @@ export class DiaryService {
     return this.httpClient.delete(`${apiUrl}/${id}`);
   }
 
+  // getAll(page: number): Observable<Diary[]>{
+  //   return this.httpClient.get<Diary[]>(apiUrl + '?page=' + page);
+  // }
   getAll(page: number): Observable<Diary[]>{
     return this.httpClient.get<Diary[]>(apiUrl + '?page=' + page);
   }
