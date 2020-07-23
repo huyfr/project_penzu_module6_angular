@@ -5,18 +5,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DiaryShowComponent } from './diary/diary-show/diary-show.component';
+import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import { DiaryCardComponent } from './diary/diary-card/diary-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DiaryShowComponent
+    DiaryShowComponent,
+    DiaryCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
