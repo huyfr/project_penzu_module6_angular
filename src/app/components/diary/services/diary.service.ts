@@ -11,9 +11,9 @@ export class DiaryService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(): Observable<Diary[]>{
-    return this.httpClient.get<Diary[]>(apiUrl);
-  }
+  // getAll(): Observable<Diary[]>{
+  //   return this.httpClient.get<Diary[]>(apiUrl);
+  // }
 
   getById(id: number): Observable<Diary>{
     return this.httpClient.get<Diary>(`${apiUrl}/${id}`);
@@ -30,4 +30,9 @@ export class DiaryService {
   deleteDiary(id: number): Observable<any>{
     return this.httpClient.delete(`${apiUrl}/${id}`);
   }
+
+  getAll(page: number): Observable<Diary[]>{
+    return this.httpClient.get<Diary[]>(apiUrl + '?page=' + page);
+  }
+
 }
