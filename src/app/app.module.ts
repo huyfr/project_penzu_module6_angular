@@ -27,8 +27,7 @@ import { AdminShowAlbumListComponent } from './components/admin/admin-show-album
 import { AdminShowTagListComponent } from './components/admin/admin-show-tag-list/admin-show-tag-list.component';
 import { CreateDiaryComponent } from './components/diary/create-diary/create-diary.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-
-
+import { TagShowComponent } from './components/tag/tag-show/tag-show.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +46,7 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
     AdminShowAlbumListComponent,
     AdminShowTagListComponent,
     CreateDiaryComponent
+    TagShowComponent,
   ],
   imports: [
     BrowserModule,
