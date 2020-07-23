@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminLeftSideBarComponent } from './admin-left-side-bar.component';
+import { AdminShowTagListComponent } from './admin-show-tag-list.component';
 
-describe('AdminLeftSideBarComponent', () => {
-  let component: AdminLeftSideBarComponent;
-  let fixture: ComponentFixture<AdminLeftSideBarComponent>;
+describe('AdminShowTagListComponent', () => {
+  let component: AdminShowTagListComponent;
+  let fixture: ComponentFixture<AdminShowTagListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminLeftSideBarComponent ]
+      declarations: [ AdminShowTagListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminLeftSideBarComponent);
+    fixture = TestBed.createComponent(AdminShowTagListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

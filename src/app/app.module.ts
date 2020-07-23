@@ -23,8 +23,9 @@ import {UserComponent} from './components/user/user.component';
 import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-annoucement/no-have-access-annoucement.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {HeaderComponent} from './components/header/header.component';
-import { AdminLeftSideBarComponent } from './components/admin/admin-left-side-bar/admin-left-side-bar.component';
-import { AdminMainViewComponent } from './components/admin/admin-main-view/admin-main-view.component';
+import { AdminShowDairyListComponent } from './components/admin/admin-show-dairy-list/admin-show-dairy-list.component';
+import { AdminShowAlbumListComponent } from './components/admin/admin-show-album-list/admin-show-album-list.component';
+import { AdminShowTagListComponent } from './components/admin/admin-show-tag-list/admin-show-tag-list.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +41,9 @@ import { AdminMainViewComponent } from './components/admin/admin-main-view/admin
     NoHaveAccessAnnoucementComponent,
     HeaderComponent,
     FooterComponent,
-    AdminLeftSideBarComponent,
-    AdminMainViewComponent
+    AdminShowDairyListComponent,
+    AdminShowAlbumListComponent,
+    AdminShowTagListComponent,
   ],
   imports: [
     BrowserModule,

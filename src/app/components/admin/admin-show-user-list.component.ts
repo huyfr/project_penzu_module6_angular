@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminUserService} from '../../services/admin/admin-user.service';
 import {ActivatedRoute} from '@angular/router';
-import {User} from "../../models/User";
+import {User} from '../../models/User';
 
 @Component({
-  selector: 'app-user-list',
+  selector: 'app-admin-show-user-list',
   templateUrl: './admin-show-user-list.component.html',
   styleUrls: ['./admin-show-user-list.component.scss']
 })
