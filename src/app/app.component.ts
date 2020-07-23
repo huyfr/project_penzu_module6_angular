@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {DiaryService} from './diary/services/diary.service';
 
 @Component({
   selector: 'app-root',

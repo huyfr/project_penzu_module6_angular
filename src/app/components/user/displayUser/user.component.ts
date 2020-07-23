@@ -26,6 +26,11 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (window.sessionStorage.length > 0) {
+      this.isUserLoggedIn = true;
+      this.username = this.tokenStorageService.getUsername();
+      this.avatar = this.tokenStorageService.getAvatar();
+    }
   }
 
 }

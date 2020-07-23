@@ -26,12 +26,6 @@ import { CreateDiaryComponent } from './components/diary/create-diary/create-dia
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import { AdminLeftSideBarComponent } from './components/admin/admin-left-side-bar/admin-left-side-bar.component';
 import { AdminMainViewComponent } from './components/admin/admin-main-view/admin-main-view.component';
-import { DiaryShowComponent } from './diary/diary-show/diary-show.component';
-import {HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
-import { DiaryCardComponent } from './diary/diary-card/diary-card.component';
-
 @NgModule({
   declarations: [
     AppComponent,
