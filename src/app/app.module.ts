@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DiaryShowComponent } from './diary/diary-show/diary-show.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { DiaryCardComponent } from './diary/diary-card/diary-card.component';
 
 @NgModule({
