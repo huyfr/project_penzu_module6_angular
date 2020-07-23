@@ -1,5 +1,7 @@
 import {Tag} from './Tag';
-import { Attachment} from './Attachment';
+import {User} from './User';
+import {Attachment} from './Attachment';
+import {Reaction} from './Reaction';
 
 export interface Diary {
   id?: number;
@@ -9,7 +11,7 @@ export interface Diary {
   tag?: {
     id?: number;
     name: string;
-  };
+};
   createdate?: string;
   updatedate: string;
   attachment: Attachment[];
@@ -25,9 +27,8 @@ export interface Diary {
       name?: string;
     };
     avatar?: string;
-    blobString?: string;
-    status?: number;
-  };
+    blobString?: string;  status?: number;
+};
   blobstring: string;
   reaction: {
     id?: number;

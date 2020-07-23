@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {TokenStorageService} from '../components/auth/token-storage.service';
+import {TokenStorageService} from '../services/token-storage.service';
 
 
 @Injectable()
