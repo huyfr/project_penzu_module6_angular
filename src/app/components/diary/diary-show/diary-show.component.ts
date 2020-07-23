@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Diary} from '../../../models/Diary';
-import {DiaryService} from "../../../services/diary/diary.service";
+import {DiaryService} from '../../../services/diary/diary.service';
 
 @Component({
   selector: 'app-diary-show',
@@ -14,7 +14,7 @@ export class DiaryShowComponent implements OnInit {
   pages: Array<number>;
 
   constructor( private diaryService: DiaryService) { }
-  setPage(i, event: any){
+  setPage(i, event: any): void{
     event.preventDefault();
     this.page = i;
     this.getAllDiary();
@@ -24,7 +24,7 @@ export class DiaryShowComponent implements OnInit {
     this.getAllDiary();
   }
 
-  getAllDiary(){
+  getAllDiary(): void{
     this.diaryService.getAll(this.page).subscribe(
       list => {
         console.log(list);
@@ -37,7 +37,7 @@ export class DiaryShowComponent implements OnInit {
     );
   }
 
-  deleteDiary(i) {
+  deleteDiary(i): void {
     const diary = this.listDiary[i];
     if (confirm('Bạn có muốn xóa ' + diary.title + ' không?')) {
       this.diaryService.deleteDiary(diary.id)

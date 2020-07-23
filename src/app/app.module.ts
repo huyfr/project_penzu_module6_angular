@@ -11,7 +11,6 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/user/editUser/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
-import {CKEditorModule} from 'ngx-ckeditor';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {Permissions} from './auth-guard/permissions';
 import {CanActivateTeam} from './auth-guard/can-activate-team';
@@ -27,9 +26,9 @@ import { AdminShowDairyListComponent } from './components/admin/admin-show-dairy
 import { AdminShowAlbumListComponent } from './components/admin/admin-show-album-list/admin-show-album-list.component';
 import { AdminShowTagListComponent } from './components/admin/admin-show-tag-list/admin-show-tag-list.component';
 import { CreateDiaryComponent } from './components/diary/create-diary/create-diary.component';
-import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
-import { AdminLeftSideBarComponent } from './components/admin/admin-left-side-bar/admin-left-side-bar.component';
-import { AdminMainViewComponent } from './components/admin/admin-main-view/admin-main-view.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,8 +46,6 @@ import { AdminMainViewComponent } from './components/admin/admin-main-view/admin
     AdminShowDairyListComponent,
     AdminShowAlbumListComponent,
     AdminShowTagListComponent,
-    AdminLeftSideBarComponent,
-    AdminMainViewComponent,
     CreateDiaryComponent
   ],
   imports: [
