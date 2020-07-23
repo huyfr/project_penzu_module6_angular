@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { DiaryShowComponent } from './components/diary/diary-show/diary-show.component';
 import { AdminShowUserListComponent } from './components/admin/admin-show-user-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/user/editUser/profile.component';
@@ -24,7 +25,7 @@ import {HeaderComponent} from "./components/header/header.component";
 import { CreateDiaryComponent } from './components/diary/create-diary/create-diary.component';
 import { AdminLeftSideBarComponent } from './components/admin/admin-left-side-bar/admin-left-side-bar.component';
 import { AdminMainViewComponent } from './components/admin/admin-main-view/admin-main-view.component';
-import {DiaryShowComponent} from "./components/diary/diary-show/diary-show.component";
+import { TagShowComponent } from './components/tag/tag-show/tag-show.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 
 @NgModule({
@@ -44,6 +45,7 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
     AdminLeftSideBarComponent,
     AdminMainViewComponent,
     CreateDiaryComponent,
+    TagShowComponent,
   ],
   imports: [
     BrowserModule,

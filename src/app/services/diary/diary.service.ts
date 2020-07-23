@@ -38,4 +38,8 @@ export class DiaryService {
   getAll(page: number): Observable<Diary[]>{
     return this.httpClient.get<Diary[]>(apiUrl + '?page=' + page);
   }
+
+  getAllByUser(page: number, id: number): Observable<Diary[]>{
+    return this.httpClient.get<Diary[]>(`${apiUrl}/diary/user/${id}` + '?page=' + page);
+  }
 }
