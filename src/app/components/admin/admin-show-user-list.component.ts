@@ -81,6 +81,7 @@ export class AdminShowUserListComponent implements OnInit {
   showDetailUser(id: string): void {
     this.usersService.getUserById(+id).subscribe(result => {
       this.pickUpUser = result;
+      console.log(this.pickUpUser);
       this.editForm.patchValue(result);
     });
   }
