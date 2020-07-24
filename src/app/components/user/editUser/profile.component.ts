@@ -7,6 +7,7 @@ import {UserService} from '../../../services/user/user.service';
 import {PassForm} from '../../../services/user/passForm/pass-form';
 import {UserForm} from '../../../services/user/userForm/user-form';
 import {User} from '../../../models/User';
+import {DataSharingService} from "../../../services/dataSharing/data-sharing.service";
 
 @Component({
   selector: 'app-profile',
@@ -39,7 +40,8 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private dataSharingService: DataSharingService
   ) {
   }
 
@@ -57,15 +59,18 @@ export class ProfileComponent implements OnInit {
     this.getUser();
   }
 
-  getUser(): void {
+  getUser() {
     if (this.token) {
-      this.userService.getUserById(this.token.getUserId()).subscribe(
-        result => {
-          this.user = result;
-        }, error1 => {
-          console.log(error1);
-        }
-      );
+      // this.userService.getUserById(+this.token.getUserId()).subscribe(
+      //   result => {
+      //     this.user = result;
+      //     console.log('getUser', result);
+      //   }, error1 => {
+      //     console.log(error1);
+      //   }
+      // );
+
+      return this.userService.getUserById(+this.token.getUserId());
     }
   }
 
@@ -148,13 +153,12 @@ export class ProfileComponent implements OnInit {
         result => {
           clearInterval(count);
           this.processValue = 100;
-          setTimeout(() => {
-            this.getUser();
-            this.token.saveAvatar(this.user.avatar);
+          this.getUser().subscribe( user => {
+            this.token.saveAvatar(user.avatar);
             console.log('ok');
             closeProcess.click();
             this.processValue = 0;
-          }, 2000);
+          });
         }, error1 => {
           console.log(error1);
         }
