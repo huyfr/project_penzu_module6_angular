@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Diary} from '../../../model/Diary';
 import {DiaryService} from '../../../services/diary/diary.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class DiaryCardComponent implements OnInit {
   // @Input() id: 1;
   diary: Diary;
   diaries: Diary[];
-  constructor(private diaryService: DiaryService, private activatedRoute: ActivatedRoute) { }
+  constructor(private diaryService: DiaryService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.getDiaryById();
@@ -34,5 +34,15 @@ export class DiaryCardComponent implements OnInit {
       this.diary = result;
     }, error => {
     });
+  }
+  deleteDiary(i): void {
+    const diary = this.diaries[i];
+    if (confirm('You want to remove ' + diary.title + '?')) {
+      this.diaryService.deleteDiary(diary.id)
+        .subscribe((result) => {
+          this.diaries = this.diaries.filter(t => t.id !== diary.id);
+        });
+    }
+    this.router.navigateByUrl('/diaries');
   }
 }
