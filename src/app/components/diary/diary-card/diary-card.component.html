@@ -417,7 +417,8 @@
             <div class="row">
               <div class="col-10" style="margin-left: 5px">
                 <div *ngFor="let item of diaries">
-                  <a [routerLink]="['/diary/detail/',item.id]">{{item.title}}</a>
+                  <a routerLink="/diary/detail/{{item.id}}">{{item.title}}</a>
+<!--                  <a [routerLink]="['/diary/detail',item.id]">{{item.title}}</a>-->
                 </div>
               </div>
             </div>

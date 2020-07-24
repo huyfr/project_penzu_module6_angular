@@ -34,7 +34,7 @@ const routes: Routes = [
   {path: 'journals/new', component: CreateDiaryComponent, canActivate: [CanActivateTeam]},
 
   {path: 'diaries', component: DiaryShowComponent},
-  {path: 'diary', component: DiaryCardComponent}
+  {path: 'diary/detail/:id', component: DiaryCardComponent}
 
 ];
 

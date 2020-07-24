@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Diary} from '../../../model/Diary';
 import {DiaryService} from '../../../services/diary/diary.service';
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -13,7 +14,7 @@ export class DiaryCardComponent implements OnInit {
   // @Input() id: 1;
   diary: Diary;
   diaries: Diary[];
-  constructor(private diaryService: DiaryService) { }
+  constructor(private diaryService: DiaryService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getDiaryById();
@@ -28,7 +29,8 @@ export class DiaryCardComponent implements OnInit {
   }
 
   getDiaryById(): void {
-    this.diaryService.getById(1).subscribe((result) => {
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.diaryService.getById(+id).subscribe((result) => {
       this.diary = result;
     }, error => {
     });
