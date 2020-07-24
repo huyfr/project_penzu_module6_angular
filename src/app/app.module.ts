@@ -21,13 +21,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserComponent} from './components/user/displayUser/user.component';
 import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-annoucement/no-have-access-annoucement.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {HeaderComponent} from './components/header/header.component';
+import {HeaderComponent} from "./components/header/header.component";
 import { AdminShowDairyListComponent } from './components/admin/admin-show-dairy-list/admin-show-dairy-list.component';
 import { AdminShowAlbumListComponent } from './components/admin/admin-show-album-list/admin-show-album-list.component';
 import { AdminShowTagListComponent } from './components/admin/admin-show-tag-list/admin-show-tag-list.component';
 import { CreateDiaryComponent } from './components/diary/create-diary/create-diary.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import { TagShowComponent } from './components/tag/tag-show/tag-show.component';
+
 @NgModule({
   declarations: [
     AppComponent,
