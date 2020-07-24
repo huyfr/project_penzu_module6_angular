@@ -8,6 +8,8 @@ export const environment = {
   signupUrl: 'http://localhost:8080/api/sdu/register',
   updateProfileUrl: 'http://localhost:8080/api/sdu/update-profile',
   updatePasswordUrl: 'http://localhost:8080/api/sdu/update-password',
+  userAvatarUrl: 'http://localhost:8080/api/sdu/user-avatar/',
+  userUrl: 'http://localhost:8080/api/sdu/user/',
 };
 
 /*
