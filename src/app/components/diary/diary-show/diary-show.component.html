@@ -5,14 +5,14 @@
       <table class="table table-striped">
         <tbody>
         <tr *ngFor="let diary of listDiary; index as i">
-          <td *ngIf="diary.status != 0">{{diary.id}}</td>
-          <td *ngIf="diary.status != 0">
+          <td *ngIf="diary.status != -1">{{i+1}}</td>
+          <td *ngIf="diary.status != -1">
             <a routerLink="/diary/detail/{{diary.id}}">{{diary.title}}</a>
           </td>
-          <td *ngIf="diary.status != 0">{{diary.description}}</td>
-          <td *ngIf="diary.status != 0">
-            <button class="btn btn-outline-info">EDIT</button>
-            <button class="btn btn-outline-danger" (click)="deleteDiary(i)">DELETE</button>
+          <td *ngIf="diary.status != -1">{{diary.description}}</td>
+          <td *ngIf="diary.status != -1">
+            <button class="btn btn-outline-info">EDIT</button> |
+            <button class="btn btn-outline-danger" (click)="deleteDiary(diary.id)">DELETE</button>
           </td>
         </tr>
         </tbody>

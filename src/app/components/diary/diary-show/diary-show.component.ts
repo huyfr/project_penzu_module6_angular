@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Diary} from '../../../models/Diary';
-import {DiaryService} from "../../../services/diary/diary.service";
+import {DiaryService} from '../../../services/diary/diary.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-diary-show',
@@ -13,8 +14,8 @@ export class DiaryShowComponent implements OnInit {
   listDiary: Array<any>;
   pages: Array<number>;
 
-  constructor( private diaryService: DiaryService) { }
-  setPage(i, event: any){
+  constructor( private diaryService: DiaryService, private router: Router) { }
+  setPage(i, event: any): void{
     event.preventDefault();
     this.page = i;
     this.getAllDiary();
@@ -24,7 +25,7 @@ export class DiaryShowComponent implements OnInit {
     this.getAllDiary();
   }
 
-  getAllDiary(){
+  getAllDiary(): void{
     this.diaryService.getAll(this.page).subscribe(
       list => {
         console.log(list);
@@ -37,14 +38,14 @@ export class DiaryShowComponent implements OnInit {
     );
   }
 
-  deleteDiary(i) {
-    const diary = this.listDiary[i];
-    if (confirm('Bạn có muốn xóa ' + diary.title + ' không?')) {
-      this.diaryService.deleteDiary(diary.id)
+  deleteDiary(id): void {
+    const diary = this.listDiary[id];
+    if (confirm('You want to remove ' + diary.title + '?')) {
+      this.diaryService.deleteDiary(id)
         .subscribe((result) => {
           this.listDiary = this.listDiary.filter(t => t.id !== diary.id);
         });
+      this.router.navigateByUrl('/diaries');
     }
   }
-
 }
