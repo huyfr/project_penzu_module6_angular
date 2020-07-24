@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {User} from '../../models/User';
 import {Diary} from '../../models/Diary';
 
@@ -10,6 +10,8 @@ const apiUrl = 'http://localhost:8080/api/sdu/';
   providedIn: 'root'
 })
 export class AdminUserService {
+
+  shouldRefresh = new Subject<any>();
 
   constructor(private http: HttpClient) {
   }
@@ -36,5 +38,9 @@ export class AdminUserService {
 
   getUserById(i: number): Observable<User> {
     return this.http.get<User>(apiUrl + 'admin/user/' + i);
+  }
+
+  editUser(data: User): Observable<User> {
+    return this.http.put<User>(apiUrl + 'admin/edit/' + data.id, data);
   }
 }

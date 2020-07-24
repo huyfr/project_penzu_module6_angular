@@ -81,7 +81,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="editForm" (ngSubmit)="changeInfor()">
+        <form [formGroup]="editForm" (ngSubmit)="changeInfor(closeModalRef)">
           <table class="container" style="margin-left: 30px">
             <tr>
               <td class="font-weight-bold">User name :</td>
@@ -106,13 +106,13 @@
                 <option [selected]="pickUpUser.roles[0].name === 'ROLE_ADMIN'" value="3">ADMIN</option>
               </select></td>
             </tr>
-
           </table>
+          <br>
+          <div class="modal-footer">
+            <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-outline-primary">Update</button>
+          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline-primary" (click)="updateUser(closeModalRef)">Update</button>
       </div>
     </div>
   </div>

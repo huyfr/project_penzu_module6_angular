@@ -11,7 +11,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class AdminShowUserListComponent implements OnInit {
   userList: User[] = [];
-  page: number = 0;
+  page = 0;
   pages: Array<number>;
   user: User;
   changeText: boolean;
@@ -38,9 +38,10 @@ export class AdminShowUserListComponent implements OnInit {
     this.editForm = this.formBuilder.group({
         username: ['', [Validators.minLength(3), Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        role: [''],
+        roles: [''],
       }
     );
+    this.usersService.shouldRefresh.subscribe(res => this.getAllUserList());
   }
 
   private getAllUserList(): void {
@@ -84,7 +85,32 @@ export class AdminShowUserListComponent implements OnInit {
     });
   }
 
-  updateUser(closeModalRef: HTMLButtonElement): void {
+  changeInfor(closeModalRef: HTMLButtonElement): void {
+    console.log(this.editForm.get('roles').value);
+    const {value} = this.editForm;
 
+    const data = {
+      ...this.pickUpUser,
+      ...value
+    };
+
+    if (this.editForm.get('roles').value == 1) {
+      data.roles = [{
+        id: '1',
+        name: 'ROLE_USER'
+      }];
+    } else {
+      console.log('admin');
+      data.roles = [{
+        id: '3',
+        name: 'ROLE_ADMIN'
+      }];
+    }
+    console.log(data);
+    this.usersService.editUser(data)
+      .subscribe(() => {
+        this.usersService.shouldRefresh.next();
+        alert('Cập nhật thành công');
+      }, error => console.log(error));
   }
 }
