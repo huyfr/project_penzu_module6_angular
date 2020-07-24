@@ -19,15 +19,15 @@ export class AdminUserService {
   }
 
   deleteUser(id: number): Observable<void> {
-    return this.http.delete<void>(apiUrl + 'user/' + id);
+    return this.http.delete<void>(apiUrl + 'admin/user/' + id);
   }
 
   blockUser(id: number): Observable<void> {
-    return this.http.delete<void>(apiUrl + 'user/block/' + id);
+    return this.http.delete<void>(apiUrl + 'admin/user/block/' + id);
   }
 
   activeUser(id: number): Observable<void> {
-    return this.http.delete<void>(apiUrl + 'user/active/' + id);
+    return this.http.delete<void>(apiUrl + 'admin/user/active/' + id);
   }
 
   getAllUserPagination(page: number): Observable<User[]> {

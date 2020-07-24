@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AdminUserService} from '../../services/admin/admin-user.service';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../models/User';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-admin-show-user-list',
@@ -14,9 +15,12 @@ export class AdminShowUserListComponent implements OnInit {
   pages: Array<number>;
   user: User;
   changeText: boolean;
+  pickUpUser: User;
+  editForm: FormGroup;
 
   constructor(private usersService: AdminUserService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private formBuilder: FormBuilder) {
     this.changeText = false;
   }
 
@@ -30,6 +34,13 @@ export class AdminShowUserListComponent implements OnInit {
   ngOnInit(): void {
     // this.usersService.showListUser().subscribe(result => this.userList = result, error => console.log(error));
     this.getAllUserList();
+
+    this.editForm = this.formBuilder.group({
+        username: ['', [Validators.minLength(3), Validators.required]],
+        email: ['', [Validators.required, Validators.email]],
+        role: [''],
+      }
+    );
   }
 
   private getAllUserList(): void {
@@ -64,5 +75,16 @@ export class AdminShowUserListComponent implements OnInit {
       console.log('active ok');
       this.getAllUserList();
     }, error => console.log(error));
+  }
+
+  showDetailUser(id: string): void {
+    this.usersService.getUserById(+id).subscribe(result => {
+      this.pickUpUser = result;
+      this.editForm.patchValue(result);
+    });
+  }
+
+  updateUser(closeModalRef: HTMLButtonElement): void {
+
   }
 }
