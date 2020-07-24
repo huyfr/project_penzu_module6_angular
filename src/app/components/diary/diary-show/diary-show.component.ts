@@ -18,6 +18,7 @@ export class DiaryShowComponent implements OnInit {
   constructor( private diaryService: DiaryService,
                private token: TokenStorageService) {
   }
+
   setPage(i, event: any){
     event.preventDefault();
     this.page = i;

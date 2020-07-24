@@ -32,7 +32,7 @@ export class DiaryService {
   }
 
   deleteDiary(id: number): Observable<any>{
-    return this.httpClient.delete(`${apiUrl}/delete/${id}`);
+    return this.httpClient.delete(`${apiUrl}/dairy/${id}`);
   }
 
   getAll(page: number): Observable<Diary[]>{
