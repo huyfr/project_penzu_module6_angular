@@ -22,10 +22,11 @@ import {UserComponent} from './components/user/displayUser/user.component';
 import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-annoucement/no-have-access-annoucement.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {HeaderComponent} from './components/header/header.component';
+import { AdminShowDairyListComponent } from './components/admin/admin-show-dairy-list/admin-show-dairy-list.component';
+import { AdminShowAlbumListComponent } from './components/admin/admin-show-album-list/admin-show-album-list.component';
+import { AdminShowTagListComponent } from './components/admin/admin-show-tag-list/admin-show-tag-list.component';
 import { CreateDiaryComponent } from './components/diary/create-diary/create-diary.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import { AdminLeftSideBarComponent } from './components/admin/admin-left-side-bar/admin-left-side-bar.component';
-import { AdminMainViewComponent } from './components/admin/admin-main-view/admin-main-view.component';
 import { TagShowComponent } from './components/tag/tag-show/tag-show.component';
 @NgModule({
   declarations: [
@@ -41,9 +42,10 @@ import { TagShowComponent } from './components/tag/tag-show/tag-show.component';
     NoHaveAccessAnnoucementComponent,
     HeaderComponent,
     FooterComponent,
-    AdminLeftSideBarComponent,
-    AdminMainViewComponent,
-    CreateDiaryComponent,
+    AdminShowDairyListComponent,
+    AdminShowAlbumListComponent,
+    AdminShowTagListComponent,
+    CreateDiaryComponent
     TagShowComponent,
   ],
   imports: [

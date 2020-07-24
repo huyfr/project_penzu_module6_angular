@@ -55,7 +55,7 @@ export class DiaryShowComponent implements OnInit {
     );
   }
 
-  deleteDiary(i) {
+  deleteDiary(i): void {
     const diary = this.listDiary[i];
     if (confirm('Bạn có muốn xóa ' + diary.title + ' không?')) {
       this.diaryService.deleteDiary(diary.id)
