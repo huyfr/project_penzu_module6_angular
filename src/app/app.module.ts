@@ -45,8 +45,8 @@ import { TagShowComponent } from './components/tag/tag-show/tag-show.component';
     AdminShowDairyListComponent,
     AdminShowAlbumListComponent,
     AdminShowTagListComponent,
-    CreateDiaryComponent
-    TagShowComponent,
+    CreateDiaryComponent,
+    TagShowComponent
   ],
   imports: [
     BrowserModule,
