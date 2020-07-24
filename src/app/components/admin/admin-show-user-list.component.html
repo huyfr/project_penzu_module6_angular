@@ -1,24 +1,55 @@
+<br>
+<br>
 <div class="d-flex" id="wrapper">
   <!-- Sidebar -->
   <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading">Admin </div>
+    <div class="sidebar-heading">Admin</div>
     <div class="list-group list-group-flush">
-      <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-      <a href="#" class="list-group-item list-group-item-action bg-light">User List</a>
-      <a href="#" class="list-group-item list-group-item-action bg-light">Dairy List</a>
-      <a href="#" class="list-group-item list-group-item-action bg-light">Album List</a>
-      <a href="#" class="list-group-item list-group-item-action bg-light">Tag List</a>
+      <a routerLink="/admin/user-list" class="list-group-item list-group-item-action bg-light">User List</a>
+      <a routerLink="/admin/dairy-list" class="list-group-item list-group-item-action bg-light">Dairy List</a>
+      <a routerLink="/admin/album-list" href="#" class="list-group-item list-group-item-action bg-light">Album List</a>
+      <a routerLink="/admin/tag-list" class="list-group-item list-group-item-action bg-light">Tag List</a>
     </div>
   </div>
   <!-- /#sidebar-wrapper -->
 
   <!-- Page Content -->
 
-  <!--  <div id="page-content-wrapper">-->
-  <!--    <div class="container-fluid">-->
-  <!--      <h1 class="mt-4">User List</h1>-->
-  <!--      <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>-->
-  <!--      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>-->
-  <!--    </div>-->
-  <!--  </div>-->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <h1 class="mt-4">User List</h1>
+      <table class="table table-hover">
+        <tr>
+          <th>ID</th>
+          <th class="w-20">Full Name</th>
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Access</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Action</th>
+        </tr>
+        <tr *ngFor="let user of userList">
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td *ngIf="user.roles[0]">{{user.roles[0].name}}</td>
+          <td *ngIf="!user.roles[0]"></td>
+          <td class="text-center">
+            <span style="font-size: 25px" *ngIf="user.status == 1" class="fa fa-check text-success">&nbsp;</span>
+            <span *ngIf="user.status == 1" class="fa fa-lock text-black-50" (click)="blockUser(+user.id)"></span>
+            <span *ngIf="user.status == 0" class="fa fa-check text-black-50" (click)="activeUser(+user.id)">&nbsp;</span>
+            <span style="font-size: 25px" *ngIf="user.status == 0" class="fa fa-lock text-danger"></span>
+          </td>
+          <td class="text-center"><span class="fa fa-eye text-primary"></span> | <span class="fa fa-remove text-danger" (click)="deleteUser(+user.id)"></span></td>
+        </tr>
+      </table>
+      <ul class="nav nav-pills">
+        <li class="nav-item" *ngFor="let p of pages;let i=index">
+          <a class="nav-link" (click)="setPage(i, $event)"
+             [ngClass]="{'active': i==page}">{{ i + 1 }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

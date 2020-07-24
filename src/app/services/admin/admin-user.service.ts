@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../../models/User';
+import {Diary} from '../../models/Diary';
 
 const apiUrl = 'http://localhost:8080/api/sdu/';
 
@@ -16,6 +17,7 @@ export class AdminUserService {
   showListUser(): Observable<User[]> {
     return this.http.get<User[]>(apiUrl + 'userList');
   }
+
   deleteUser(id: number): Observable<void> {
     return this.http.delete<void>(apiUrl + 'user/' + id);
   }
@@ -24,4 +26,15 @@ export class AdminUserService {
     return this.http.delete<void>(apiUrl + 'user/block/' + id);
   }
 
+  activeUser(id: number): Observable<void> {
+    return this.http.delete<void>(apiUrl + 'user/active/' + id);
+  }
+
+  getAllUserPagination(page: number): Observable<User[]> {
+    return this.http.get<User[]>(apiUrl + 'admin/user-list' + '?page=' + page);
+  }
+
+  getUserById(i: number): Observable<User> {
+    return this.http.get<User>(apiUrl + 'admin/user/' + i);
+  }
 }

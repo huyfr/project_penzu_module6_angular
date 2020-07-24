@@ -24,3 +24,23 @@
 <!--    </div>-->
 <!--  </div>-->
 <!--</div>-->
+
+<div class="single-list flex-row d-flex" *ngFor="let diary of listDiary; index as i">
+  <div class="detail">
+    <a href="#"><h4 class="pb-10">{{diary.title}}</h4></a>
+    <h6 class="pb-10" style="color: black">{{diary.createdate}}</h6>
+    <p>
+      {{diary.description}}
+    </p>
+  </div>
+</div>
+<div class="justify-content-center d-flex">
+  <nav aria-label="Page navigation example">
+    <ul class="nav nav-pills">
+      <li class="nav-item" *ngFor="let p of pages;let i=index">
+        <a class="nav-link" href="" (click)="setPage(i,$event)"
+           [ngClass]="{'active': i==page}">{{ i }}</a>
+      </li>
+    </ul>
+  </nav>
+</div>
