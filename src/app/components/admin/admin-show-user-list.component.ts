@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AdminUserService} from '../../services/admin/admin-user.service';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../models/User';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MustMatch} from '../../util/validate';
 
 @Component({
   selector: 'app-admin-show-user-list',
@@ -17,6 +18,8 @@ export class AdminShowUserListComponent implements OnInit {
   changeText: boolean;
   pickUpUser: User;
   editForm: FormGroup;
+  createForm: FormGroup;
+  submitted = false;
 
   constructor(private usersService: AdminUserService,
               private activatedRoute: ActivatedRoute,
@@ -41,6 +44,17 @@ export class AdminShowUserListComponent implements OnInit {
         roles: [''],
       }
     );
+
+    this.createForm = this.formBuilder.group({
+      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(64)]),
+      username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(64)]),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(64)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(128)]),
+      confirmPassword: ['', [Validators.required]],
+    }, {
+      validators: MustMatch('password', 'confirmPassword')
+    });
+
     this.usersService.shouldRefresh.subscribe(res => this.getAllUserList());
   }
 
@@ -113,5 +127,13 @@ export class AdminShowUserListComponent implements OnInit {
         this.usersService.shouldRefresh.next();
         alert('Cập nhật thành công');
       }, error => console.log(error));
+  }
+
+  get rfc() {
+    return this.createForm.controls;
+  }
+
+  createUser() {
+    this.submitted = true;
   }
 }
