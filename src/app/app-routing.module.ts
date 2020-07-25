@@ -19,6 +19,7 @@ import {DiaryShowComponent} from './components/diary/diary-show/diary-show.compo
 import {DiaryUpdateComponent} from './components/diary/diary-update/diary-update.component';
 import {IsActive} from './auth-guard/is-active';
 import {BlockedAnnoucementComponent} from './components/blocked-annoucement/blocked-annoucement.component';
+import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'no-access', component: NoHaveAccessAnnoucementComponent},
   {path: 'blocked-account', component: BlockedAnnoucementComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'recover-password', component: ForgotPasswordComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'journals', component: UserComponent, canActivate: [CanActivateTeam, IsActive]}, // để show trang user
 
