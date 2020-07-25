@@ -25,23 +25,23 @@ const routes: Routes = [
 
   {// phục vụ chức năng admin
     path: 'admin/user-list',
-    component: AdminShowUserListComponent
-    // canActivate: [CanActivateTeam, IsAdmin]
+    component: AdminShowUserListComponent,
+    canActivate: [CanActivateTeam, IsAdmin]
   },
   {// phục vụ chức năng admin
     path: 'admin/dairy-list',
-    component: AdminShowDairyListComponent
-    // canActivate: [CanActivateTeam, IsAdmin]
+    component: AdminShowDairyListComponent,
+    canActivate: [CanActivateTeam, IsAdmin]
   },
   {// phục vụ chức năng admin
     path: 'admin/album-list',
-    component: AdminShowAlbumListComponent
-    // canActivate: [CanActivateTeam, IsAdmin]
+    component: AdminShowAlbumListComponent,
+    canActivate: [CanActivateTeam, IsAdmin]
   },
   {// phục vụ chức năng admin
     path: 'admin/tag-list',
-    component: AdminShowTagListComponent
-    // canActivate: [CanActivateTeam, IsAdmin]
+    component: AdminShowTagListComponent,
+    canActivate: [CanActivateTeam, IsAdmin]
   },
   {path: 'admin/user/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
   {path: 'admin/user/block/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
