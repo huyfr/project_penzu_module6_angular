@@ -10,6 +10,9 @@ export const environment = {
   updatePasswordUrl: 'http://localhost:8080/api/sdu/update-password',
   userAvatarUrl: 'http://localhost:8080/api/sdu/user-avatar/',
   userUrl: 'http://localhost:8080/api/sdu/user/',
+  diaryUrl: 'http://localhost:8080/api/sdu/diary/',
+  diaryUploadFileUrl: 'http://localhost:8080/api/sdu/diary-file/',
+  tagUrl: 'http://localhost:8080/api/sdu/tag/',
 };
 
 /*

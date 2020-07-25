@@ -1,20 +1,16 @@
 import {Tag} from './Tag';
-import { Attachment} from './Attachment';
-import {User} from "./User";
-import {Reaction} from "./Reaction";
+import {User} from './User';
+import {Reaction} from './Reaction';
 
 export interface Diary {
   id?: number;
-  title?: string;
+  title: string;
   description: string;
   content: string;
+  urlFile?: string;
+  status?: number;
   tag?: Tag;
-  createdate?: string;
-  updatedate: string;
-  attachment: Attachment[];
-  status: number;
   user?: User;
-  blobstring?: string;
   reaction?: Reaction;
 }
 
