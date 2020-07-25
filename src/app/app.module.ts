@@ -49,7 +49,7 @@ import {CKEditorModule} from 'ngx-ckeditor';
     AdminShowTagListComponent,
     TagShowComponent,
     DiaryCardComponent,
-    DiaryCreateComponent,
+    DiaryCreateComponent
   ],
   imports: [
     BrowserModule,

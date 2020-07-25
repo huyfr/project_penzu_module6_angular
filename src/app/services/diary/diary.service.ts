@@ -6,7 +6,7 @@ import {environment} from '../../../environments/environment';
 import {Pagination} from '../../models/pagination';
 import {FileForm} from '../../models/file-form';
 
-// const apiUrl = 'http://localhost:8080/api/sdu';
+const apiUrl = 'http://localhost:8080/api/sdu';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -22,41 +22,25 @@ export class DiaryService {
   constructor(private http: HttpClient) {
   }
 
-  // getAllTitle(): Observable<Diary[]> {
-  //   return this.httpClient.get<Diary[]>(apiUrl + '/diary');
-  // }
+  getAllTitle(): Observable<Diary[]> {
+    return this.http.get<Diary[]>(apiUrl + '/diary');
+  }
 
-  // getAllTitle(): Observable<Diary[]>{
-  //   return this.httpClient.get<Diary[]>(`${apiUrl}/diaries`);
-  // }
+  getById(id: number): Observable<Diary> {
+    return this.http.get<Diary>(`${apiUrl}/diary/${id}`);
+  }
 
-  // getById(id: number): Observable<Diary> {
-  //   return this.httpClient.get<Diary>(`${apiUrl}/diary/${id}`);
-  // }
+  deleteDiary(id: number): Observable<any> {
+    return this.http.delete(`${apiUrl}/dairy/${id}`);
+  }
 
-  /*  createDiary(diary: Diary): Observable<Diary>{
-      return this.httpClient.post<Diary>(apiUrl + '/create', diary);
-    }*/
+  getAll(page: number): Observable<Diary[]> {
+    return this.http.get<Diary[]>(apiUrl + '?page=' + page);
+  }
 
-  // createDiary(diary: Diary): Observable<Diary> {
-  //   return this.httpClient.post<Diary>(apiUrl + '/dairy', diary);
-  // }
-  //
-  // updateDiary(diary: Diary): Observable<Diary> {
-  //   return this.httpClient.put<Diary>(apiUrl + '/edit', diary);
-  // }
-  //
-  // deleteDiary(id: number): Observable<any> {
-  //   return this.httpClient.delete(`${apiUrl}/dairy/${id}`);
-  // }
-  //
-  // getAll(page: number): Observable<Diary[]> {
-  //   return this.httpClient.get<Diary[]>(apiUrl + '?page=' + page);
-  // }
-  //
-  // getAllByUser(page: number, id: number): Observable<Diary[]> {
-  //   return this.httpClient.get<Diary[]>(`${apiUrl}/diary/user/${id}` + '?page=' + page);
-  // }
+  getAllByUser(page: number, id: number): Observable<Diary[]> {
+    return this.http.get<Diary[]>(`${apiUrl}/diary/user/${id}` + '?page=' + page);
+  }
 
   /*Tuan Code*/
 
