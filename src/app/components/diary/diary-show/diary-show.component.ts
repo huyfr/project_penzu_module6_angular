@@ -33,9 +33,24 @@ export class DiaryShowComponent implements OnInit {
     this.getAllDiary();
   }
 
-  getAllDiary(): void{
-    this.diaryService.getAll(this.page).subscribe(
+  // getAllDiary(): void{
+  //   this.diaryService.getAll(this.page).subscribe(
+  //     list => {
+  //       console.log(list);
+  //       this.listDiary = list['content'];
+  //       this.pages = new Array(list['totalPages']);
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
+
+  getAllDiary(){
+    this.currentUser = this.token.getUserId();
+    this.diaryService.getAllByUser(this.page, this.currentUser).subscribe(
       list => {
+        console.log(this.currentUser.id);
         console.log(list);
         this.listDiary = list['content'];
         this.pages = new Array(list['totalPages']);
