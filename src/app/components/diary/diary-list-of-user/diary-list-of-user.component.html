@@ -1,0 +1,63 @@
+<div class="card mb-4">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngIf="listDiary == null else show">
+          <h2 class="pt-3 pb-4 text-center font-bold font-up text-info">This Journal Does Not Have Any Entries!</h2>
+        </div>
+        <ng-template #show>
+          <h2 class="pt-3 pb-4 text-center font-bold font-up text-info">You Have Total {{listDiary.length}} Diary!</h2>
+        </ng-template>
+        <div class="input-group md-form form-sm form-2 pl-0">
+          <input [(ngModel)]="title" (keydown)="searchByTitle()" class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="Search by title..." aria-label="Search">
+          <span class="input-group-addon waves-effect purple lighten-2" id="basic-addon1">
+            <a><i class="fa fa-search white-text" aria-hidden="true"></i></a></span>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <td>#</td>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Update/Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let diary of listDiary, index as i">
+        <th scope="row">{{i + 1}}</th>
+        <td><a [routerLink]="'/diary/' + diary.id">{{diary.title.slice(0,65)}}...</a></td>
+        <td>{{diary.createdate}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary" [routerLink]="'/updateDiary/' + diary.id">
+            Update
+          </button>&nbsp;
+          <button (click)="getDiaryId(diary.id)" type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </table>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Notify</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h4 class="danger-text">This diary will be delete. Are you sure?</h4>
+          </div>
+          <div class="modal-footer">
+            <button  #closeModalRef type="button" class="btn btn-outline-success" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-outline-warning" (click)="deleteDiaryById(closeModalRef)">Accept</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

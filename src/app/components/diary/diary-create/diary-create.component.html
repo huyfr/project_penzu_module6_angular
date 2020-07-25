@@ -1,106 +1,124 @@
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center alert alert-dark">
-  <h4 class="display-4 darken-grey-text">New Diary</h4>
-</div>
-<form [formGroup]="formDiary">
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Image</span>
-    </div>
-    <input type="file" class="form-control" aria-label="Amount (to the nearest dollar)"
-           (change)="handleFileChooser($event.target.files)">
-    <div *ngIf="!filePath; else img">
-    </div>
-    <ng-template #img>
-      <img src="{{filePath}}" width="100%" height="700px">
-    </ng-template>
-  </div>
-  <div class="input-group">
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon3">Title</span>
-      </div>
-      <textarea formControlName="title" rows="3"
-                placeholder="Please Insert Title!" class="form-control" id="basic-url"
-                aria-describedby="basic-addon3"></textarea>
-    </div>
-    <div class="input-group-prepend">
-      <span class="input-group-text">Description</span>
-    </div>
-    <textarea formControlName="description" rows="5" placeholder="Please Write Something short About Diary !"
-              class="form-control" aria-label="With textarea"></textarea>
-  </div>
-  <br/>
-  <div class="input-group mb-3">
-    <div>
-      <label class="input-group-text lg">Tag</label>
-    </div>
-    <select formControlName="tagId" class="custom-select " id="inputGroupSelect02">
-      <option value="" selected disabled hidden>Please select Tag</option>
-      <option *ngFor="let tag of tagList" value="{{tag.id}}">{{tag.name}}</option>
-    </select>
-  </div>
-  <h3 class="alert alert-dark">
-    <label for="basic-url">Content</label>
-  </h3>
-  <ck-editor id="editor" name="editor" formControlName="content" skin="moono-lisa" language="vi"
-             [fullPage]="false"></ck-editor>
-  <br/>
-  <br/>
-  <label for="basic-url">
-    <button type="button" class="btn btn-outline-success btn-lg"
-            (click)="createDiary(openModalRef, openProcessBar, closeProcess)">Save
-    </button>
-  </label>
-</form>
-
-<button #openModalRef hidden type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="alert-success" id="exampleModalLabel">Notify</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-success">
-        <h3>Diary Created Successful!</h3>
-      </div>
-      <div class="modal-footer">
-        <button #closeModalRef1 type="button" class="btn btn-info" data-dismiss="modal">Write Another Diary</button>
-        <button type="button" class="btn btn-primary" (click)="preview( closeModalRef1 )">Preview Diary</button>
+<section class="top-section-area section-gap">
+  <div class="container">
+    <div class="row height align-items-center justify-content-center">
+      <div class="col-lg-10">
+        <div class="generic-banner-content">
+          <h1 class="text-white text-center">{{info.username}}'s Journal</h1>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<button #openProcessBar type="button" hidden class="btn btn-primary" data-toggle="modal"
-        data-target="#exampleModalCenter">
-  Launch demo modal
-</button>
+<div class="category-area section-gap" id="news">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-20 col-lg-8">
 
-<div data-keyboard="false" data-backdrop="static" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title text-success" id="exampleModalLongTitle">Processing!</h4>
-      </div>
-      <div class="modal-body">
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" [style.width.%]="processValue"
-               [attr.aria-valuenow]="processValue" aria-valuemin="0" aria-valuemax="100">{{processValue}}%
+        <form [formGroup]="formDiary">
+          <label>Image</label>
+          <div class="input-group mb-3">
+            <input type="file" placeholder="Image" class="form-control" aria-label="Amount (to the nearest dollar)"
+                   (change)="handleFileChooser($event.target.files)">
+            <div *ngIf="!filePath; else img">
+            </div>
+            <ng-template #img>
+              <img src="{{filePath}}" width="100%" height="700px">
+            </ng-template>
           </div>
+          <div class="input-group">
+            <label>Title</label>
+            <div class="input-group mb-3">
+                <textarea formControlName="title" rows="3"
+                          placeholder="Please Insert Title!" class="form-control" id="basic-url"
+                          aria-describedby="basic-addon3"></textarea>
+            </div>
+            <div class="input-group">
+              <label>Description</label>
+              <div class="input-group">
+              <textarea formControlName="description" rows="5" placeholder="Please Write Something short About Diary !"
+                        class="form-control" aria-label="With textarea"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="mt-20">
+          <label>Tag</label>
+          <select formControlName="tagId" class="custom-select " id="inputGroupSelect02">
+            <option value="" selected disabled hidden>Please select Tag</option>
+            <option *ngFor="let tag of tagList" value="{{tag.id}}">{{tag.name}}</option>
+          </select>
+          </div>
+          <div class="mt-20">
+            <label>Content</label>
+            <ck-editor id="editor" name="editor" formControlName="content" skin="moono-lisa" language="vi"
+                       [fullPage]="false"></ck-editor>
+          </div>
+          <div class="float-right mt-20">
+            <label for="basic-url">
+              <button type="button" class="genric-btn success circle"
+                      (click)="createDiary(openModalRef, openProcessBar, closeProcess)">Save
+              </button>
+            </label>
+          </div>
+        </form>
+
+      </div>
+      <div class="text-center mt-50">
+      </div>
+    </div>
+  </div>
+  <div class="title text-center">
+  </div>
+
+  <button #openModalRef hidden type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="alert-success" id="exampleModalLabel">Notify</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-success">
+          <h3>Diary Created Successful!</h3>
         </div>
         <div class="modal-footer">
-          <button #closeProcess type="button" hidden class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" hidden class="btn btn-primary">Save</button>
+          <button #closeModalRef1 type="button" class="btn btn-info" data-dismiss="modal">Write Another Diary</button>
+          <button type="button" class="btn btn-primary" (click)="preview( closeModalRef1 )">Preview Diary</button>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+  <button #openProcessBar type="button" hidden class="btn btn-primary" data-toggle="modal"
+          data-target="#exampleModalCenter">
+    Launch demo modal
+  </button>
+
+  <div data-keyboard="false" data-backdrop="static" class="modal fade" id="exampleModalCenter" tabindex="-1"
+       role="dialog"
+       aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-success" id="exampleModalLongTitle">Processing!</h4>
+        </div>
+        <div class="modal-body">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" [style.width.%]="processValue"
+                 [attr.aria-valuenow]="processValue" aria-valuemin="0" aria-valuemax="100">{{processValue}}%
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button #closeProcess type="button" hidden class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" hidden class="genric-btn success circle">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

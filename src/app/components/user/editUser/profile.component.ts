@@ -60,19 +60,18 @@ export class ProfileComponent implements OnInit {
   }
 
   getUser() {
-    if (this.token) {
-      // this.userService.getUserById(+this.token.getUserId()).subscribe(
-      //   result => {
-      //     this.user = result;
-      //     console.log('getUser', result);
-      //   }, error1 => {
-      //     console.log(error1);
-      //   }
-      // );
-
+/*    if (this.token) {
+      this.userService.getUserById(+this.token.getUserId()).subscribe(
+        result => {
+          this.user = result;
+          console.log('getUser', result);
+        }, error1 => {
+          console.log(error1);
+        }
+      );
+    }*/
       return this.userService.getUserById(+this.token.getUserId());
     }
-  }
 
   updatePassword(closeButton: HTMLInputElement) {
     const {currentPassword, newPassword, confirmPassword} = this.passForm.value;
@@ -153,9 +152,11 @@ export class ProfileComponent implements OnInit {
         result => {
           clearInterval(count);
           this.processValue = 100;
+          this.getUser();
+          closeProcess.click();
+          this.processValue = 0;
           this.getUser().subscribe( user => {
             this.token.saveAvatar(user.avatar);
-            console.log('ok');
             closeProcess.click();
             this.processValue = 0;
           });

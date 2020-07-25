@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Diary} from '../../../models/Diary';
 import {DiaryService} from '../../../services/diary/diary.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TokenStorageService} from '../../../services/token-storage.service';
 
 @Component({
@@ -16,14 +16,17 @@ export class DiaryShowComponent implements OnInit {
   listDiary: Array<any>;
   pages: Array<number>;
 
-/*  constructor( private diaryService: DiaryService,
-               private token: TokenStorageService) {
+  /*  constructor( private diaryService: DiaryService,
+                 private token: TokenStorageService) {
+    }
+    setPage(i, event: any){*/
+  constructor(private diaryService: DiaryService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private token: TokenStorageService) {
   }
-  setPage(i, event: any){*/
-  constructor( private diaryService: DiaryService,
-      private router: Router,
-      private token: TokenStorageService) { }
-  setPage(i, event: any): void{
+
+  setPage(i, event: any): void {
     event.preventDefault();
     this.page = i;
     this.getAllDiary();
@@ -33,7 +36,7 @@ export class DiaryShowComponent implements OnInit {
     this.getAllDiary();
   }
 
-  getAllDiary(){
+  getAllDiary() {
     this.currentUser = this.token.getUserId();
     this.diaryService.getAllByUser(this.page, this.currentUser).subscribe(
       list => {
@@ -46,16 +49,5 @@ export class DiaryShowComponent implements OnInit {
         console.log(error);
       }
     );
-  }
-
-  deleteDiary(id): void {
-    const diary = this.listDiary[id];
-    if (confirm('You want to remove ' + diary.title + '?')) {
-      this.diaryService.deleteDiary(id)
-        .subscribe((result) => {
-          this.listDiary = this.listDiary.filter(t => t.id !== diary.id);
-        });
-      this.router.navigateByUrl('/diaries');
-    }
   }
 }

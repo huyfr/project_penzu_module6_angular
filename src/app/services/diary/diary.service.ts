@@ -5,6 +5,9 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Pagination} from '../../models/pagination';
 import {FileForm} from '../../models/file-form';
+import {SearchDiaryByTitleAndUserId} from '../../models/search-diary-by-title-and-user-id';
+import {SearchDiaryByTitle} from '../../models/search-diary-by-title';
+import {SearchDiaryByTagAndTitle} from '../../models/search-diary-by-tag-and-title';
 
 const apiUrl = 'http://localhost:8080/api/sdu';
 
@@ -31,7 +34,7 @@ export class DiaryService {
   }
 
   deleteDiary(id: number): Observable<any> {
-    return this.http.delete(`${apiUrl}/dairy/${id}`);
+    return this.http.delete(`${apiUrl}/diary/${id}`);
   }
 
   getAll(page: number): Observable<Diary[]> {
@@ -80,17 +83,17 @@ export class DiaryService {
     return this.http.put<Diary>(this.sduDiaryUrl + diary.id, diary);
   }
 
-  // searchDiaryByTitleAndUserID(title: SearchDiaryByTitleAndUserId): Observable<Diary[]> {
-  //   return this.http.post<Diary[]>(this.sduDiaryUrl + 'searchBy-Title-And-UserId', title);
-  // }
-  //
-  // searchDiaryByTitle(title: SearchDiaryByTitle): Observable<Diary[]> {
-  //   return this.http.post<Diary[]>(this.sduDiaryUrl + 'search-by-title', title);
-  // }
-  //
-  // searchDiaryByTagAndTitle(searchForm: SearchDiaryByTagAndTitle): Observable<Diary[]> {
-  //   return this.http.post<Diary[]>(this.sduDiaryUrl + 'search-by-tag-and-title' , searchForm);
-  // }
+  searchDiaryByTitleAndUserID(title: SearchDiaryByTitleAndUserId): Observable<Diary[]> {
+    return this.http.post<Diary[]>(this.sduDiaryUrl + 'searchBy-Title-And-UserId', title);
+  }
+
+  searchDiaryByTitle(title: SearchDiaryByTitle): Observable<Diary[]> {
+    return this.http.post<Diary[]>(this.sduDiaryUrl + 'search-by-title', title);
+  }
+
+  searchDiaryByTagAndTitle(searchForm: SearchDiaryByTagAndTitle): Observable<Diary[]> {
+    return this.http.post<Diary[]>(this.sduDiaryUrl + 'search-by-tag-and-title' , searchForm);
+  }
 
   searchDiaryByTagId(id: string): Observable<Diary[]> {
     return this.http.get<Diary[]>(this.sduDiaryUrl + 'searchBy-TagId/' + id );

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {DataSharingService} from "../../../services/dataSharing/data-sharing.service";
-import {Router} from "@angular/router";
-import {TokenStorageService} from "../../../services/token-storage.service";
-import {User} from "../../../models/User";
+import {DataSharingService} from '../../../services/dataSharing/data-sharing.service';
+import {Router} from '@angular/router';
+import {TokenStorageService} from '../../../services/token-storage.service';
+import {User} from '../../../models/User';
 
 @Component({
   selector: 'app-user',
