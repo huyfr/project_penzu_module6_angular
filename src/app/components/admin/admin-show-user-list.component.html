@@ -135,38 +135,51 @@
         </button>
       </div>
       <div class="modal-body">
-<!--        <form [formGroup]="editForm" (ngSubmit)="changeInfor(closeModalRef)">-->
-<!--          <table class="container" style="margin-left: 30px">-->
-<!--            <tr>-->
-<!--              <td class="font-weight-bold">User name :</td>-->
-<!--              <td><input class="border-light" type="text" formControlName="username" name="username"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td colspan="2"><small class="text-danger" *ngIf="editForm.get('username').invalid && editForm.get('username').touched">Username is required and must be at least 3 characters.</small></td>-->
-<!--            </tr>-->
-<!--            <br>-->
-<!--            <tr>-->
-<!--              <td class="font-weight-bold">Email :</td>-->
-<!--              <td><input class="border-light" type="text" formControlName="email"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td colspan="2"><small class="text-danger" *ngIf="editForm.get('email') && editForm.get('email').touched">Email is invalid</small></td>-->
-<!--            </tr>-->
-<!--            <br>-->
-<!--            <tr>-->
-<!--              <td class="font-weight-bold">Role :</td>-->
-<!--              <td><select formControlName="roles">-->
-<!--                <option [selected]="pickUpUser.roles[0].id == 1" value="1">USER</option>-->
-<!--                <option [selected]="pickUpUser.roles[0].id == 3" value="3">ADMIN</option>-->
-<!--              </select></td>-->
-<!--            </tr>-->
-<!--          </table>-->
-<!--          <br>-->
-<!--          <div class="modal-footer">-->
-<!--            <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>-->
-<!--            <button type="submit" class="btn btn-outline-primary">Update</button>-->
-<!--          </div>-->
-<!--        </form>-->
+        <form [formGroup]="createForm" (ngSubmit)="createUser()">
+          <div class="mt-15">
+            <input type="text" name="name" formControlName="name" placeholder="Name" class="single-input">
+            <div class="float-left" style="color:red" *ngIf="submitted && rfc.name.errors">
+                            <small *ngIf="rfc.name.errors.required">Please enter user's name.</small>
+              <small *ngIf="rfc.name.errors.minlength">Must be 3-64 characters long.</small>
+            </div>
+          </div>
+          <div class="mt-15">
+            <input type="text" name="email" formControlName="email" placeholder="Email" class="single-input">
+            <div class="float-left" style="color:red" *ngIf="submitted && rfc.email.errors">
+              <small *ngIf="rfc.email.errors.required">Please enter user email.</small>
+              <small *ngIf="rfc.email.errors.email">Email invalid.</small>
+              <small *ngIf="rfc.email.errors.minlength">Must be 3-64 characters long.</small>
+            </div>
+          </div>
+          <div class="mt-15">
+            <input type="text" name="username" formControlName="username" placeholder="Username" class="single-input">
+            <div class="float-left" style="color:red" *ngIf="submitted && rfc.username.errors">
+              <small *ngIf="rfc.username.errors.required">Please enter user's username that use to login.</small>
+              <small *ngIf="rfc.username.errors.minlength">Must be 3-64 characters long.</small>
+            </div>
+          </div>
+          <div class="mt-15">
+            <input type="password" name="password" formControlName="password" placeholder="Password" class="single-input">
+            <div class="float-left" style="color:red" *ngIf="submitted && rfc.password.errors">
+              <small *ngIf="rfc.password.errors.required">Please enter user password.</small>
+              <small *ngIf="rfc.password.errors.minlength">Must be 6-128 characters long.</small>
+            </div>
+          </div>
+          <div class="mt-15">
+            <input type="password" name="confirmPassword" formControlName="confirmPassword" placeholder="Re-Password" class="single-input">
+            <div class="float-left" style="color:red" *ngIf="submitted && rfc.confirmPassword.errors">
+              <small *ngIf="rfc.confirmPassword.errors.required">Please enter user Re-Password.</small>
+              <small *ngIf="rfc.confirmPassword.errors.mustMatch">The password is not the same.</small>
+            </div>
+          </div>
+          <div class="mt-50 form-group">
+            <div class="">
+              <button type="submit" class="genric-btn primary large circle">Create Account</button>
+            </div>
+          </div>
+        </form>
+
+
       </div>
     </div>
   </div>

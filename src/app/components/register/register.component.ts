@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SignUpInfo} from '../auth/sign-up-info';
-import {MustMatch} from "../../util/validate";
+import {MustMatch} from '../../util/validate';
 
 @Component({
   selector: 'app-register',
