@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Diary} from '../../../models/Diary';
 import {DiaryService} from '../../../services/diary/diary.service';
 import {Router} from '@angular/router';
+import {TokenStorageService} from '../../../services/token-storage.service';
 
 @Component({
   selector: 'app-diary-show',
@@ -9,12 +10,19 @@ import {Router} from '@angular/router';
   styleUrls: ['./diary-show.component.scss']
 })
 export class DiaryShowComponent implements OnInit {
+  currentUser: any;
   diary: Diary;
   page: number = 0;
   listDiary: Array<any>;
   pages: Array<number>;
 
-  constructor( private diaryService: DiaryService, private router: Router) { }
+/*  constructor( private diaryService: DiaryService,
+               private token: TokenStorageService) {
+  }
+  setPage(i, event: any){*/
+  constructor( private diaryService: DiaryService,
+      private router: Router,
+      private token: TokenStorageService) { }
   setPage(i, event: any): void{
     event.preventDefault();
     this.page = i;

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { DiaryShowComponent } from './components/diary/diary-show/diary-show.component';
 import { AdminShowUserListComponent } from './components/admin/admin-show-user-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/user/editUser/profile.component';
@@ -22,11 +21,15 @@ import {UserComponent} from './components/user/displayUser/user.component';
 import { NoHaveAccessAnnoucementComponent } from './components/no-have-access-annoucement/no-have-access-annoucement.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {HeaderComponent} from './components/header/header.component';
+import { AdminShowDairyListComponent } from './components/admin/admin-show-dairy-list/admin-show-dairy-list.component';
+import { AdminShowAlbumListComponent } from './components/admin/admin-show-album-list/admin-show-album-list.component';
+import { AdminShowTagListComponent } from './components/admin/admin-show-tag-list/admin-show-tag-list.component';
 import { CreateDiaryComponent } from './components/diary/create-diary/create-diary.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import { AdminLeftSideBarComponent } from './components/admin/admin-left-side-bar/admin-left-side-bar.component';
-import { AdminMainViewComponent } from './components/admin/admin-main-view/admin-main-view.component';
 import {DiaryCardComponent} from './components/diary/diary-card/diary-card.component';
+import { TagShowComponent } from './components/tag/tag-show/tag-show.component';
+import {DiaryShowComponent} from './components/diary/diary-show/diary-show.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,8 +44,11 @@ import {DiaryCardComponent} from './components/diary/diary-card/diary-card.compo
     NoHaveAccessAnnoucementComponent,
     HeaderComponent,
     FooterComponent,
-    AdminLeftSideBarComponent,
-    AdminMainViewComponent,
+    AdminShowDairyListComponent,
+    AdminShowAlbumListComponent,
+    AdminShowTagListComponent,
+    CreateDiaryComponent,
+    TagShowComponent,
     CreateDiaryComponent,
     DiaryCardComponent
   ],

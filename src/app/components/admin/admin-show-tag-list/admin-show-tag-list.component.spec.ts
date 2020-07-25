@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminMainViewComponent } from './admin-main-view.component';
+import { AdminShowTagListComponent } from './admin-show-tag-list.component';
 
-describe('AdminMainViewComponent', () => {
-  let component: AdminMainViewComponent;
-  let fixture: ComponentFixture<AdminMainViewComponent>;
+describe('AdminShowTagListComponent', () => {
+  let component: AdminShowTagListComponent;
+  let fixture: ComponentFixture<AdminShowTagListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminMainViewComponent ]
+      declarations: [ AdminShowTagListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminMainViewComponent);
+    fixture = TestBed.createComponent(AdminShowTagListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

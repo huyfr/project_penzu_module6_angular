@@ -24,8 +24,12 @@ export class DiaryService {
     return this.httpClient.get<Diary>(`${apiUrl}/diary/${id}`);
   }
 
-  createDiary(diary: Diary): Observable<Diary>{
+/*  createDiary(diary: Diary): Observable<Diary>{
     return this.httpClient.post<Diary>(apiUrl + '/create', diary);
+  }*/
+
+  createDiary(diary: Diary): Observable<Diary>{
+    return this.httpClient.post<Diary>(apiUrl + '/dairy', diary);
   }
 
   updateDiary(diary: Diary): Observable<Diary>{
@@ -33,10 +37,14 @@ export class DiaryService {
   }
 
   deleteDiary(id: number): Observable<any>{
-    return this.httpClient.delete(`${apiUrl}/diary/${id}`);
+    return this.httpClient.delete(`${apiUrl}/dairy/${id}`);
   }
 
   getAll(page: number): Observable<Diary[]>{
     return this.httpClient.get<Diary[]>(apiUrl + '?page=' + page);
+  }
+
+  getAllByUser(page: number, id: number): Observable<Diary[]>{
+    return this.httpClient.get<Diary[]>(`${apiUrl}/diary/user/${id}` + '?page=' + page);
   }
 }
