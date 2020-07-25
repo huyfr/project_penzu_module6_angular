@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit {
       //   }
       // );
 
-      return this.userService.getUserById(+this.token.getUserId());
+      return this.userService.getUserById(this.token.getUserId());
     }
   }
 
