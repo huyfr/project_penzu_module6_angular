@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Diary} from '../../../models/Diary';
 import {DiaryService} from '../../../services/diary/diary.service';
+import {Router} from '@angular/router';
 import {TokenStorageService} from '../../../services/token-storage.service';
 
 @Component({
@@ -15,10 +16,14 @@ export class DiaryShowComponent implements OnInit {
   listDiary: Array<any>;
   pages: Array<number>;
 
-  constructor( private diaryService: DiaryService,
+/*  constructor( private diaryService: DiaryService,
                private token: TokenStorageService) {
   }
-  setPage(i, event: any){
+  setPage(i, event: any){*/
+  constructor( private diaryService: DiaryService,
+      private router: Router,
+      private token: TokenStorageService) { }
+  setPage(i, event: any): void{
     event.preventDefault();
     this.page = i;
     this.getAllDiary();
@@ -28,23 +33,9 @@ export class DiaryShowComponent implements OnInit {
     this.getAllDiary();
   }
 
-  // getAllDiary(){
-  //   this.diaryService.getAll(this.page).subscribe(
-  //     list => {
-  //       console.log(list);
-  //       this.listDiary = list['content'];
-  //       this.pages = new Array(list['totalPages']);
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-  getAllDiary(){
-    this.currentUser = this.token.getUserId();
-    this.diaryService.getAllByUser(this.page, this.currentUser).subscribe(
+  getAllDiary(): void{
+    this.diaryService.getAll(this.page).subscribe(
       list => {
-        console.log(this.currentUser.id);
         console.log(list);
         this.listDiary = list['content'];
         this.pages = new Array(list['totalPages']);
@@ -55,14 +46,14 @@ export class DiaryShowComponent implements OnInit {
     );
   }
 
-  deleteDiary(i): void {
-    const diary = this.listDiary[i];
-    if (confirm('Bạn có muốn xóa ' + diary.title + ' không?')) {
-      this.diaryService.deleteDiary(diary.id)
+  deleteDiary(id): void {
+    const diary = this.listDiary[id];
+    if (confirm('You want to remove ' + diary.title + '?')) {
+      this.diaryService.deleteDiary(id)
         .subscribe((result) => {
           this.listDiary = this.listDiary.filter(t => t.id !== diary.id);
         });
+      this.router.navigateByUrl('/diaries');
     }
   }
-
 }

@@ -1,30 +1,35 @@
-<!--<div class="container">-->
-<!--  <div class="card">-->
-<!--    <div class="card-body">-->
-<!--      <h4 class="card-title">Diaris</h4>-->
-<!--      <table class="table table-striped">-->
-<!--        <tbody>-->
-<!--        <tr *ngFor="let diary of listDiary; index as i">-->
-<!--          <td>{{diary.id}}</td>-->
-<!--          <td>{{diary.title}}</td>-->
-<!--          <td>{{diary.description}}</td>-->
-<!--          <td>-->
-<!--            <button class="btn btn-outline-danger" (click)="deleteDiary(i)">DELETE</button>-->
-<!--          </td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--      </table>-->
-<!--      <hr>-->
-<!--      <ul class="nav nav-pills">-->
-<!--        <li class="nav-item" *ngFor="let p of pages;let i=index">-->
-<!--          <a class="nav-link" href="" (click)="setPage(i,$event)"-->
-<!--          [ngClass]="{'active': i==page}">{{ i }}</a>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<!--Linh-->
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Diaries</h4>
+      <table class="table table-striped">
+        <tbody>
+        <tr *ngFor="let diary of listDiary; index as i">
+          <td *ngIf="diary.status != -1">{{i+1}}</td>
+          <td *ngIf="diary.status != -1">
+            <a routerLink="/diary/detail/{{diary.id}}">{{diary.title}}</a>
+          </td>
+          <td *ngIf="diary.status != -1">{{diary.description}}</td>
+          <td *ngIf="diary.status != -1">
+            <button class="btn btn-outline-info">EDIT</button> |
+            <button class="btn btn-outline-danger" (click)="deleteDiary(diary.id)">DELETE</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <hr>
+      <ul class="nav nav-pills">
+        <li class="nav-item" *ngFor="let p of pages;let i=index">
+          <a class="nav-link" href="" (click)="setPage(i,$event)"
+          [ngClass]="{'active': i==page}">{{ i }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
+<!--Huynh-->
 <div class="single-list flex-row d-flex" *ngFor="let diary of listDiary; index as i">
   <div class="detail">
     <a href="#"><h4 class="pb-10">{{diary.title}}</h4></a>
@@ -32,6 +37,7 @@
     <p>
       {{diary.description}}
     </p>
+    <button (click)="deleteDiary(i)" class="btn btn-danger">Delete</button>
   </div>
 </div>
 <div class="justify-content-center d-flex">

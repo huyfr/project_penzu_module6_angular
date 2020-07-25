@@ -119,43 +119,6 @@
                 <li><a href="#">Fashion</a></li>
               </ul>
             </div>
-
-            <!--            =================================================================================-->
-
-            <!--            <div class="single-post-content">-->
-            <!--              <p>-->
-            <!--                MCSE boot camps have its supporters and its detractors. Some people do not understand why you should-->
-            <!--                have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the-->
-            <!--                camp price. However, who has the willpower to actually sit through a self-imposed MCSE training.-->
-            <!--              </p>-->
-            <!--              <p>-->
-            <!--                MCSE boot camps have its supporters and its detractors. Some people do not understand why you should-->
-            <!--                have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the-->
-            <!--                camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has-->
-            <!--                the willpower to actually sit through a self-imposed MCSE training.-->
-            <!--              </p>-->
-
-            <!--              <blockquote>Ea possunt paria non esse. Pudebit te, inquam, illius tabulae, quam Cleanthes sane commode-->
-            <!--                verbis depingere solebat. Urgent tamen et nihil remittunt. An vero displicuit ea, quae tributa est animi-->
-            <!--                virtutibus tanta praestantia? Sint ista Graecorum; Cur igitur, cum de re conveniat, non malumus usitate-->
-            <!--                loqui? Huius ego nunc auctoritatem sequens idem faciam.-->
-            <!--                <cite>Wise Man</cite></blockquote>-->
-
-            <!--              <p>-->
-            <!--                MCSE boot camps have its supporters and its detractors. Some people do not understand why you should-->
-            <!--                have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the-->
-            <!--                camp price. However, who has the willpower to actually sit through a self-imposed MCSE training.-->
-            <!--              </p>-->
-            <!--              <p>-->
-            <!--                MCSE boot camps have its supporters and its detractors. Some people do not understand why you should-->
-            <!--                have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the-->
-            <!--                camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has-->
-            <!--                the willpower to actually sit through a self-imposed MCSE training.-->
-            <!--              </p>-->
-            <!--            </div>-->
-
-            <!--            ============================================================================================-->
-
             <!--            =================================================-->
 
             <div class="single-post-content">
@@ -191,6 +154,18 @@
               </div>
             </div>
 
+            <div class="container">
+                  <table>
+                    <tr>
+                      <td>
+                        <button class="btn btn-outline-info">EDIT</button>
+                      </td>
+                      <td>
+                        <button class="btn btn-outline-danger" (click)="deleteDiary(diary.id)">DELETE</button>
+                      </td>
+                    </tr>
+                  </table>
+            </div>
             <!-- Start nav Area -->
             <section class="nav-area pt-50 pb-100">
               <div class="container">
@@ -416,12 +391,12 @@
             <div class="row">
               <div class="col-10" style="margin-left: 5px">
                 <div *ngFor="let item of diaries">
-                  <a [routerLink]="['/books/detail/',item.id]">{{item.title}}</a>
+                  <a routerLink="/diary/detail/{{item.id}}">{{item.title}}</a>
+<!--                  <a [routerLink]="['/diary/detail',item.id]">{{item.title}}</a>-->
                 </div>
               </div>
             </div>
           </div>
-
 
           <div class="single_widget cat_widget">
             <h4 class="text-uppercase pb-20">post archive</h4>

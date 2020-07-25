@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {User} from '../../models/User';
 import {Diary} from '../../models/Diary';
 
@@ -11,6 +11,8 @@ const apiUrl = 'http://localhost:8080/api/sdu/';
 })
 export class AdminUserService {
 
+  shouldRefresh = new Subject<any>();
+
   constructor(private http: HttpClient) {
   }
 
@@ -19,15 +21,15 @@ export class AdminUserService {
   }
 
   deleteUser(id: number): Observable<void> {
-    return this.http.delete<void>(apiUrl + 'user/' + id);
+    return this.http.delete<void>(apiUrl + 'admin/user/' + id);
   }
 
   blockUser(id: number): Observable<void> {
-    return this.http.delete<void>(apiUrl + 'user/block/' + id);
+    return this.http.delete<void>(apiUrl + 'admin/user/block/' + id);
   }
 
   activeUser(id: number): Observable<void> {
-    return this.http.delete<void>(apiUrl + 'user/active/' + id);
+    return this.http.delete<void>(apiUrl + 'admin/user/active/' + id);
   }
 
   getAllUserPagination(page: number): Observable<User[]> {
@@ -36,5 +38,9 @@ export class AdminUserService {
 
   getUserById(i: number): Observable<User> {
     return this.http.get<User>(apiUrl + 'admin/user/' + i);
+  }
+
+  editUser(data: User): Observable<User> {
+    return this.http.put<User>(apiUrl + 'admin/edit/' + data.id, data);
   }
 }
