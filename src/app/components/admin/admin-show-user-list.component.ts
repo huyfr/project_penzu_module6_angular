@@ -78,18 +78,22 @@ export class AdminShowUserListComponent implements OnInit {
   }
 
   blockUser(i: number): void {
-    this.usersService.blockUser(i).subscribe(() => {
-      console.log('block ok');
-      this.getAllUserList();
-    }, error => console.log(error));
+    if (confirm('Do you really want to block ?')) {
+      this.usersService.blockUser(i).subscribe(() => {
+        console.log('block ok');
+        this.getAllUserList();
+      }, error => console.log(error));
+    }
   }
 
 
   activeUser(i: number): void {
-    this.usersService.activeUser(i).subscribe(() => {
-      console.log('active ok');
-      this.getAllUserList();
-    }, error => console.log(error));
+    if (confirm('Do you really want to unblock ?')) {
+      this.usersService.activeUser(i).subscribe(() => {
+        console.log('active ok');
+        this.getAllUserList();
+      }, error => console.log(error));
+    }
   }
 
   showDetailUser(id: string): void {

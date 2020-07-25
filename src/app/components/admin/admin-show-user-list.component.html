@@ -40,24 +40,24 @@
           <td *ngIf="user.roles[0]">{{user.roles[0].name}}</td>
           <td *ngIf="!user.roles[0]"></td>
           <td class="text-center">
-            <span style="font-size: 25px" *ngIf="user.status == 1" class="fa fa-check text-success">&nbsp;</span>
-            <span *ngIf="user.status == 1" class="fa fa-lock text-black-50" (click)="blockUser(+user.id)"></span>
-            <span *ngIf="user.status == 0" class="fa fa-check text-black-50"
-                  (click)="activeUser(+user.id)">&nbsp;</span>
+            <span style="font-size: 25px" *ngIf="user.status == 1" class="fa fa-check text-success"></span>
             <span style="font-size: 25px" *ngIf="user.status == 0" class="fa fa-lock text-danger"></span>
           </td>
 
 
           <td class="text-center">
             <!--          nút edit user-->
-            <span style="font-size: 20px" data-toggle="modal"
+            <span style="font-size: 20px; cursor: pointer" data-toggle="modal"
                   data-target="#editUser" data-whatever="@mdo"
                   class="fa fa-eye text-primary" (click)="showDetailUser(user.id)">
             </span> |
 
             <!--            nút delete user-->
-            <span class="fa fa-remove text-danger" style="font-size: 20px" (click)="deleteUser(+user.id)">
-            </span>
+            <span class="fa fa-remove text-danger" style="font-size: 20px; cursor: pointer"  (click)="deleteUser(+user.id)">
+            </span> |
+
+            <span *ngIf="user.status == 1" class="fa fa-lock text-black-50" (click)="blockUser(+user.id)" style="font-size: 20px; cursor: pointer"></span>
+            <span *ngIf="user.status == 0" class="fa fa-unlock text-black-50" (click)="activeUser(+user.id)" style="font-size: 20px; cursor: pointer"></span>
           </td>
 
 
