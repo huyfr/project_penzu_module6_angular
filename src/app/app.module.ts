@@ -15,6 +15,7 @@ import {Permissions} from './auth-guard/permissions';
 import {CanActivateTeam} from './auth-guard/can-activate-team';
 import {NotActivateTeam} from './auth-guard/not-activate-team';
 import {IsAdmin} from './auth-guard/is-admin';
+import {IsActive} from './auth-guard/is-active';
 import {HomeComponent} from './components/home/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserComponent} from './components/user/displayUser/user.component';
@@ -66,7 +67,7 @@ import { DiaryListOfUserComponent } from './components/diary/diary-list-of-user/
     CKEditorModule,
     NgbModule,
   ],
-  providers: [Permissions, CanActivateTeam, NotActivateTeam, IsAdmin],
+  providers: [Permissions, CanActivateTeam, NotActivateTeam, IsAdmin, IsActive],
   bootstrap: [AppComponent]
 })
 export class AppModule {

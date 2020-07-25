@@ -17,6 +17,7 @@ import {DiaryCreateComponent} from './components/diary/diary-create/diary-create
 import {DiaryListOfUserComponent} from './components/diary/diary-list-of-user/diary-list-of-user.component';
 import {DiaryShowComponent} from './components/diary/diary-show/diary-show.component';
 import {DiaryUpdateComponent} from './components/diary/diary-update/diary-update.component';
+import {IsActive} from './auth-guard/is-active';
 
 
 const routes: Routes = [
@@ -24,7 +25,7 @@ const routes: Routes = [
   {path: 'no-access', component: NoHaveAccessAnnoucementComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'journals', component: UserComponent, canActivate: [CanActivateTeam]}, // để show trang user
+  {path: 'journals', component: UserComponent, canActivate: [CanActivateTeam,IsActive]}, // để show trang user
 
   {// phục vụ chức năng admin
     path: 'admin/user-list',
@@ -46,16 +47,18 @@ const routes: Routes = [
     component: AdminShowTagListComponent,
     canActivate: [CanActivateTeam, IsAdmin]
   },
-  {path: 'admin/user/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
-  {path: 'admin/user/block/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
-  {path: 'app/account', component: ProfileComponent, canActivate: [CanActivateTeam]},
-  {path: 'diary/create', component: DiaryCreateComponent, canActivate: [CanActivateTeam]},
+  {path: 'admin/user/:id', component: AdminShowUserListComponent,
+    canActivate: [CanActivateTeam, IsAdmin]}, // phục vụ chức năng admin
+  {path: 'admin/user/block/:id', component: AdminShowUserListComponent,
+    canActivate: [CanActivateTeam, IsAdmin]}, // phục vụ chức năng admin
+  {path: 'app/account', component: ProfileComponent, canActivate: [CanActivateTeam, IsActive]},
+  {path: 'diary/create', component: DiaryCreateComponent, canActivate: [CanActivateTeam, IsActive]},
 
-  {path: 'diary/listUserDiary', component: DiaryListOfUserComponent},
-  {path: 'updateDiary/:id', component: DiaryUpdateComponent},
+  {path: 'diary/listUserDiary', component: DiaryListOfUserComponent, canActivate: [CanActivateTeam, IsActive]},
+  {path: 'updateDiary/:id', component: DiaryUpdateComponent, canActivate: [CanActivateTeam, IsActive]},
 
-  {path: 'diaries', component: DiaryShowComponent},
-  {path: 'diary/detail/:id', component: DiaryCardComponent}
+  {path: 'diaries', component: DiaryShowComponent, canActivate: [CanActivateTeam, IsActive]},
+  {path: 'diary/detail/:id', component: DiaryCardComponent, canActivate: [CanActivateTeam, IsActive]}
 ];
 
 @NgModule({
