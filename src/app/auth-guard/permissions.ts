@@ -24,7 +24,7 @@ export class Permissions {
   }
 
   isActived(): boolean {
-    if (this.token.getStatus() == '1') {
+    if (+this.token.getUserStatus() === 1) {
       return true;
     }else {
       return false;

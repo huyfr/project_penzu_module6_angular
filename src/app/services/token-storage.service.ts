@@ -96,7 +96,7 @@ export class TokenStorageService {
     return this.roles;
   }
 
-  public getStatus(): string {
+  public getUserStatus(): string {
     return sessionStorage.getItem(STATUS_KEY);
   }
 

@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'no-access', component: NoHaveAccessAnnoucementComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'journals', component: UserComponent, canActivate: [CanActivateTeam,IsActive]}, // để show trang user
+  {path: 'journals', component: UserComponent, canActivate: [CanActivateTeam, IsActive]}, // để show trang user
 
   {// phục vụ chức năng admin
     path: 'admin/user-list',

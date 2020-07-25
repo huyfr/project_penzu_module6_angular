@@ -40,14 +40,14 @@ export class DiaryCardComponent implements OnInit {
   }
 
   deleteDiary(): void {
-    // if (confirm('You want to remove ' + this.diary.title + '?')) {
-    //   this.diaryService.deleteDiary(this.diary.id)
-    //     .subscribe(res => {
-    //       res.id !== this.diary.id;
-    //     });
-    //   console.log('deleteDiary' + this.diary.status);
-    //   this.loadPage();
-    // }
+    if (confirm('You want to remove ' + this.diary.title + '?')) {
+      this.diaryService.deleteDiary(+this.diary.id)
+        .subscribe(res => {
+          res.id !== this.diary.id;
+        });
+      console.log('deleteDiary' + this.diary.status);
+      this.loadPage();
+    }
   }
 
   loadPage(){
