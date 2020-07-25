@@ -32,6 +32,7 @@ import {DiaryCreateComponent} from './components/diary/diary-create/diary-create
 import {DiaryUpdateComponent} from './components/diary/diary-update/diary-update.component';
 import {CKEditorModule} from 'ngx-ckeditor';
 import { DiaryListOfUserComponent } from './components/diary/diary-list-of-user/diary-list-of-user.component';
+import { BlockedAnnoucementComponent } from './components/blocked-annoucement/blocked-annoucement.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { DiaryListOfUserComponent } from './components/diary/diary-list-of-user/
     DiaryCardComponent,
     DiaryCreateComponent,
     DiaryUpdateComponent,
-    DiaryListOfUserComponent
+    DiaryListOfUserComponent,
+    BlockedAnnoucementComponent
   ],
   imports: [
     BrowserModule,
