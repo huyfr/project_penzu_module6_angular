@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Diary} from '../../../model/Diary';
 import {DiaryService} from '../../../services/diary/diary.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Diary} from "../../../models/Diary";
 
 
 @Component({
