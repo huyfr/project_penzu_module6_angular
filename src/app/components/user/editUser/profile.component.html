@@ -1,204 +1,206 @@
 <div class="d-flex justify-content-center align-items-center container">
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
 
-        <div class="card-body">
-          <div class="card-title mb-4">
-            <div class="d-flex justify-content-start">
-              <div class="image-container">
-                <div *ngIf="filePath;else other">
-                  <img src="{{filePath}}" style="width: 150px; height: 150px" class="img-thumbnail"/>
+          <div class="card-body">
+            <div class="card-title mb-4">
+              <div class="d-flex justify-content-start">
+                <div class="image-container">
+                  <div *ngIf="filePath;else other">
+                    <img src="{{filePath}}" style="width: 150px; height: 150px" class="img-thumbnail"/>
+                  </div>
+                  <ng-template #other>
+                    <img *ngIf="user" src="{{user.avatar}}" style="width: 150px; height: 150px" class="img-thumbnail"/>
+                  </ng-template>
+                  <div class="middle">
+                    <input (change)="handleFileChooser($event.target.files)" type="file"
+                           class="btn border-0 btn-outline-light btn-sm" style="width: 100px" id="btnChangePicture"
+                           value="Change"/>
+                  </div>
                 </div>
-                <ng-template #other>
-                  <img *ngIf="user" src="{{user.avatar}}" style="width: 150px; height: 150px" class="img-thumbnail"/>
-                </ng-template>
-                <div class="middle">
-                  <input (change)="handleFileChooser($event.target.files)" type="file"
-                         class="btn border-0 btn-outline-light btn-sm" style="width: 100px" id="btnChangePicture"
-                         value="Change"/>
+                <div class="userData ml-3">
+                  <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a
+                    href="javascript:void(0);">{{info.name}}</a></h2>
+                  <h6 class="d-block"><a href="javascript:void(0)">1,500</a> File Uploads</h6>
+                  <!--                <h6 class="d-block"><a href="javascript:void(0)">300</a> Blog Posts</h6>-->
+                  <button type="button" class="btn btn-link border-0" data-toggle="modal"
+                          data-target="#exampleModal" data-whatever="@mdo">Edit Profile
+                  </button>
+                  &nbsp;
+                  <button type="button" class="btn btn-link border-0" data-toggle="modal"
+                          data-target="#changpass" data-whatever="@mdo">Change Password
+                  </button>
                 </div>
-              </div>
-              <div class="userData ml-3">
-                <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a
-                  href="javascript:void(0);">{{info.name}}</a></h2>
-                <h6 class="d-block"><a href="javascript:void(0)">1,500</a> File Uploads</h6>
-                <!--                <h6 class="d-block"><a href="javascript:void(0)">300</a> Blog Posts</h6>-->
-                <button type="button" class="btn btn-link border-0" data-toggle="modal"
-                        data-target="#exampleModal" data-whatever="@mdo">Edit Profile
-                </button>
-                &nbsp;
-                <button type="button" class="btn btn-link border-0" data-toggle="modal"
-                        data-target="#changpass" data-whatever="@mdo">Change Password
-                </button>
-              </div>
-              <div class="ml-auto">
-                <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes"/>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-12">
-              <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab"
-                     aria-controls="basicInfo" aria-selected="true">Basic Info</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="connectedServices-tab" data-toggle="tab" href="#connectedServices" role="tab"
-                     aria-controls="connectedServices" aria-selected="false">Connected Services</a>
-                </li>
-              </ul>
-              <div class="tab-content ml-1" id="myTabContent">
-                <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
-
-
-                  <div class="row">
-                    <div class="col-sm-3 col-md-2 col-5">
-                      <label style="font-weight:bold;">Full Name</label>
-                    </div>
-                    <div class="col-md-8 col-6">
-                      {{info.name}}
-                    </div>
-                  </div>
-                  <hr/>
-
-                  <div class="row">
-                    <div class="col-sm-3 col-md-2 col-5">
-                      <label style="font-weight:bold;">Email</label>
-                    </div>
-                    <div class="col-md-8 col-6">
-                      {{info.email}}
-                    </div>
-
-                  </div>
-                  <div class="tab-pane fade" id="connectedServices" role="tabpanel"
-                       aria-labelledby="ConnectedServices-tab">
-                    Facebook, Google, Twitter Account that are connected to this account
-                  </div>
+                <div class="ml-auto">
+                  <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes"/>
                 </div>
               </div>
             </div>
 
-          </div>
+            <div class="row">
+              <div class="col-12">
+                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab"
+                       aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="connectedServices-tab" data-toggle="tab" href="#connectedServices"
+                       role="tab"
+                       aria-controls="connectedServices" aria-selected="false">Connected Services</a>
+                  </li>
+                </ul>
+                <div class="tab-content ml-1" id="myTabContent">
+                  <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
 
+
+                    <div class="row">
+                      <div class="col-sm-3 col-md-2 col-5">
+                        <label style="font-weight:bold;">Full Name</label>
+                      </div>
+                      <div class="col-md-8 col-6">
+                        {{info.name}}
+                      </div>
+                    </div>
+                    <hr/>
+
+                    <div class="row">
+                      <div class="col-sm-3 col-md-2 col-5">
+                        <label style="font-weight:bold;">Email</label>
+                      </div>
+                      <div class="col-md-8 col-6">
+                        {{info.email}}
+                      </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="connectedServices" role="tabpanel"
+                         aria-labelledby="ConnectedServices-tab">
+                      Facebook, Google, Twitter Account that are connected to this account
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="text-center" style="padding-top: 50px" *ngIf="filePath">
-    <button class="btn btn-outline-primary" (click)="saveAvatar(openProcessBar , closeProcess)">Save</button>
+    <div class="text-center" style="padding-top: 50px" *ngIf="filePath">
+      <button class="btn btn-outline-primary" (click)="saveAvatar(openProcessBar , closeProcess)">Save</button>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><strong>Update Profile</strong></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="inputName">
+              <div class="form-group">
+                <label class="col-form-label"><u>New Name</u> </label>
+                <input type="text" placeholder="{{info.name}}" formControlName="name" class="form-control">
+              </div>
+              <div class="alert alert-warning" role="alert"
+                   *ngIf="inputName.get('name').invalid &&inputName.get('name').touched">
+                Invalid(must longer 3 character)
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="isErrorUser">
+                {{errorUser}}
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-primary" (click)="updateUser(closeModalRef)">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="changpass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel1"><strong>Update Password</strong></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="passForm">
+              <div class="form-group">
+                <label class="col-form-label">Current Password </label>
+                <input id="currentPassword" type="password" class="form-control" formControlName="currentPassword">
+              </div>
+              <div class="alert alert-warning" role="alert"
+                   *ngIf="passForm.get('currentPassword').invalid &&passForm.get('currentPassword').touched">
+                Password invalid(must longer 6 and smaller 36 character)
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">New Password</label>
+                <input type="password" class="form-control" formControlName="newPassword">
+              </div>
+              <div class="alert alert-warning" role="alert"
+                   *ngIf="passForm.get('newPassword').invalid &&passForm.get('newPassword').touched">
+                Password invalid(must longer 6 and smaller 36 character)
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Confirm Password</label>
+                <input type="password" class="form-control" formControlName="confirmPassword">
+              </div>
+              <div class="alert alert-warning" role="alert"
+                   *ngIf="passForm.get('confirmPassword').invalid &&passForm.get('confirmPassword').touched">
+                Password invalid(must longer 6 and smaller 36 character)
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="isError">
+                {{error}}
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button #closeModalRef1 type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-info" (click)="updatePassword(closeModalRef1)">Change Password
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog" role="document">
+  <button #openProcessBar type="button" hidden class="btn btn-primary" data-toggle="modal"
+          data-target="#exampleModalCenter"></button>
+
+  <div data-keyboard="false" data-backdrop="static" class="modal fade" id="exampleModalCenter" tabindex="-1"
+       role="dialog"
+       aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><strong>Update Profile</strong></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <h4 class="modal-title text-success" id="exampleModalLongTitle">Processing!</h4>
         </div>
         <div class="modal-body">
-          <form [formGroup]="inputName">
-            <div class="form-group">
-              <label class="col-form-label"><u>New Name</u> </label>
-              <input type="text" placeholder="{{info.name}}" formControlName="name" class="form-control">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" [style.width.%]="processValue"
+                 [attr.aria-valuenow]="processValue" aria-valuemin="0" aria-valuemax="100">{{processValue}}%
             </div>
-            <div class="alert alert-warning" role="alert"
-                 *ngIf="inputName.get('name').invalid &&inputName.get('name').touched">
-              Invalid(must longer 3 character)
-            </div>
-            <div class="alert alert-warning" role="alert" *ngIf="isErrorUser">
-              {{errorUser}}
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-outline-primary" (click)="updateUser(closeModalRef)">Update</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="changpass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel1"><strong>Update Password</strong></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form [formGroup]="passForm">
-            <div class="form-group">
-              <label class="col-form-label">Current Password </label>
-              <input id="currentPassword" type="password" class="form-control" formControlName="currentPassword">
-            </div>
-            <div class="alert alert-warning" role="alert"
-                 *ngIf="passForm.get('currentPassword').invalid &&passForm.get('currentPassword').touched">
-              Password invalid(must longer 6 and smaller 36 character)
-            </div>
-            <div class="form-group">
-              <label class="col-form-label">New Password</label>
-              <input type="password" class="form-control" formControlName="newPassword">
-            </div>
-            <div class="alert alert-warning" role="alert"
-                 *ngIf="passForm.get('newPassword').invalid &&passForm.get('newPassword').touched">
-              Password invalid(must longer 6 and smaller 36 character)
-            </div>
-            <div class="form-group">
-              <label class="col-form-label">Confirm Password</label>
-              <input type="password" class="form-control" formControlName="confirmPassword">
-            </div>
-            <div class="alert alert-warning" role="alert"
-                 *ngIf="passForm.get('confirmPassword').invalid &&passForm.get('confirmPassword').touched">
-              Password invalid(must longer 6 and smaller 36 character)
-            </div>
-            <div class="alert alert-warning" role="alert" *ngIf="isError">
-              {{error}}
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button #closeModalRef1 type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-outline-info" (click)="updatePassword(closeModalRef1)">Change Password
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<button #openProcessBar type="button" hidden class="btn btn-primary" data-toggle="modal"
-        data-target="#exampleModalCenter"></button>
-
-<div data-keyboard="false" data-backdrop="static" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title text-success" id="exampleModalLongTitle">Processing!</h4>
-      </div>
-      <div class="modal-body">
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" [style.width.%]="processValue"
-               [attr.aria-valuenow]="processValue" aria-valuemin="0" aria-valuemax="100">{{processValue}}%
+          </div>
+          <div class="modal-footer">
+            <button #closeProcess type="button" hidden class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" hidden class="btn btn-primary">Save changes</button>
           </div>
         </div>
-        <div class="modal-footer">
-          <button #closeProcess type="button" hidden class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" hidden class="btn btn-primary">Save changes</button>
-        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
