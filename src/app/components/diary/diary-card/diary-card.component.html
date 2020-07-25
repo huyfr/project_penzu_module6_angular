@@ -28,56 +28,65 @@
 </head>
 <body>
 
-<!-- Start Header Area -->
-<header class="default-header">
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <img src="img/logo.png" alt="">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<!--&lt;!&ndash; Start Header Area &ndash;&gt;-->
+<!--<header class="default-header">-->
+<!--  <nav class="navbar navbar-expand-lg navbar-light">-->
+<!--    <div class="container">-->
+<!--      <a class="navbar-brand" href="index.html">-->
+<!--        <img src="img/logo.png" alt="">-->
+<!--      </a>-->
+<!--      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
+<!--              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--      </button>-->
 
-      <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
-        <ul class="navbar-nav scrollable-menu">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#news">News</a></li>
-          <li><a href="#travel">Travel</a></li>
-          <li><a href="#fashion">fashion</a></li>
-          <li><a href="#team">team</a></li>
-          <!-- Dropdown -->
-          <li class="dropdown">
-            <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              Pages
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="single.html">Single</a>
-              <a class="dropdown-item" href="category.html">Category</a>
-              <a class="dropdown-item" href="search.html">Search</a>
-              <a class="dropdown-item" href="archive.html">Archive</a>
-              <a class="dropdown-item" href="generic.html">Generic</a>
-              <a class="dropdown-item" href="elements.html">Elements</a>
-            </div>
-          </li>
-        </ul>
-      </div>
+<!--      <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">-->
+<!--        <ul class="navbar-nav scrollable-menu">-->
+<!--          <li><a href="#home">Home</a></li>-->
+<!--          <li><a href="#news">News</a></li>-->
+<!--          <li><a href="#travel">Travel</a></li>-->
+<!--          <li><a href="#fashion">fashion</a></li>-->
+<!--          <li><a href="#team">team</a></li>-->
+<!--          &lt;!&ndash; Dropdown &ndash;&gt;-->
+<!--          <li class="dropdown">-->
+<!--            <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">-->
+<!--              Pages-->
+<!--            </a>-->
+<!--            <div class="dropdown-menu">-->
+<!--              <a class="dropdown-item" href="single.html">Single</a>-->
+<!--              <a class="dropdown-item" href="category.html">Category</a>-->
+<!--              <a class="dropdown-item" href="search.html">Search</a>-->
+<!--              <a class="dropdown-item" href="archive.html">Archive</a>-->
+<!--              <a class="dropdown-item" href="generic.html">Generic</a>-->
+<!--              <a class="dropdown-item" href="elements.html">Elements</a>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </nav>-->
+<!--</header>-->
+<!--&lt;!&ndash; End Header Area &ndash;&gt;-->
+
+<!-- Start top-section Area -->
+<section class="top-section-area section-gap">
+  <div class="container">
+    <div class="row justify-content-start align-items-center d-flex">
     </div>
-  </nav>
-</header>
-<!-- End Header Area -->
+  </div>
+</section>
+<!-- End top-section Area -->
 
 <!-- Start top-section Area -->
 <section class="top-section-area section-gap">
   <div class="container">
     <div class="row justify-content-between align-items-center d-flex">
       <div class="col-lg-8 top-left">
-        <h1 class="text-white mb-20">Post Details</h1>
+        <h1 class="text-white mb-20">{{diary.title}}</h1>
         <ul>
-          <li><a href="index.html">Home</a><span class="lnr lnr-arrow-right"></span></li>
-          <li><a href="category.html">Category</a><span class="lnr lnr-arrow-right"></span></li>
-          <li><a href="single.html">Fashion</a></li>
+          <li><a routerLink="/journals">Home</a><span class="lnr lnr-arrow-right"></span></li>
+          <li><a routerLink="/diary/category">Categorry</a><span class="lnr lnr-arrow-right"></span></li>
+          <li><a routerLink="/diary/detail/{{diary.tag}}">Fashion</a></li>
         </ul>
       </div>
     </div>
@@ -102,8 +111,8 @@
                 </h2>
                 <div class="col-lg-4 col-md-12 right-side d-flex justify-content-end">
                   <div class="desc">
-                    <h2>Mark wiens</h2>
-                    <h3>12 Dec ,2017 11:21 am</h3>
+                    <h2>{{diary.user.name}}</h2>
+                    <h3>{{diary.createdate}}</h3>
                   </div>
                   <div class="user-img">
                     <img src="img/user.jpg" alt="">
@@ -112,11 +121,8 @@
               </div>
             </div>
             <div class="tags">
-              <ul>
-                <li><a href="#">lifestyle</a></li>
-                <li><a href="#">Art</a></li>
-                <li><a href="#">Technology</a></li>
-                <li><a href="#">Fashion</a></li>
+              <ul *ngFor="let tag of tags">
+                <li>{{tag}}</li>
               </ul>
             </div>
             <!--            =================================================-->
@@ -343,22 +349,6 @@
             </div>
           </div>
 
-          <div class="single_widget about_widget">
-            <img src="img/asset/s-img.jpg" alt="">
-            <h2 class="text-uppercase">Adele Gonzalez</h2>
-            <p>
-              MCSE boot camps have its supporters and
-              its detractors. Some people do not understand why you should have to spend money
-            </p>
-            <div class="social-link">
-              <a href="#">
-                <button class="btn"><i class="fa fa-facebook" aria-hidden="true"></i> Like</button>
-              </a>
-              <a href="#">
-                <button class="btn"><i class="fa fa-twitter" aria-hidden="true"></i> follow</button>
-              </a>
-            </div>
-          </div>
           <div class="single_widget cat_widget">
             <h4 class="text-uppercase pb-20">post categories</h4>
             <ul>
@@ -389,11 +379,11 @@
           <div class="single_widget recent_widget">
             <h4 class="text-uppercase pb-20">Recent Posts</h4>
             <div class="row">
-              <div class="col-10" style="margin-left: 5px">
-<!--                <div *ngFor="let item of diaries">-->
-<!--                  <a routerLink="/diary/detail/{{item.id}}">{{item.title}}</a>-->
+              <div class="col-10" style="margin-left: 15px">
+                <div *ngFor="let item of diaries">
+                  <a routerLink="/diary/detail/{{item.id}}">{{item.title}}</a>
 <!--                  <a [routerLink]="['/diary/detail',item.id]">{{item.title}}</a>-->
-<!--                </div>-->
+                </div>
               </div>
             </div>
           </div>

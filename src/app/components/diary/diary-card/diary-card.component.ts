@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {DiaryService} from '../../../services/diary/diary.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Diary} from '../../../models/Diary';
+import {Tag} from '../../../models/Tag';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class DiaryCardComponent implements OnInit {
   // @Input() id: 1;
   diary: Diary;
   diaries: Diary[];
+  tags: Tag[];
 
   page: number = 0;
   listDiary: Array<any>;
@@ -31,6 +33,7 @@ export class DiaryCardComponent implements OnInit {
     this.diaryService.getById(id)
       .subscribe((result) => {
       this.diary = result;
+      this.tags = this.diary.tag[''];
     }, error => {
       this.diary = null;
     });

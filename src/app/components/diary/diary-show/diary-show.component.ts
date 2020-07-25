@@ -50,15 +50,4 @@ export class DiaryShowComponent implements OnInit {
       }
     );
   }
-
-  deleteDiary(i): void {
-    const diary = this.listDiary[i];
-    if (confirm('You want to remove ' + diary.title + '?')) {
-      this.diaryService.deleteDiary(diary.id)
-        .subscribe((result) => {
-          this.listDiary = this.listDiary.filter(t => t.id !== diary.id);
-        });
-      // this.router.navigateByUrl('/journals');
-    }
-  }
 }

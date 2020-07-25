@@ -31,7 +31,7 @@ export class DiaryService {
   }
 
   deleteDiary(id: number): Observable<any> {
-    return this.http.delete(`${apiUrl}/dairy/${id}`);
+    return this.http.delete(`${apiUrl}/diary/${id}`);
   }
 
   getAll(page: number): Observable<Diary[]> {
