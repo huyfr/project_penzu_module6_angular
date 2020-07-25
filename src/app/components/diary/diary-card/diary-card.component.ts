@@ -47,14 +47,6 @@ export class DiaryCardComponent implements OnInit {
     });
   }
 
-  // deleteDiary(id): void {
-  //   const diary = this.diaries[id];
-  //   if (confirm('You want to remove ' + diary.title + '?')) {
-  //     this.diaryService.deleteDiary(id);
-  //     this.router.navigateByUrl('/diaries');
-  //   }
-  // }
-
   getAllDiary(): void{
     this.diaryService.getAll(this.page).subscribe(
       list => {
