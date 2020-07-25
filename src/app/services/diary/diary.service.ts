@@ -7,12 +7,17 @@ const apiUrl = 'http://localhost:8080/api/sdu';
 @Injectable({
   providedIn: 'root'
 })
+// localhost:8080/api/sdu/diaries
 export class DiaryService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // getAll(): Observable<Diary[]>{
-  //   return this.httpClient.get<Diary[]>(apiUrl + '/diaries');
+  getAllTitle(): Observable<Diary[]>{
+    return this.httpClient.get<Diary[]>(apiUrl + '/diaries');
+  }
+
+  // getAllTitle(): Observable<Diary[]>{
+  //   return this.httpClient.get<Diary[]>(`${apiUrl}/diaries`);
   // }
 
   getById(id: number): Observable<Diary>{
