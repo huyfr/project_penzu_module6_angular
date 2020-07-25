@@ -18,11 +18,13 @@ import {DiaryListOfUserComponent} from './components/diary/diary-list-of-user/di
 import {DiaryShowComponent} from './components/diary/diary-show/diary-show.component';
 import {DiaryUpdateComponent} from './components/diary/diary-update/diary-update.component';
 import {IsActive} from './auth-guard/is-active';
+import {BlockedAnnoucementComponent} from './components/blocked-annoucement/blocked-annoucement.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'no-access', component: NoHaveAccessAnnoucementComponent},
+  {path: 'blocked-account', component: BlockedAnnoucementComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'journals', component: UserComponent, canActivate: [CanActivateTeam, IsActive]}, // để show trang user

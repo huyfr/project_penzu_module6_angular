@@ -17,7 +17,7 @@ export class IsActive implements CanActivate  {
     if (this.permission.isActived()) {
       return this.permission.isActived();
     } else {
-      this.router.navigateByUrl('/no-access');
+      this.router.navigateByUrl('/blocked-account');
       return false;
     }
   }
