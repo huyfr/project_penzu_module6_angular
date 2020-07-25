@@ -1,5 +1,5 @@
 export interface Attachment {
   id?: number;
-  url: string;
-  status: number;
+  url?: string;
+  status?: number;
 }

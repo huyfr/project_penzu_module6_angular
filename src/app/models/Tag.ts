@@ -1,5 +1,5 @@
 export interface Tag {
-  id?: number;
-  name: string;
-  status: number;
+  id?: string;
+  name?: string;
+  status?: number;
 }
