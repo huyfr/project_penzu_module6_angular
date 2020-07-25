@@ -18,6 +18,10 @@
   <div id="page-content-wrapper">
     <div class="container-fluid">
       <h1 class="mt-4">User List</h1>
+      <button data-toggle="modal"
+              data-target="#createUser"
+              data-whatever="@mdo"
+              class="btn btn-outline-dark fa fa-pencil float-right mr-2 mb-2"></button>
       <table class="table table-hover">
         <tr>
           <th>ID</th>
@@ -38,10 +42,25 @@
           <td class="text-center">
             <span style="font-size: 25px" *ngIf="user.status == 1" class="fa fa-check text-success">&nbsp;</span>
             <span *ngIf="user.status == 1" class="fa fa-lock text-black-50" (click)="blockUser(+user.id)"></span>
-            <span *ngIf="user.status == 0" class="fa fa-check text-black-50" (click)="activeUser(+user.id)">&nbsp;</span>
+            <span *ngIf="user.status == 0" class="fa fa-check text-black-50"
+                  (click)="activeUser(+user.id)">&nbsp;</span>
             <span style="font-size: 25px" *ngIf="user.status == 0" class="fa fa-lock text-danger"></span>
           </td>
-          <td class="text-center"><span class="fa fa-eye text-primary"></span> | <span class="fa fa-remove text-danger" (click)="deleteUser(+user.id)"></span></td>
+
+
+          <td class="text-center">
+            <!--          nút edit user-->
+            <span style="font-size: 20px" data-toggle="modal"
+                  data-target="#editUser" data-whatever="@mdo"
+                  class="fa fa-eye text-primary" (click)="showDetailUser(user.id)">
+            </span> |
+
+            <!--            nút delete user-->
+            <span class="fa fa-remove text-danger" style="font-size: 20px" (click)="deleteUser(+user.id)">
+            </span>
+          </td>
+
+
         </tr>
       </table>
       <ul class="nav nav-pills">
@@ -50,6 +69,105 @@
              [ngClass]="{'active': i==page}">{{ i + 1 }}</a>
         </li>
       </ul>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editUser" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div *ngIf="pickUpUser" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>{{pickUpUser.name}}</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editForm" (ngSubmit)="changeInfor(closeModalRef)">
+          <table class="container" style="margin-left: 30px">
+            <tr>
+              <td class="font-weight-bold">User name :</td>
+              <td><input class="border-light" type="text" formControlName="username" name="username"></td>
+            </tr>
+            <tr>
+              <td colspan="2"><small class="text-danger" *ngIf="editForm.get('username').invalid && editForm.get('username').touched">Username is required and must be at least 3 characters.</small></td>
+            </tr>
+            <br>
+            <tr>
+              <td class="font-weight-bold">Email :</td>
+              <td><input class="border-light" type="text" formControlName="email"></td>
+            </tr>
+            <tr>
+              <td colspan="2"><small class="text-danger" *ngIf="editForm.get('email') && editForm.get('email').touched">Email is invalid</small></td>
+            </tr>
+            <br>
+            <tr>
+              <td class="font-weight-bold">Role :</td>
+              <td><select formControlName="roles">
+                <option [selected]="pickUpUser.roles[0].id == 1" value="1">USER</option>
+                <option [selected]="pickUpUser.roles[0].id == 3" value="3">ADMIN</option>
+              </select></td>
+            </tr>
+          </table>
+          <br>
+          <div class="modal-footer">
+            <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-outline-primary">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="createUser" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong>Create new User</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<!--        <form [formGroup]="editForm" (ngSubmit)="changeInfor(closeModalRef)">-->
+<!--          <table class="container" style="margin-left: 30px">-->
+<!--            <tr>-->
+<!--              <td class="font-weight-bold">User name :</td>-->
+<!--              <td><input class="border-light" type="text" formControlName="username" name="username"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td colspan="2"><small class="text-danger" *ngIf="editForm.get('username').invalid && editForm.get('username').touched">Username is required and must be at least 3 characters.</small></td>-->
+<!--            </tr>-->
+<!--            <br>-->
+<!--            <tr>-->
+<!--              <td class="font-weight-bold">Email :</td>-->
+<!--              <td><input class="border-light" type="text" formControlName="email"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td colspan="2"><small class="text-danger" *ngIf="editForm.get('email') && editForm.get('email').touched">Email is invalid</small></td>-->
+<!--            </tr>-->
+<!--            <br>-->
+<!--            <tr>-->
+<!--              <td class="font-weight-bold">Role :</td>-->
+<!--              <td><select formControlName="roles">-->
+<!--                <option [selected]="pickUpUser.roles[0].id == 1" value="1">USER</option>-->
+<!--                <option [selected]="pickUpUser.roles[0].id == 3" value="3">ADMIN</option>-->
+<!--              </select></td>-->
+<!--            </tr>-->
+<!--          </table>-->
+<!--          <br>-->
+<!--          <div class="modal-footer">-->
+<!--            <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>-->
+<!--            <button type="submit" class="btn btn-outline-primary">Update</button>-->
+<!--          </div>-->
+<!--        </form>-->
+      </div>
     </div>
   </div>
 </div>
