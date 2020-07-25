@@ -129,7 +129,7 @@
 
             <div class="single-post-content">
               <div style="width: 100%">
-                <p>{{diary.content}}</p>
+                <div [innerHTML]="diary.content"></div>
               </div>
               <div *ngIf="diary.description">
                 <blockquote>
