@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DataSharingService} from '../../../services/dataSharing/data-sharing.service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {DiaryService} from '../../../services/diary/diary.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 
 @Component({
   selector: 'app-create-diary',
@@ -14,7 +12,6 @@ import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 export class CreateDiaryComponent implements OnInit {
 
   private isUserLoggedIn: boolean;
-  public ckEditor = ClassicEditor;
   createForm: FormGroup;
   submitted = false;
 

@@ -46,7 +46,7 @@ const routes: Routes = [
   {path: 'admin/user/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
   {path: 'admin/user/block/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
   {path: 'app/account', component: ProfileComponent, canActivate: [CanActivateTeam]},
-  {path: 'journals/new', component: CreateDiaryComponent, canActivate: [CanActivateTeam]},
+  {path: 'diary/create', component: CreateDiaryComponent, canActivate: [CanActivateTeam]},
 
   {path: 'diaries', component: DiaryShowComponent},
   {path: 'diary/detail/:id', component: DiaryCardComponent}

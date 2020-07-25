@@ -25,7 +25,6 @@ import { AdminShowDairyListComponent } from './components/admin/admin-show-dairy
 import { AdminShowAlbumListComponent } from './components/admin/admin-show-album-list/admin-show-album-list.component';
 import { AdminShowTagListComponent } from './components/admin/admin-show-tag-list/admin-show-tag-list.component';
 import { CreateDiaryComponent } from './components/diary/create-diary/create-diary.component';
-import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {DiaryCardComponent} from './components/diary/diary-card/diary-card.component';
 import { TagShowComponent } from './components/tag/tag-show/tag-show.component';
 import {DiaryShowComponent} from './components/diary/diary-show/diary-show.component';
@@ -60,7 +59,6 @@ import {DiaryShowComponent} from './components/diary/diary-show/diary-show.compo
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    CKEditorModule
   ],
   providers: [Permissions, CanActivateTeam, NotActivateTeam , IsAdmin],
   bootstrap: [AppComponent]
