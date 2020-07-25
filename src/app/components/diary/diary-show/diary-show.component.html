@@ -4,19 +4,20 @@
     <div class="card-body">
       <h4 class="card-title">Diaries</h4>
       <table class="table table-striped">
-        <tbody>
+<!--        <tr *ngFor="let diary of listDiary; index as i">-->
+<!--          <td *ngIf="diary.status != -1">{{diary.id}}</td>-->
+<!--          <td *ngIf="diary.status != -1">-->
+<!--            <a routerLink="/diary/detail/{{diary.id}}">{{diary.title}}</a>-->
+<!--          </td>-->
+<!--          <td *ngIf="diary.status != -1">{{diary.description}}</td>-->
+<!--        </tr>-->
         <tr *ngFor="let diary of listDiary; index as i">
-          <td *ngIf="diary.status != -1">{{diary.id}}</td>
-          <td *ngIf="diary.status != -1">
+          <td>{{diary.id}}</td>
+          <td>
             <a routerLink="/diary/detail/{{diary.id}}">{{diary.title}}</a>
           </td>
-          <td *ngIf="diary.status != -1">{{diary.description}}</td>
-          <td *ngIf="diary.status != -1">
-            <button class="btn btn-outline-info">EDIT</button> |
-            <button class="btn btn-outline-danger" (click)="deleteDiary(diary.id)">DELETE</button>
-          </td>
+          <td>{{diary.description}}</td>
         </tr>
-        </tbody>
       </table>
       <hr>
       <ul class="nav nav-pills">
@@ -30,23 +31,22 @@
 </div>
 
 <!--Huynh-->
-<div class="single-list flex-row d-flex" *ngFor="let diary of listDiary; index as i">
-  <div class="detail">
-    <a href="#"><h4 class="pb-10">{{diary.title}}</h4></a>
-    <h6 class="pb-10" style="color: black">{{diary.createdate}}</h6>
-    <p>
-      {{diary.description}}
-    </p>
-    <button (click)="deleteDiary(i)" class="btn btn-danger">Delete</button>
-  </div>
-</div>
-<div class="justify-content-center d-flex">
-  <nav aria-label="Page navigation example">
-    <ul class="nav nav-pills">
-      <li class="nav-item" *ngFor="let p of pages;let i=index">
-        <a class="nav-link" href="" (click)="setPage(i,$event)"
-           [ngClass]="{'active': i==page}">{{ i }}</a>
-      </li>
-    </ul>
-  </nav>
-</div>
+<!--<div class="single-list flex-row d-flex" *ngFor="let diary of listDiary; index as i">-->
+<!--  <div class="detail">-->
+<!--    <a href="#"><h4 class="pb-10">{{diary.title}}</h4></a>-->
+<!--    <h6 class="pb-10" style="color: black">{{diary.createdate}}</h6>-->
+<!--    <p>-->
+<!--      {{diary.description}}-->
+<!--    </p>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="justify-content-center d-flex">-->
+<!--  <nav aria-label="Page navigation example">-->
+<!--    <ul class="nav nav-pills">-->
+<!--      <li class="nav-item" *ngFor="let p of pages;let i=index">-->
+<!--        <a class="nav-link" href="" (click)="setPage(i,$event)"-->
+<!--           [ngClass]="{'active': i==page}">{{ i }}</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </nav>-->
+<!--</div>-->
