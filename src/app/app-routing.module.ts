@@ -12,9 +12,12 @@ import {ProfileComponent} from './components/user/editUser/profile.component';
 import {AdminShowDairyListComponent} from './components/admin/admin-show-dairy-list/admin-show-dairy-list.component';
 import {AdminShowAlbumListComponent} from './components/admin/admin-show-album-list/admin-show-album-list.component';
 import {AdminShowTagListComponent} from './components/admin/admin-show-tag-list/admin-show-tag-list.component';
-import {DiaryShowComponent} from './components/diary/diary-show/diary-show.component';
 import {DiaryCardComponent} from './components/diary/diary-card/diary-card.component';
 import {DiaryCreateComponent} from './components/diary/diary-create/diary-create.component';
+import {DiaryListOfUserComponent} from './components/diary/diary-list-of-user/diary-list-of-user.component';
+import {DiaryShowComponent} from './components/diary/diary-show/diary-show.component';
+import {DiaryUpdateComponent} from './components/diary/diary-update/diary-update.component';
+
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -48,13 +51,16 @@ const routes: Routes = [
   {path: 'app/account', component: ProfileComponent, canActivate: [CanActivateTeam]},
   {path: 'diary/create', component: DiaryCreateComponent, canActivate: [CanActivateTeam]},
 
+  {path: 'diary/listUserDiary', component: DiaryListOfUserComponent},
+  {path: 'updateDiary/:id', component: DiaryUpdateComponent},
+
   {path: 'diaries', component: DiaryShowComponent},
   {path: 'diary/detail/:id', component: DiaryCardComponent}
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -106,7 +106,7 @@ export class DiaryCreateComponent implements OnInit {
               closeProcess.click();
               openModalRef.click();
               this.processValue = 0;
-              this.previewId = result.id;
+              this.previewId = Number(result.id);
               this.formDiary.reset();
               this.filePath = undefined;
             }, 1000);
