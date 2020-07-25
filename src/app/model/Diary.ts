@@ -1,4 +1,3 @@
-import {User} from './User';
 import {Attachment} from './Attachment';
 
 export interface Diary {

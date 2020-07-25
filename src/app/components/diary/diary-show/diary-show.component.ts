@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Diary} from '../../../models/Diary';
 import {DiaryService} from '../../../services/diary/diary.service';
 import {Router} from '@angular/router';
-import {DiaryService} from '../../../services/diary/diary.service';
 import {TokenStorageService} from '../../../services/token-storage.service';
 
 @Component({
