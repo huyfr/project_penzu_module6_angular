@@ -41,7 +41,7 @@ export class DiaryCardComponent implements OnInit {
 
   deleteDiary(): void {
     if (confirm('You want to remove ' + this.diary.title + '?')) {
-      this.diaryService.deleteDiary(this.diary.id)
+      this.diaryService.deleteDiary(+this.diary.id)
         .subscribe(res => {
           res.id !== this.diary.id;
         });
