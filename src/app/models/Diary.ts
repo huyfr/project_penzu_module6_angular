@@ -3,8 +3,10 @@ import {User} from './User';
 import {Reaction} from './Reaction';
 
 export interface Diary {
-  id?: number;
+  id?: string;
   title: string;
+  createdate?: string;
+  updatedate?: string;
   description: string;
   content: string;
   urlFile?: string;

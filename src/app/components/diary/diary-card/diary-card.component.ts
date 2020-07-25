@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DiaryService} from '../../../services/diary/diary.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Diary} from "../../../models/Diary";
+import {Diary} from '../../../models/Diary';
+import {Tag} from '../../../models/Tag';
 
 
 @Component({
@@ -14,68 +15,42 @@ export class DiaryCardComponent implements OnInit {
   // @Input() id: 1;
   diary: Diary;
   diaries: Diary[];
+  tags: Tag[];
 
   page: number = 0;
   listDiary: Array<any>;
   pages: Array<number>;
   constructor(private diaryService: DiaryService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
-  setPage(i, event: any): void{
-    event.preventDefault();
-    this.page = i;
-    this.getAllDiary();
-  }
-
   ngOnInit(): void {
     this.getDiaryById();
-    this.getAllDiaries();
-    this.getAllDiary();
-  }
-
-  getAllDiaries(): void{
-    this.diaryService.getAllTitle().subscribe((result) => {
-      this.diaries = result;
-    }, error => {
-    });
+    // this.getAllDiaries();
+    // this.getAllDiary();
   }
 
   getDiaryById(): void {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.diaryService.getById(+id).subscribe((result) => {
+    const id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.diaryService.getById(id)
+      .subscribe((result) => {
       this.diary = result;
+      this.tags = this.diary.tag[''];
     }, error => {
+      this.diary = null;
     });
   }
 
-  // deleteDiary(id): void {
-  //   const diary = this.diaries[id];
-  //   if (confirm('You want to remove ' + diary.title + '?')) {
-  //     this.diaryService.deleteDiary(id);
-  //     this.router.navigateByUrl('/diaries');
-  //   }
-  // }
-
-  getAllDiary(): void{
-    this.diaryService.getAll(this.page).subscribe(
-      list => {
-        console.log(list);
-        this.listDiary = list['content'];
-        this.pages = new Array(list['totalPages']);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+  deleteDiary(): void {
+    if (confirm('You want to remove ' + this.diary.title + '?')) {
+      this.diaryService.deleteDiary(this.diary.id)
+        .subscribe(res => {
+          res.id !== this.diary.id;
+        });
+      console.log('deleteDiary' + this.diary.status);
+      this.loadPage();
+    }
   }
 
-  deleteDiary(id): void {
-    const diary = this.listDiary[id];
-    if (confirm('You want to remove ' + diary.title + '?')) {
-      this.diaryService.deleteDiary(id)
-        .subscribe((result) => {
-          this.listDiary = this.listDiary.filter(t => t.id !== diary.id);
-        });
-      this.router.navigateByUrl('/diaries');
-    }
+  loadPage(){
+    this.router.navigate(['journals']);
   }
 }
