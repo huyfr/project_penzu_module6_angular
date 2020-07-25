@@ -33,6 +33,9 @@ import {DiaryUpdateComponent} from './components/diary/diary-update/diary-update
 import {CKEditorModule} from 'ngx-ckeditor';
 import { DiaryListOfUserComponent } from './components/diary/diary-list-of-user/diary-list-of-user.component';
 import { BlockedAnnoucementComponent } from './components/blocked-annoucement/blocked-annoucement.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,8 @@ import { BlockedAnnoucementComponent } from './components/blocked-annoucement/bl
     DiaryCreateComponent,
     DiaryUpdateComponent,
     DiaryListOfUserComponent,
-    BlockedAnnoucementComponent
+    BlockedAnnoucementComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +72,8 @@ import { BlockedAnnoucementComponent } from './components/blocked-annoucement/bl
     NgxPaginationModule,
     CKEditorModule,
     NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [Permissions, CanActivateTeam, NotActivateTeam, IsAdmin, IsActive],
   bootstrap: [AppComponent]
