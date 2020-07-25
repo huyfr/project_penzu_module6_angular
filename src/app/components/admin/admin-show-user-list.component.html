@@ -16,7 +16,7 @@
   <!-- Page Content -->
 
   <div id="page-content-wrapper">
-    <div class="container-fluid">
+    <div class="container">
       <h1 class="mt-4">User List</h1>
       <button data-toggle="modal"
               data-target="#createUser"
@@ -28,36 +28,38 @@
           <th class="w-20">Full Name</th>
           <th>User Name</th>
           <th>Email</th>
-          <th>Access</th>
+          <!--          <th>Access</th>-->
           <th class="text-center">Status</th>
           <th class="text-center">Action</th>
         </tr>
-        <tr *ngFor="let user of userList">
-          <td>{{user.id}}</td>
+        <tr *ngFor="let user of userList; index as i">
+          <td>{{i + 1}}</td>
           <td>{{user.name}}</td>
           <td>{{user.username}}</td>
           <td>{{user.email}}</td>
-          <td *ngIf="user.roles[0]">{{user.roles[0].name}}</td>
-          <td *ngIf="!user.roles[0]"></td>
+          <!--          <td *ngIf="user.roles[0]">{{user.roles[0].name}}</td>-->
+          <!--          <td *ngIf="!user.roles[0]"></td>-->
           <td class="text-center">
-            <span style="font-size: 25px" *ngIf="user.status == 1" class="fa fa-check text-success">&nbsp;</span>
-            <span *ngIf="user.status == 1" class="fa fa-lock text-black-50" (click)="blockUser(+user.id)"></span>
-            <span *ngIf="user.status == 0" class="fa fa-check text-black-50"
-                  (click)="activeUser(+user.id)">&nbsp;</span>
+            <span style="font-size: 25px" *ngIf="user.status == 1" class="fa fa-check text-success"></span>
             <span style="font-size: 25px" *ngIf="user.status == 0" class="fa fa-lock text-danger"></span>
           </td>
 
-
           <td class="text-center">
             <!--          nút edit user-->
-            <span style="font-size: 20px" data-toggle="modal"
+            <span style="font-size: 20px; cursor: pointer" data-toggle="modal"
                   data-target="#editUser" data-whatever="@mdo"
                   class="fa fa-eye text-primary" (click)="showDetailUser(user.id)">
             </span> |
 
             <!--            nút delete user-->
-            <span class="fa fa-remove text-danger" style="font-size: 20px" (click)="deleteUser(+user.id)">
-            </span>
+            <span class="fa fa-remove text-danger" style="font-size: 20px; cursor: pointer"
+                  (click)="deleteUser(+user.id)">
+            </span> |
+
+            <span *ngIf="user.status == 1" class="fa fa-lock text-black-50" (click)="blockUser(+user.id)"
+                  style="font-size: 20px; cursor: pointer"></span>
+            <span *ngIf="user.status == 0" class="fa fa-unlock text-black-50" (click)="activeUser(+user.id)"
+                  style="font-size: 20px; cursor: pointer"></span>
           </td>
 
 
@@ -85,14 +87,29 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="editForm" (ngSubmit)="changeInfor(closeModalRef)">
+        <img src="{{pickUpUser.avatar}}" alt="" width="120px" height="140px" class="float-left border-dark"
+             style="margin-right: 10px">
+        <form [formGroup]="editForm" (ngSubmit)="changeInfor(closeModalRef)" class="float-right"
+              style="margin-right: 20px">
           <table class="container" style="margin-left: 30px">
+            <tr>
+              <td class="font-weight-bold">Full name :</td>
+              <td><input class="border-light" type="text" formControlName="name" name="name"></td>
+            </tr>
+            <tr>
+              <td colspan="2"><small class="text-danger"
+                                     *ngIf="editForm.get('name').invalid && editForm.get('username').touched">Username
+                is required and must be at least 3 characters.</small></td>
+            </tr>
+            <br>
             <tr>
               <td class="font-weight-bold">User name :</td>
               <td><input class="border-light" type="text" formControlName="username" name="username"></td>
             </tr>
             <tr>
-              <td colspan="2"><small class="text-danger" *ngIf="editForm.get('username').invalid && editForm.get('username').touched">Username is required and must be at least 3 characters.</small></td>
+              <td colspan="2"><small class="text-danger"
+                                     *ngIf="editForm.get('username').invalid && editForm.get('username').touched">Username
+                is required and must be at least 3 characters.</small></td>
             </tr>
             <br>
             <tr>
@@ -100,21 +117,22 @@
               <td><input class="border-light" type="text" formControlName="email"></td>
             </tr>
             <tr>
-              <td colspan="2"><small class="text-danger" *ngIf="editForm.get('email') && editForm.get('email').touched">Email is invalid</small></td>
+              <td colspan="2"><small class="text-danger" *ngIf="editForm.get('email') && editForm.get('email').touched">Email
+                is invalid</small></td>
             </tr>
-            <br>
-            <tr>
-              <td class="font-weight-bold">Role :</td>
-              <td><select formControlName="roles">
-                <option [selected]="pickUpUser.roles[0].id == 1" value="1">USER</option>
-                <option [selected]="pickUpUser.roles[0].id == 3" value="3">ADMIN</option>
-              </select></td>
-            </tr>
+<!--            <br>-->
+            <!--            <tr>-->
+            <!--              <td class="font-weight-bold">Role :</td>-->
+            <!--              <td><select formControlName="roles">-->
+            <!--                <option [selected]="pickUpUser.roles[0].id == 1" value="1">USER</option>-->
+            <!--                <option [selected]="pickUpUser.roles[0].id == 3" value="3">ADMIN</option>-->
+            <!--              </select></td>-->
+            <!--            </tr>-->
           </table>
-          <br>
+          <!--          <br>-->
           <div class="modal-footer">
             <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-outline-primary">Update</button>
+            <button type="submit" (click)="changeInfor(closeModalRef)" class="btn btn-outline-primary">Update</button>
           </div>
         </form>
       </div>
@@ -130,21 +148,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title"><strong>Create new User</strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form [formGroup]="createForm" (ngSubmit)="createUser()">
           <div class="mt-15">
-            <input type="text" name="name" formControlName="name" placeholder="Name" class="single-input">
+            <input type="text" name="name" formControlName="name" placeholder="Name" class="single-input"
+                   style="border: 1px solid lightgrey; border-radius: 5px">
             <div class="float-left" style="color:red" *ngIf="submitted && rfc.name.errors">
-                            <small *ngIf="rfc.name.errors.required">Please enter user's name.</small>
+              <small *ngIf="rfc.name.errors.required">Please enter user's name.</small>
               <small *ngIf="rfc.name.errors.minlength">Must be 3-64 characters long.</small>
             </div>
           </div>
           <div class="mt-15">
-            <input type="text" name="email" formControlName="email" placeholder="Email" class="single-input">
+            <input type="text" name="email" formControlName="email" placeholder="Email" class="single-input"
+                   style="border: 1px solid lightgrey; border-radius: 5px">
             <div class="float-left" style="color:red" *ngIf="submitted && rfc.email.errors">
               <small *ngIf="rfc.email.errors.required">Please enter user email.</small>
               <small *ngIf="rfc.email.errors.email">Email invalid.</small>
@@ -152,21 +172,24 @@
             </div>
           </div>
           <div class="mt-15">
-            <input type="text" name="username" formControlName="username" placeholder="Username" class="single-input">
+            <input type="text" name="username" formControlName="username" placeholder="Username" class="single-input"
+                   style="border: 1px solid lightgrey; border-radius: 5px">
             <div class="float-left" style="color:red" *ngIf="submitted && rfc.username.errors">
               <small *ngIf="rfc.username.errors.required">Please enter user's username that use to login.</small>
               <small *ngIf="rfc.username.errors.minlength">Must be 3-64 characters long.</small>
             </div>
           </div>
           <div class="mt-15">
-            <input type="password" name="password" formControlName="password" placeholder="Password" class="single-input">
+            <input type="password" name="password" formControlName="password" placeholder="Password"
+                   class="single-input" style="border: 1px solid lightgrey; border-radius: 5px">
             <div class="float-left" style="color:red" *ngIf="submitted && rfc.password.errors">
               <small *ngIf="rfc.password.errors.required">Please enter user password.</small>
               <small *ngIf="rfc.password.errors.minlength">Must be 6-128 characters long.</small>
             </div>
           </div>
           <div class="mt-15">
-            <input type="password" name="confirmPassword" formControlName="confirmPassword" placeholder="Re-Password" class="single-input">
+            <input type="password" name="confirmPassword" formControlName="confirmPassword" placeholder="Re-Password"
+                   class="single-input" style="border: 1px solid lightgrey; border-radius: 5px">
             <div class="float-left" style="color:red" *ngIf="submitted && rfc.confirmPassword.errors">
               <small *ngIf="rfc.confirmPassword.errors.required">Please enter user Re-Password.</small>
               <small *ngIf="rfc.confirmPassword.errors.mustMatch">The password is not the same.</small>
@@ -174,12 +197,11 @@
           </div>
           <div class="mt-50 form-group">
             <div class="">
-              <button type="submit" class="genric-btn primary large circle">Create Account</button>
+              <button type="button" class="btn btn-outline-dark large circle" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-outline-primary large circle float-right">Create User</button>
             </div>
           </div>
         </form>
-
-
       </div>
     </div>
   </div>

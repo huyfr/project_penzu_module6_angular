@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AdminUserService} from '../../services/admin/admin-user.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../models/User';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MustMatch} from '../../util/validate';
+import {SignUpInfo} from '../auth/sign-up-info';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin-show-user-list',
@@ -11,6 +13,7 @@ import {MustMatch} from '../../util/validate';
   styleUrls: ['./admin-show-user-list.component.scss']
 })
 export class AdminShowUserListComponent implements OnInit {
+  @ViewChild('closebutton') closebutton;
   userList: User[] = [];
   page = 0;
   pages: Array<number>;
@@ -20,10 +23,14 @@ export class AdminShowUserListComponent implements OnInit {
   editForm: FormGroup;
   createForm: FormGroup;
   submitted = false;
+  isSignedUp = false;
+  isSignUpFailed = false;
 
   constructor(private usersService: AdminUserService,
               private activatedRoute: ActivatedRoute,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private router: Router) {
     this.changeText = false;
   }
 
@@ -78,18 +85,22 @@ export class AdminShowUserListComponent implements OnInit {
   }
 
   blockUser(i: number): void {
-    this.usersService.blockUser(i).subscribe(() => {
-      console.log('block ok');
-      this.getAllUserList();
-    }, error => console.log(error));
+    if (confirm('Do you really want to block ?')) {
+      this.usersService.blockUser(i).subscribe(() => {
+        console.log('block ok');
+        this.getAllUserList();
+      }, error => console.log(error));
+    }
   }
 
 
   activeUser(i: number): void {
-    this.usersService.activeUser(i).subscribe(() => {
-      console.log('active ok');
-      this.getAllUserList();
-    }, error => console.log(error));
+    if (confirm('Do you really want to unblock ?')) {
+      this.usersService.activeUser(i).subscribe(() => {
+        console.log('active ok');
+        this.getAllUserList();
+      }, error => console.log(error));
+    }
   }
 
   showDetailUser(id: string): void {
@@ -115,13 +126,11 @@ export class AdminShowUserListComponent implements OnInit {
         name: 'ROLE_USER'
       }];
     } else {
-      console.log('admin');
       data.roles = [{
         id: '3',
         name: 'ROLE_ADMIN'
       }];
     }
-    console.log(data);
     this.usersService.editUser(data)
       .subscribe(() => {
         this.usersService.shouldRefresh.next();
@@ -133,7 +142,26 @@ export class AdminShowUserListComponent implements OnInit {
     return this.createForm.controls;
   }
 
-  createUser() {
+  createUser(): void {
     this.submitted = true;
+    if (this.createForm.valid) {
+      const {name, username, email, password} = this.createForm.value;
+      const signUpInfoForm = new SignUpInfo(name, username, email, password);
+
+      this.authService.signUp(signUpInfoForm).subscribe(
+        data => {
+          console.log(data);
+          this.isSignedUp = true;
+          this.isSignUpFailed = false;
+          this.usersService.shouldRefresh.next();
+          alert('Register Successful !');
+          this.createForm.reset();
+        },
+        error => {
+          console.log(error);
+          this.isSignUpFailed = true;
+        }
+      );
+    }
   }
 }
