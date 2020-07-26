@@ -48,4 +48,8 @@ export class UserService {
   passwordForgot(forgotPassword: ForgotPassword): Observable<ForgotPassword> {
     return this.http.post<ForgotPassword>(this.sduUserUrl + 'forgot-password', forgotPassword);
   }
+
+  newPassword(user: User, token: string): Observable<User> {
+    return this.http.post<User>(this.sduUserUrl + `/new-password?token=` + token, user);
+  }
 }
