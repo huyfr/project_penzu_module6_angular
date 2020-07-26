@@ -68,9 +68,9 @@ export class DiaryCreateComponent implements OnInit {
   createDiary(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
     const {title, description, content, tagId} = this.formDiary.value;
 
-    // if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null) {
-    //   return alert('Fill Data Fields !');
-    // }
+    if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null) {
+      return alert('Fill Data Fields !');
+    }
 
     const count = setInterval(() => {
       this.processValue += 11;
