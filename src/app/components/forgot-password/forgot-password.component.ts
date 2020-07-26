@@ -31,9 +31,9 @@ export class ForgotPasswordComponent implements OnInit {
       this.isSubmitted = true;
       this.userService.passwordForgot(this.forgotPasswordForm.value).subscribe(() => {
         this.forgotPasswordForm.reset();
-        this.notificationService.showSuccess('<h5>Thành công! Đăng nhập gmail để kiểm tra thư</h5>', 'Thông báo');
+        alert('An email was sent to your registered email address, Please check and follow the guidance');
       }, () => {
-        this.notificationService.showError('<h5>Nhập sai email</h5>', 'Thông báo');
+        console.log('faild');
       });
     }
   }
