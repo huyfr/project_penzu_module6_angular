@@ -32,7 +32,7 @@ export class RecoverPasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-  recoverPassword() {
+  recoverPassword(): void {
     this.isSubmitted = true;
     const user: User = {
       password: this.recoverPasswordForm.value.password,
@@ -41,10 +41,10 @@ export class RecoverPasswordComponent implements OnInit {
     this.sub = this.activatedRoute.queryParams.subscribe(params => {
       const token = params.token;
       this.userService.newPassword(user, token).subscribe(() => {
-        this.notificationService.showSuccess('<h5>' + SUCCESS + '</h5>', NOTIFICATION);
+        alert('Successful! Please login by new password');
         this.router.navigate(['login']);
       }, () => {
-        this.notificationService.showError('<h5>' + FAIL + '</h5>', NOTIFICATION);
+        console.log('faild');
       });
     });
   }

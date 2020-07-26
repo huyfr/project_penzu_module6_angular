@@ -50,6 +50,6 @@ export class UserService {
   }
 
   newPassword(user: User, token: string): Observable<User> {
-    return this.http.post<User>(this.sduUserUrl + `/new-password?token=` + token, user);
+    return this.http.post<User>(this.sduUserUrl + `new-password?token=` + token, user);
   }
 }
