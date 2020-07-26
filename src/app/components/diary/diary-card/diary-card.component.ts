@@ -12,20 +12,16 @@ import {Tag} from '../../../models/Tag';
 })
 export class DiaryCardComponent implements OnInit {
 
-  // @Input() id: 1;
   diary: Diary;
   diaries: Diary[];
   tags: Tag[];
 
   page: number = 0;
-  listDiary: Array<any>;
   pages: Array<number>;
   constructor(private diaryService: DiaryService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.getDiaryById();
-    // this.getAllDiaries();
-    // this.getAllDiary();
   }
 
   getDiaryById(): void {
