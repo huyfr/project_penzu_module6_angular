@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../services/user/user.service';
 import {Router} from '@angular/router';
 import {NotificationService} from '../../services/notification.service';
+import {browser} from 'protractor';
 
 @Component({
   selector: 'app-forgot-password',
@@ -13,6 +14,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   forgotPasswordForm: FormGroup;
   isSubmitted = false;
+  message: string;
 
   constructor(private userService: UserService,
               private router: Router,
@@ -27,13 +29,16 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   passwordForgot(): void {
+    this.isSubmitted = true;
     if (this.forgotPasswordForm.valid) {
-      this.isSubmitted = true;
+      this.message = 'Please wait while sending email to reset';
       this.userService.passwordForgot(this.forgotPasswordForm.value).subscribe(() => {
         this.forgotPasswordForm.reset();
-        alert('An email was sent to your registered email address, Please check and follow the guidance');
-      }, () => {
-        console.log('faild');
+        alert('An email was sent to your registered email address\nPlease check and follow the guidance');
+      }, (error) => {
+        if (error.status === 404){
+          this.message = 'Your email has been not registered. Please check again';
+        }
       });
     }
   }
