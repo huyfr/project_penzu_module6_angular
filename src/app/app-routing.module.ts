@@ -17,6 +17,7 @@ import {DiaryCreateComponent} from './components/diary/diary-create/diary-create
 import {DiaryListOfUserComponent} from './components/diary/diary-list-of-user/diary-list-of-user.component';
 import {DiaryShowComponent} from './components/diary/diary-show/diary-show.component';
 import {DiaryUpdateComponent} from './components/diary/diary-update/diary-update.component';
+import {DiaryDetailComponent} from './components/diary/diary-detail/diary-detail.component';
 
 
 const routes: Routes = [
@@ -55,7 +56,8 @@ const routes: Routes = [
   {path: 'updateDiary/:id', component: DiaryUpdateComponent},
 
   {path: 'diaries', component: DiaryShowComponent},
-  {path: 'diary/detail/:id', component: DiaryCardComponent}
+  {path: 'diary/detail/:id', component: DiaryCardComponent},
+  {path: 'diary/:id', component: DiaryDetailComponent},
 ];
 
 @NgModule({
