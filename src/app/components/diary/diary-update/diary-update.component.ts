@@ -23,6 +23,12 @@ export class DiaryUpdateComponent implements OnInit {
   filePath: any;
   processValue = 0;
   counting: any;
+  selectedOption: number;
+
+  privacy = [
+    { name: "Public", value: 2 },
+    { name: "Only me", value: 1 }
+  ]
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,
@@ -42,11 +48,13 @@ export class DiaryUpdateComponent implements OnInit {
         this.diary = result;
       }
     );
+
     this.tagService.getTagList().subscribe(
       result => {
         this.tagList = result;
       }
     );
+
     this.info = {
       name: this.token.getName(),
       token: this.token.getToken(),
@@ -96,7 +104,8 @@ export class DiaryUpdateComponent implements OnInit {
       },
       tag: {
         id: this.tagId
-      }
+      },
+      status: this.diary.status,
     };
 
     this.diaryService.updateDiary(diary).subscribe(
@@ -105,6 +114,8 @@ export class DiaryUpdateComponent implements OnInit {
           console.log('create diary ok');
           openModal.click();
           this.previewId = result.id;
+          console.log("status: "+status);
+          console.log("select option: "+this.selectedOption);
         } else {
           const form = new FormData();
           form.append('file', this.fileUpload);

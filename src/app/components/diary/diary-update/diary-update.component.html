@@ -30,6 +30,13 @@
                      (change)="handleFileChooser($event.target.files)">
             </div>
 
+            <div class="mt-20">
+              <label>Select Privacy</label>
+              <select [(ngModel)]="selectedOption" class="custom-select ">
+                <option [ngValue]="p.value" *ngFor="let p of privacy" [selected]="p.value === diary.status">{{p.name}}</option>
+              </select>
+            </div>
+
             <label>Title</label>
             <div class="input-group mb-3">
               <textarea type="text" [(ngModel)]="diary.title" name="title"
