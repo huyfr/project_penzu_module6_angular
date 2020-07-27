@@ -4,7 +4,8 @@ import {TokenStorageService} from '../services/token-storage.service';
 
 @Injectable()
 export class Permissions {
-  constructor(private token: TokenStorageService) {}
+  constructor(private token: TokenStorageService) {
+  }
 
   canActivate(): boolean {
     if (this.token.getToken()) {
@@ -18,6 +19,14 @@ export class Permissions {
     if (this.token.getAuthorities()[0] === 'ROLE_ADMIN') {
       return true;
     } else {
+      return false;
+    }
+  }
+
+  isActived(): boolean {
+    if (+this.token.getUserStatus() === 1) {
+      return true;
+    }else {
       return false;
     }
   }

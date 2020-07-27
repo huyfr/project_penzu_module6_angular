@@ -7,6 +7,7 @@ const ID_KEY = 'AuthUserId';
 const NAME_KEY = 'Name';
 const EMAIL_KEY = 'Email';
 const AVATAR_KEY = 'Avatar';
+const STATUS_KEY = 'Status';
 
 @Injectable({
   providedIn: 'root'
@@ -93,5 +94,14 @@ export class TokenStorageService {
     }
 
     return this.roles;
+  }
+
+  public getUserStatus(): string {
+    return sessionStorage.getItem(STATUS_KEY);
+  }
+
+  public saveStatus(userStatus: string): void {
+    window.sessionStorage.removeItem(STATUS_KEY);
+    window.sessionStorage.setItem(STATUS_KEY, userStatus);
   }
 }
