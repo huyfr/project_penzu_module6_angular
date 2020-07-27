@@ -6,6 +6,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {TokenStorageService} from '../../../services/token-storage.service';
 import {DiaryService} from '../../../services/diary/diary.service';
 import {TagService} from '../../../services/tag/tag.service';
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-diary-update',
@@ -24,6 +25,14 @@ export class DiaryUpdateComponent implements OnInit {
   processValue = 0;
   counting: any;
   selectedOption: number;
+  formDiary = new FormGroup({
+    title: new FormControl(''),
+    description: new FormControl(''),
+    content: new FormControl(''),
+    tagId: new FormControl(''),
+    status: new FormControl(''),
+    file: new FormControl(''),
+  });
 
   privacy = [
     { name: "Public", value: 2 },
@@ -37,15 +46,18 @@ export class DiaryUpdateComponent implements OnInit {
               private tagService: TagService,
               private route: ActivatedRoute,
               private router: Router) {
-    this.activatedRoute.params.subscribe(params => {
-      this.idParam = params.id;
-    });
   }
 
   ngOnInit(): void {
+
+    this.activatedRoute.params.subscribe(params => {
+      this.idParam = params.id;
+    });
+
     this.diaryService.findDiaryById(this.idParam).subscribe(
       result => {
         this.diary = result;
+        this.formDiary.patchValue(this.diary);
       }
     );
 
@@ -94,7 +106,13 @@ export class DiaryUpdateComponent implements OnInit {
       this.tagId = this.diary.tag.id;
     }
 
-    const diary: Diary = {
+    const {value} = this.formDiary;
+    const data = {
+      ...this.diary,
+      ...value
+    };
+
+/*    const diary: Diary = {
       id: this.diary.id,
       title: this.diary.title,
       description: this.diary.description,
@@ -106,16 +124,13 @@ export class DiaryUpdateComponent implements OnInit {
         id: this.tagId
       },
       status: this.diary.status,
-    };
+    };*/
 
-    this.diaryService.updateDiary(diary).subscribe(
+    this.diaryService.updateDiary(data).subscribe(
       result => {
         if (this.fileUpload === null || this.fileUpload === undefined) {
-          console.log('create diary ok');
           openModal.click();
           this.previewId = result.id;
-          console.log("status: "+status);
-          console.log("select option: "+this.selectedOption);
         } else {
           const form = new FormData();
           form.append('file', this.fileUpload);
@@ -123,10 +138,8 @@ export class DiaryUpdateComponent implements OnInit {
             next => {
               clearInterval(this.counting);
               this.processValue = 100;
-
               setTimeout(() => {
                 closeProcess.click();
-                console.log('upload file ok');
                 openModal.click();
                 this.previewId = result.id;
               }, 3000);

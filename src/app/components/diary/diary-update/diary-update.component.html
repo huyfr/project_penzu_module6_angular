@@ -16,7 +16,7 @@
       <div class="menu-content pb-20 col-lg-8">
 
         <div *ngIf="diary">
-          <form>
+          <form [formGroup]="formDiary" (ngSubmit)="updateDiary(openModal, openProcessBar , closeProcess)">
             <div *ngIf="filePath; else url">
               <img src="{{filePath}}" class="img-fluid">
             </div>
@@ -32,26 +32,24 @@
 
             <div class="mt-20">
               <label>Select Privacy</label>
-              <select [(ngModel)]="selectedOption" class="custom-select ">
+              <select formControlName="status" class="custom-select ">
                 <option [ngValue]="p.value" *ngFor="let p of privacy" [selected]="p.value === diary.status">{{p.name}}</option>
               </select>
             </div>
 
             <label>Title</label>
             <div class="input-group mb-3">
-              <textarea type="text" [(ngModel)]="diary.title" name="title"
-                        class="form-control" id="basic-url" aria-describedby="basic-addon3"></textarea>
+              <textarea type="text" formControlName="title" name="title" class="form-control" id="basic-url" aria-describedby="basic-addon3"></textarea>
             </div>
 
             <label>Description</label>
             <div class="input-group mb-3">
-              <textarea [(ngModel)]="diary.description" name="description" rows="4" class="form-control"
-                        aria-label="With textarea"></textarea>
+              <textarea formControlName="description" name="description" rows="4" class="form-control" aria-label="With textarea"></textarea>
             </div>
 
             <label>Tag</label>
             <div class="input-group mb-3">
-              <select [(ngModel)]="tagId" class="custom-select " name="tag" id="inputGroupSelect02">
+              <select formControlName="tagId" class="custom-select " name="tag" id="inputGroupSelect02">
                 <option value="" hidden selected>{{diary.tag.name}}</option>
                 <option *ngFor="let tag of tagList" value="{{tag.id}}">
                   {{tag.name}}
@@ -60,14 +58,11 @@
             </div>
 
             <label>Content</label>
-            <ck-editor name="editor1" skin="moono-lisa" [(ngModel)]="diary.content" language="en"
-                       [fullPage]="false"></ck-editor>
+            <ck-editor name="editor1" skin="moono-lisa" formControlName="content" language="en" [fullPage]="false"></ck-editor>
 
             <div class="float-right mt-20">
             <label for="basic-url">
-              <button type="button" class="genric-btn success circle"
-                      (click)="updateDiary(openModal, openProcessBar , closeProcess)">Update
-              </button>
+              <button type="submit" class="genric-btn success circle">Update</button>
             </label>
             </div>
           </form>
