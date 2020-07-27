@@ -57,10 +57,10 @@ export class ProfileComponent implements OnInit {
     };
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
     this.userService.getUserById(+this.token.getUserId()).subscribe(user => this.user = user);
-    this.authService.svShouldRefresh.subscribe(res => this.getUser());
+    this.authService.svShouldRefresh.subscribe(res => this.getUser().subscribe(user => this.user = user));
   }
 
-  getUser() {
+  getUser(): any {
 /*    if (this.token) {
       this.userService.getUserById(+this.token.getUserId()).subscribe(
         result => {
