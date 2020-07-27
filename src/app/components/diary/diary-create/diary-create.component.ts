@@ -120,7 +120,6 @@ export class DiaryCreateComponent implements OnInit {
 
   preview(closeButton: HTMLInputElement) {
     closeButton.click();
-    // return this.router.navigateByUrl('/diary/' + this.previewId);
     return this.router.navigateByUrl('/diary/detail/' + this.previewId);
   }
 }
