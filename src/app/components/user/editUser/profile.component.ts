@@ -56,11 +56,11 @@ export class ProfileComponent implements OnInit {
       avatar: this.token.getAvatar(),
     };
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
-    this.getUser();
+    this.userService.getUserById(+this.token.getUserId()).subscribe(user => this.user = user);
     this.authService.svShouldRefresh.subscribe(res => this.getUser());
   }
 
-  getUser(): void {
+  getUser() {
 /*    if (this.token) {
       this.userService.getUserById(+this.token.getUserId()).subscribe(
         result => {
@@ -71,7 +71,7 @@ export class ProfileComponent implements OnInit {
         }
       );
     }*/
-      this.userService.getUserById(+this.token.getUserId()).subscribe(user => this.user = user);
+      return this.userService.getUserById(+this.token.getUserId());
     }
 
   updatePassword(closeButton: HTMLInputElement): any{
