@@ -7,7 +7,15 @@ import {UserService} from '../../../services/user/user.service';
 import {PassForm} from '../../../services/user/passForm/pass-form';
 import {UserForm} from '../../../services/user/userForm/user-form';
 import {User} from '../../../models/User';
-import {DataSharingService} from "../../../services/dataSharing/data-sharing.service";
+import {DataSharingService} from '../../../services/dataSharing/data-sharing.service';
+
+const failNothingChange = 'Fail-Nothing Change';
+const passwordConfirmNotMatch = 'Password Confirm not Match';
+const changePasswordSuccessful = 'Change Password Successful!';
+const updatePasswordFail = 'Update Password Fail!';
+const pleaseLogin = 'Update Successful. Please Login!';
+const fail = 'Fail!';
+const LOGIN = '/login';
 
 @Component({
   selector: 'app-profile',
@@ -55,29 +63,29 @@ export class ProfileComponent implements OnInit {
       email: this.token.getEmail(),
       avatar: this.token.getAvatar(),
     };
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || LOGIN;
     this.getUser();
   }
 
   getUser() {
-/*    if (this.token) {
-      this.userService.getUserById(+this.token.getUserId()).subscribe(
-        result => {
-          this.user = result;
-          console.log('getUser', result);
-        }, error1 => {
-          console.log(error1);
-        }
-      );
-    }*/
-      return this.userService.getUserById(+this.token.getUserId());
-    }
+    /*    if (this.token) {
+          this.userService.getUserById(+this.token.getUserId()).subscribe(
+            result => {
+              this.user = result;
+              console.log('getUser', result);
+            }, error1 => {
+              console.log(error1);
+            }
+          );
+        }*/
+    return this.userService.getUserById(+this.token.getUserId());
+  }
 
   updatePassword(closeButton: HTMLInputElement) {
     const {currentPassword, newPassword, confirmPassword} = this.passForm.value;
     if (newPassword !== confirmPassword) {
       this.isError = true;
-      return this.error = 'Password confirm not match ';
+      return this.error = passwordConfirmNotMatch;
     }
 
     const formPass = new PassForm(this.info.userId, this.info.username, currentPassword, newPassword);
@@ -87,11 +95,10 @@ export class ProfileComponent implements OnInit {
         closeButton.click();
         this.logout();
         this.router.navigateByUrl(this.returnUrl);
-        alert('Change password successful!');
+        alert(changePasswordSuccessful);
       }, error1 => {
         this.isError = true;
-        this.error = 'Update password fail!';
-        // return console.error(error);
+        this.error = updatePasswordFail;
       }
     );
   }
@@ -99,11 +106,9 @@ export class ProfileComponent implements OnInit {
   updateUser(closeButton: HTMLInputElement) {
     const {name} = this.inputName.value;
 
-    console.log(name);
-
     if (name === '') {
       this.isErrorUser = true;
-      return this.errorUser = 'Fail! Nothing Change.';
+      return this.errorUser = failNothingChange;
     }
     const userForm = new UserForm(this.info.userId, name);
 
@@ -112,12 +117,12 @@ export class ProfileComponent implements OnInit {
         closeButton.click();
         console.log(result);
         this.logout();
-        alert('Update successful. Please ReLogin !');
+        alert(pleaseLogin);
         this.router.navigateByUrl(this.returnUrl);
       }, error => {
         console.log(this.isErrorUser, this.errorUser);
         this.isErrorUser = true;
-        return this.errorUser = 'Fail!.';
+        return this.errorUser = fail;
       }
     );
   }
@@ -155,13 +160,11 @@ export class ProfileComponent implements OnInit {
           this.getUser();
           closeProcess.click();
           this.processValue = 0;
-          this.getUser().subscribe( user => {
+          this.getUser().subscribe(user => {
             this.token.saveAvatar(user.avatar);
             closeProcess.click();
             this.processValue = 0;
           });
-        }, error1 => {
-          console.log(error1);
         }
       );
     }

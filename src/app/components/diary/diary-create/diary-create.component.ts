@@ -8,6 +8,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Diary} from '../../../models/Diary';
 
 
+const fillDataFields = 'Fill Data Fields';
+
 @Component({
   selector: 'app-diary-create',
   templateUrl: './diary-create.component.html',
@@ -68,9 +70,9 @@ export class DiaryCreateComponent implements OnInit {
   createDiary(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
     const {title, description, content, tagId} = this.formDiary.value;
 
-    // if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null) {
-    //   return alert('Fill Data Fields !');
-    // }
+    if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null) {
+      return alert(fillDataFields);
+    }
 
     const count = setInterval(() => {
       this.processValue += 11;
@@ -118,6 +120,7 @@ export class DiaryCreateComponent implements OnInit {
 
   preview(closeButton: HTMLInputElement) {
     closeButton.click();
-    return this.router.navigateByUrl('/diary/' + this.previewId);
+    // return this.router.navigateByUrl('/diary/' + this.previewId);
+    return this.router.navigateByUrl('/diary/detail/' + this.previewId);
   }
 }

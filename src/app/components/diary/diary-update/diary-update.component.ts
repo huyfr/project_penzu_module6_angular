@@ -128,6 +128,7 @@ export class DiaryUpdateComponent implements OnInit {
 
   preview(previewId: any, closeModalRef1: HTMLButtonElement) {
     closeModalRef1.click();
-    return this.router.navigateByUrl('/diary/' + previewId);
+    // return this.router.navigateByUrl('/diary/' + previewId);
+    return this.router.navigateByUrl('/diary/detail/' + previewId);
   }
 }
