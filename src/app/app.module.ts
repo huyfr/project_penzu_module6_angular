@@ -15,6 +15,7 @@ import {Permissions} from './auth-guard/permissions';
 import {CanActivateTeam} from './auth-guard/can-activate-team';
 import {NotActivateTeam} from './auth-guard/not-activate-team';
 import {IsAdmin} from './auth-guard/is-admin';
+import {IsActive} from './auth-guard/is-active';
 import {HomeComponent} from './components/home/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserComponent} from './components/user/displayUser/user.component';
@@ -31,6 +32,11 @@ import {DiaryCreateComponent} from './components/diary/diary-create/diary-create
 import {DiaryUpdateComponent} from './components/diary/diary-update/diary-update.component';
 import {CKEditorModule} from 'ngx-ckeditor';
 import { DiaryListOfUserComponent } from './components/diary/diary-list-of-user/diary-list-of-user.component';
+import { BlockedAnnoucementComponent } from './components/blocked-annoucement/blocked-annoucement.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +59,10 @@ import { DiaryListOfUserComponent } from './components/diary/diary-list-of-user/
     DiaryCardComponent,
     DiaryCreateComponent,
     DiaryUpdateComponent,
-    DiaryListOfUserComponent
+    DiaryListOfUserComponent,
+    BlockedAnnoucementComponent,
+    ForgotPasswordComponent,
+    RecoverPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -65,8 +74,10 @@ import { DiaryListOfUserComponent } from './components/diary/diary-list-of-user/
     NgxPaginationModule,
     CKEditorModule,
     NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [Permissions, CanActivateTeam, NotActivateTeam, IsAdmin],
+  providers: [Permissions, CanActivateTeam, NotActivateTeam, IsAdmin, IsActive],
   bootstrap: [AppComponent]
 })
 export class AppModule {

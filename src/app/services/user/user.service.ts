@@ -6,6 +6,7 @@ import {FileForm} from '../../models/file-form';
 import {User} from '../../models/User';
 import {Diary} from '../../models/Diary';
 import {SearchUserByName} from '../../models/search-user-by-name';
+import {ForgotPassword} from '../../models/ForgotPassword';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -42,5 +43,13 @@ export class UserService {
 
   searchUserByName(user: SearchUserByName): Observable<User[]> {
     return this.http.post<User[]>(this.sduUserUrl + 'search-by-name' , user);
+  }
+
+  passwordForgot(forgotPassword: ForgotPassword): Observable<ForgotPassword> {
+    return this.http.post<ForgotPassword>(this.sduUserUrl + 'forgot-password', forgotPassword);
+  }
+
+  newPassword(user: User, token: string): Observable<User> {
+    return this.http.post<User>(this.sduUserUrl + `new-password?token=` + token, user);
   }
 }
