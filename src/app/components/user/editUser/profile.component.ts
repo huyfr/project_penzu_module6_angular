@@ -7,7 +7,7 @@ import {UserService} from '../../../services/user/user.service';
 import {PassForm} from '../../../services/user/passForm/pass-form';
 import {UserForm} from '../../../services/user/userForm/user-form';
 import {User} from '../../../models/User';
-import {DataSharingService} from "../../../services/dataSharing/data-sharing.service";
+import {DataSharingService} from '../../../services/dataSharing/data-sharing.service';
 
 @Component({
   selector: 'app-profile',
@@ -57,9 +57,10 @@ export class ProfileComponent implements OnInit {
     };
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
     this.getUser();
+    this.authService.svShouldRefresh.subscribe(res => this.getUser());
   }
 
-  getUser() {
+  getUser(): void {
 /*    if (this.token) {
       this.userService.getUserById(+this.token.getUserId()).subscribe(
         result => {
@@ -70,10 +71,10 @@ export class ProfileComponent implements OnInit {
         }
       );
     }*/
-      return this.userService.getUserById(+this.token.getUserId());
+      this.userService.getUserById(+this.token.getUserId()).subscribe(user => this.user = user);
     }
 
-  updatePassword(closeButton: HTMLInputElement) {
+  updatePassword(closeButton: HTMLInputElement): any{
     const {currentPassword, newPassword, confirmPassword} = this.passForm.value;
     if (newPassword !== confirmPassword) {
       this.isError = true;
@@ -96,10 +97,8 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  updateUser(closeButton: HTMLInputElement) {
+  updateUser(closeButton: HTMLInputElement): any {
     const {name} = this.inputName.value;
-
-    console.log(name);
 
     if (name === '') {
       this.isErrorUser = true;
@@ -110,19 +109,18 @@ export class ProfileComponent implements OnInit {
     this.authService.updateUser(userForm).subscribe(
       result => {
         closeButton.click();
-        console.log(result);
-        this.logout();
+        // this.logout();
         alert('Update successful. Please ReLogin !');
-        this.router.navigateByUrl(this.returnUrl);
+        this.authService.svShouldRefresh.next(true);
+        // this.router.navigateByUrl(this.returnUrl);
       }, error => {
-        console.log(this.isErrorUser, this.errorUser);
         this.isErrorUser = true;
         return this.errorUser = 'Fail!.';
       }
     );
   }
 
-  logout() {
+  logout(): any {
     this.token.signOut();
     this.router.navigateByUrl(this.returnUrl);
   }
@@ -136,7 +134,7 @@ export class ProfileComponent implements OnInit {
     };
   }
 
-  saveAvatar(openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
+  saveAvatar(openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement): any {
     if (this.token) {
       const count = setInterval(() => {
         this.processValue += 10;

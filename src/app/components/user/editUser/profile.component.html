@@ -36,7 +36,7 @@
                           </div>
                         </div>
                         <div class="userData ml-3">
-                          <h2 class="d-block" style="font-size: 1.5rem">{{info.name}}</h2>
+                          <h2 class="d-block" style="font-size: 1.5rem">{{user.name}}</h2>
                           <h6 class="d-block"><a href="javascript:void(0)">1,500</a> File Uploads</h6>
                           <!--                <h6 class="d-block"><a href="javascript:void(0)">300</a> Blog Posts</h6>-->
                           <button type="button" class="btn btn-link border-0" data-toggle="modal"
@@ -60,11 +60,7 @@
                             <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab"
                                aria-controls="basicInfo" aria-selected="true">Basic Info</a>
                           </li>
-                          <li class="nav-item">
-                            <a class="nav-link" id="connectedServices-tab" data-toggle="tab" href="#connectedServices"
-                               role="tab"
-                               aria-controls="connectedServices" aria-selected="false">Connected Services</a>
-                          </li>
+
                         </ul>
                         <div class="tab-content ml-1" id="myTabContent">
                           <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
@@ -120,8 +116,8 @@
                   <div class="modal-body">
                     <form [formGroup]="inputName">
                       <div class="form-group">
-                        <label class="col-form-label"><u>New Name</u> </label>
-                        <input type="text" placeholder="{{info.name}}" formControlName="name" class="form-control">
+                        <label class="col-form-label"><span>New Name</span></label>
+                        <input type="text" placeholder="{{user.name}}" formControlName="name" class="form-control">
                       </div>
                       <div class="alert alert-warning" role="alert"
                            *ngIf="inputName.get('name').invalid &&inputName.get('name').touched">

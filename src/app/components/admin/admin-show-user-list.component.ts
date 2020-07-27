@@ -13,7 +13,6 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./admin-show-user-list.component.scss']
 })
 export class AdminShowUserListComponent implements OnInit {
-  @ViewChild('closebutton') closebutton;
   userList: User[] = [];
   page = 0;
   pages: Array<number>;
