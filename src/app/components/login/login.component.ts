@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   loginForm: FormGroup;
   submitted = false;
+  isReloadUrl: boolean;
 
   constructor(
     private authService: AuthService,
@@ -61,7 +62,11 @@ export class LoginComponent implements OnInit {
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.roles = this.token.getAuthorities();
-          this.router.navigateByUrl(this.returnUrl);
+          if (this.roles[0] == 'ROLE_ADMIN') {
+            this.router.navigateByUrl('/admin/user-list');
+          }else {
+            this.router.navigateByUrl(this.returnUrl);
+          }
           this.dataSharingService.isUserLoggedIn.next(true);
         },
         error => {
