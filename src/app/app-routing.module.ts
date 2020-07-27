@@ -31,7 +31,7 @@ const routes: Routes = [
   {path: 'recover-password', component: RecoverPasswordComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'journals', component: UserComponent, canActivate: [CanActivateTeam, IsActive]}, // để show trang user
+  {path: 'journals', component: UserComponent, canActivate: [CanActivateTeam]}, // để show trang user
 
   {// phục vụ chức năng admin
     path: 'admin/user-list',
@@ -57,14 +57,14 @@ const routes: Routes = [
     canActivate: [CanActivateTeam, IsAdmin]}, // phục vụ chức năng admin
   {path: 'admin/user/block/:id', component: AdminShowUserListComponent,
     canActivate: [CanActivateTeam, IsAdmin]}, // phục vụ chức năng admin
-  {path: 'app/account', component: ProfileComponent, canActivate: [CanActivateTeam, IsActive]},
-  {path: 'diary/create', component: DiaryCreateComponent, canActivate: [CanActivateTeam, IsActive]},
+  {path: 'app/account', component: ProfileComponent, canActivate: [CanActivateTeam]},
+  {path: 'diary/create', component: DiaryCreateComponent, canActivate: [CanActivateTeam]},
 
-  {path: 'diary/listUserDiary', component: DiaryListOfUserComponent, canActivate: [CanActivateTeam, IsActive]},
-  {path: 'updateDiary/:id', component: DiaryUpdateComponent, canActivate: [CanActivateTeam, IsActive]},
+  {path: 'diary/listUserDiary', component: DiaryListOfUserComponent, canActivate: [CanActivateTeam]},
+  {path: 'updateDiary/:id', component: DiaryUpdateComponent, canActivate: [CanActivateTeam]},
 
-  {path: 'diaries', component: DiaryShowComponent, canActivate: [CanActivateTeam, IsActive]},
-  {path: 'diary/detail/:id', component: DiaryCardComponent, canActivate: [CanActivateTeam, IsActive]}
+  {path: 'diaries', component: DiaryShowComponent, canActivate: [CanActivateTeam]},
+  {path: 'diary/detail/:id', component: DiaryCardComponent, canActivate: [CanActivateTeam]}
 ];
 
 @NgModule({
