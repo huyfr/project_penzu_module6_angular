@@ -26,6 +26,13 @@
               <img src="{{filePath}}" class="img-fluid">
             </ng-template>
           </div>
+          <div class="mt-20">
+            <label>Select Privacy</label>
+            <select formControlName="status" class="custom-select ">
+              <option value="" selected disabled hidden>Please select privacy</option>
+              <option [value]="p.value" *ngFor="let p of privacy">{{p.name}}</option>
+            </select>
+          </div>
           <div class="input-group">
             <label>Title</label>
             <div class="input-group mb-3">
