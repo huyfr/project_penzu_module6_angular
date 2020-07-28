@@ -58,14 +58,21 @@
 
             <div class="bottom-wrapper">
               <div class="row">
-                <div class="col-lg-4 single-b-wrap col-md-12">
+                <div class="col-lg-3 single-b-wrap col-md-12">
                   <i class="fa fa-heart-o" aria-hidden="true"></i>
-                  lily and 4 people like this
+                  02 likes
                 </div>
-                <div class="col-lg-4 single-b-wrap col-md-12">
+                <div class="col-lg-3 single-b-wrap col-md-12">
                   <i class="fa fa-comment-o" aria-hidden="true"></i> 06 comments
                 </div>
-                <div class="col-lg-4 single-b-wrap col-md-12">
+                <div class="col-lg-3 single-b-wrap col-md-12">
+                  <i class="fa fa-share" aria-hidden="true"></i>
+                  <span style="cursor: pointer" data-toggle="modal"
+                        data-target="#sharePopup" data-whatever="@mdo"
+                        (click)="share(diary.id)">
+                    &nbsp;Share</span>
+                </div>
+                <div class="col-lg-3 single-b-wrap col-md-12">
                   <ul class="social-icons">
                     <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                     <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -76,16 +83,16 @@
             </div>
 
             <div class=" float-right">
-                  <table>
-                    <tr>
-                      <td>
-                        <button class="btn btn-outline-info" [routerLink]="'/updateDiary/' + diary.id">EDIT</button>
-                      </td>
-                      <td>
-                        <button class="btn btn-outline-danger" (click)="deleteDiary()">DELETE</button>
-                      </td>
-                    </tr>
-                  </table>
+              <table>
+                <tr>
+                  <td>
+                    <button class="btn btn-outline-info" [routerLink]="'/updateDiary/' + diary.id">EDIT</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-outline-danger" (click)="deleteDiary()">DELETE</button>
+                  </td>
+                </tr>
+              </table>
             </div>
 
             <!-- Start comment-sec Area -->
@@ -165,3 +172,42 @@
   <!-- End post Area -->
 </div>
 <!-- End post Area -->
+
+
+
+
+
+<div class="modal fade" id="sharePopup" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Share Dairy</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-5">
+          <p class="font-weight-bold">1. Get Share link:&nbsp;</p>
+          <div class="row container">
+            <i class="btn btn-outline-dark col-2" (click)="getShareLink(diary.id)">Get</i>
+            <i>&nbsp;&nbsp;&nbsp;</i>
+            <i class="col-9" *ngIf="shareLink">{{shareLink}}</i>
+          </div>
+        </div>
+        <div>
+          <form action="">
+            <p class="font-weight-bold">2. Share via email</p>
+            <div class="row container">
+              <input placeholder="email" class="col-9" type="text"><br>
+              <i>&nbsp;&nbsp;&nbsp;</i>
+              <i class="btn btn-outline-dark col-2">Share</i>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,7 +18,12 @@ export class DiaryCardComponent implements OnInit {
 
   page: number = 0;
   pages: Array<number>;
-  constructor(private diaryService: DiaryService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  shareLink: string;
+
+  constructor(private diaryService: DiaryService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.getDiaryById();
@@ -28,11 +33,11 @@ export class DiaryCardComponent implements OnInit {
     const id = +this.activatedRoute.snapshot.paramMap.get('id');
     this.diaryService.getById(id)
       .subscribe((result) => {
-      this.diary = result;
-      this.tags = this.diary.tag[''];
-    }, error => {
-      this.diary = null;
-    });
+        this.diary = result;
+        this.tags = this.diary.tag[''];
+      }, error => {
+        this.diary = null;
+      });
   }
 
   deleteDiary(): void {
@@ -46,7 +51,15 @@ export class DiaryCardComponent implements OnInit {
     }
   }
 
-  loadPage(){
+  loadPage() {
     this.router.navigate(['journals']);
+  }
+
+  share(id: string): void {
+
+  }
+
+  getShareLink(id: string): void {
+    this.diaryService.getShareLink(id).subscribe(result => this.shareLink = 'http://localhost:4200/show-diary?share=' + result.generatedUrl);
   }
 }
