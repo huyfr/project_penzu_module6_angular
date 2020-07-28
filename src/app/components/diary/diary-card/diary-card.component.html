@@ -40,10 +40,16 @@
                     <h2>{{diary.user.username}}</h2>
                     <p class="text-dark">{{diary.updatedate}}</p>
                   </div>
-                  <div class="user-img">
-                    <img src="img/user.jpg" alt="">
-                  </div>
                 </div>
+              </div>
+              <div class="tags">
+                <ul>
+                  <li><a href="#">{{diary.tag.name}}</a></li>
+                </ul>
+              </div>
+              <div class="tags">
+                <div *ngIf="diary.status === 1; else public"><i style="font-size:24px" class="fa">&#xf183;</i> Only me</div>
+                <ng-template #public><br><i class="material-icons">&#xe80b;</i> Public</ng-template>
               </div>
             </div>
             <div class="tags">
