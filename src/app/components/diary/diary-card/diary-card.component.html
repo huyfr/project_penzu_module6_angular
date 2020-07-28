@@ -189,6 +189,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <p class="text-danger" *ngIf="announcementShare">{{announcementShare}}</p>
         <div class="mb-5">
           <p class="font-weight-bold">1. Get Share link:&nbsp;</p>
           <div class="row container">
@@ -200,13 +201,19 @@
         <div>
           <form [formGroup]="shareLinkGroupForm" (ngSubmit)="shareLinkEmail(diary.id)">
             <p class="font-weight-bold">2. Share via email</p>
-            <div class="row container">
-              <input placeholder="email" class="col-9" type="text" formControlName="email"><br>
+            <p class="text-success" *ngIf="announcementWaitWhileSendingEmail && shareLinkGroupForm.touched">{{announcementWaitWhileSendingEmail}}</p>
+            <div class="row">
+              <input placeholder="email" class="col-9 ml-3" type="text" formControlName="email"><br>
               <i>&nbsp;&nbsp;&nbsp;</i>
               <button type="submit" class="btn btn-outline-dark col-2">Share</button>
             </div>
             <p class="text-danger" *ngIf="shareLinkGroupForm.get('email').hasError('email') && isSubmitted">Email is invalid</p>
           </form>
+        </div>
+        <div class="mt-20 form-group border-top">
+          <div class="">
+            <button type="button" class="col-2 float-right btn btn-outline-dark large circle mt-2" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>

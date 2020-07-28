@@ -14,6 +14,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class DiaryCardComponent implements OnInit {
 
   diary: Diary;
+  diaryToShare: Diary;
+  announcementShare: string;
   diaries: Diary[];
   tags: Tag[];
 
@@ -22,6 +24,7 @@ export class DiaryCardComponent implements OnInit {
   shareLink: string;
   shareLinkGroupForm: FormGroup;
   isSubmitted = false;
+  announcementWaitWhileSendingEmail: string;
 
   constructor(private diaryService: DiaryService,
               private activatedRoute: ActivatedRoute,
@@ -67,15 +70,33 @@ export class DiaryCardComponent implements OnInit {
   }
 
   getShareLink(id: string): void {
-    this.diaryService.getShareLink(id).subscribe(result => this.shareLink = 'http://localhost:4200/show-diary?share=' + result.generatedUrl);
+    this.diaryService.getById(+id).subscribe(diaryResult => {
+      this.diaryToShare = diaryResult;
+      if (this.diaryToShare.status === 2) {
+        this.diaryService.getShareLink(id).subscribe(
+          result => this.shareLink = 'http://localhost:4200/show-diary?share=' + result.generatedUrl);
+      } else {
+        this.announcementShare = 'Please change privacy to public';
+      }
+    });
   }
 
   shareLinkEmail(id: string): void {
     this.isSubmitted = true;
-    if (this.shareLinkGroupForm.valid) {
-      this.diaryService.shareDiaryByEmail(this.shareLinkGroupForm.value, id).subscribe(
-        () => alert('Shared to your registered email!')
-      );
-    }
+    this.diaryService.getById(+id).subscribe(result => {
+      this.diaryToShare = result;
+      if (this.diaryToShare.status === 2) {
+        if (this.shareLinkGroupForm.valid) {
+          this.announcementWaitWhileSendingEmail = 'Please wait while sending email !';
+          this.diaryService.shareDiaryByEmail(this.shareLinkGroupForm.value, id).subscribe(
+            () => {
+              alert('Email sent to your registered email address');
+            }
+          );
+        }
+      } else {
+        this.announcementShare = 'Please change privacy to public';
+      }
+    });
   }
 }
