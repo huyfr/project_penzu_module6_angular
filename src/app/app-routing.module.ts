@@ -23,6 +23,7 @@ import {BlockedAnnoucementComponent} from './components/blocked-annoucement/bloc
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {RecoverPasswordComponent} from './components/recover-password/recover-password.component';
 import {ShareDiaryComponent} from './components/share-diary/share-diary.component';
+import {DiarySearchInfoComponent} from "./components/diary/diary-search-info/diary-search-info.component";
 
 
 const routes: Routes = [
@@ -67,6 +68,8 @@ const routes: Routes = [
   {path: 'diaries', component: DiaryShowComponent, canActivate: [CanActivateTeam, IsActive]},
   {path: 'diary/detail/:id', component: DiaryCardComponent, canActivate: [CanActivateTeam, IsActive]},
   {path: 'diary/:id', component: DiaryDetailComponent},
+
+  {path: 'search-diary-info/:title', component: DiarySearchInfoComponent, canActivate: [CanActivateTeam, IsActive]},
 ];
 
 @NgModule({
