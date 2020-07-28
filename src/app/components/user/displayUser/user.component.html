@@ -53,20 +53,7 @@
             <span>Email: </span><span *ngIf="isUserLoggedIn">{{email}}</span>
           </div>
 
-          <div class="single_widget cat_widget">
-            <h4 class="text-uppercase pb-20">categories</h4>
-            <ul>
-              <li>
-                <a href="#">Technology <span>37</span></a>
-              </li>
-              <li>
-                <a href="#">Lifestyle <span>37</span></a>
-              </li>
-              <li>
-                <a href="#">Fashion <span>37</span></a>
-              </li>
-            </ul>
-          </div>
+          <app-tag-show></app-tag-show>
         </div>
       </div>
     </div>
