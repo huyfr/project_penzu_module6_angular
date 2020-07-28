@@ -23,7 +23,13 @@
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="single-page-post">
+            <div *ngIf="diary.urlFile.includes('.mp4'); else img">
+              <video class="img-fluid" [src]="diary.urlFile" controls></video>
+            </div>
+            <ng-template #img>
             <img class="img-fluid" [src]="diary.urlFile" alt="">
+            </ng-template>
+
             <div class="top-wrapper ">
               <div class="row d-flex justify-content-between">
                 <h2 class="col-lg-8 col-md-12 text-uppercase">
@@ -32,12 +38,7 @@
                 <div class="col-lg-4 col-md-12 right-side d-flex justify-content-end">
                   <div class="desc">
                     <h2>{{diary.user.username}}</h2>
-                    <div *ngIf="diary.updatedate > diary.createdate ; else other3">
-                      <h6><p class="text-dark">{{diary.updatedate}}</p></h6>
-                    </div>
-                    <ng-template #other3>
-                      <h6><p class="text-dark">{{diary.createdate}}</p></h6>
-                    </ng-template>
+                    <p class="text-dark">{{diary.updatedate}}</p>
                   </div>
                   <div class="user-img">
                     <img src="img/user.jpg" alt="">
@@ -56,7 +57,7 @@
                 <blockquote>{{diary.description}}</blockquote>
               </div>
               <div style="width: 100%">
-                <div [innerHTML]="diary.content"></div>
+                <div [innerHTML]="diary.content | safeHtml"></div>
               </div>
 
             </div>
@@ -88,16 +89,16 @@
             </div>
 
             <div class=" float-right">
-              <table>
-                <tr>
-                  <td>
-                    <button class="btn btn-outline-info" [routerLink]="'/updateDiary/' + diary.id">EDIT</button>
-                  </td>
-                  <td>
-                    <button class="btn btn-outline-danger" (click)="deleteDiary()">DELETE</button>
-                  </td>
-                </tr>
-              </table>
+                  <table>
+                    <tr>
+                      <td>
+                        <button class="genric-btn primary circle" [routerLink]="'/updateDiary/' + diary.id">EDIT</button>
+                      </td>
+                      <td>
+                        <button class="genric-btn danger circle" (click)="deleteDiary()">DELETE</button>
+                      </td>
+                    </tr>
+                  </table>
             </div>
 
             <!-- Start comment-sec Area -->
@@ -177,10 +178,6 @@
   <!-- End post Area -->
 </div>
 <!-- End post Area -->
-
-
-
-
 
 <div class="modal fade" id="sharePopup" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel"
