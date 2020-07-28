@@ -7,6 +7,7 @@ import {User} from '../../models/User';
 import {Diary} from '../../models/Diary';
 import {SearchUserByName} from '../../models/search-user-by-name';
 import {ForgotPassword} from '../../models/ForgotPassword';
+import {AdminReportForm} from '../../models/AdminReportForm';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -52,4 +53,9 @@ export class UserService {
   newPassword(user: User, token: string): Observable<User> {
     return this.http.post<User>(this.sduUserUrl + `new-password?token=` + token, user);
   }
+
+  getUserListToReport(adminReportForm: AdminReportForm): Observable<User[]>{
+    return this.http.post<User[]>(this.sduUserUrl + `search-by-date`, adminReportForm);
+  }
+
 }
