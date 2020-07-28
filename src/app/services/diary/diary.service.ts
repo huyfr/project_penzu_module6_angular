@@ -88,8 +88,11 @@ export class DiaryService {
     return this.http.post<Diary[]>(this.sduDiaryUrl + 'searchBy-Title-And-UserId', title);
   }
 
-  searchDiaryByTitle(title: SearchDiaryByTitle): Observable<Diary[]> {
-    return this.http.post<Diary[]>(this.sduDiaryUrl + 'search-by-title', title);
+  // searchDiaryByTitle(title: SearchDiaryByTitle): Observable<Diary[]> {
+  //   return this.http.post<Diary[]>(this.sduDiaryUrl + 'search-by-title', title);
+  // }
+  searchDiaryByTitle(title: string): Observable<Diary[]> {
+    return this.http.post<Diary[]>(this.sduDiaryUrl + 'search-by-titleAndStatus/', title);
   }
 
   searchDiaryByTagAndTitle(searchForm: SearchDiaryByTagAndTitle): Observable<Diary[]> {
