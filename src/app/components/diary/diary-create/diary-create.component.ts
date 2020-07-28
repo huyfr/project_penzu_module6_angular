@@ -34,9 +34,9 @@ export class DiaryCreateComponent implements OnInit {
   processValue = 0;
 
   privacy = [
-    { name: "Public", value: 2 },
-    { name: "Only me", value: 1 }
-  ]
+    { name: 'Public', value: 2 },
+    { name: 'Only me', value: 1 }
+  ];
 
   constructor(
     private token: TokenStorageService,
