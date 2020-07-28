@@ -47,21 +47,14 @@
                   <li><a href="#">{{diary.tag.name}}</a></li>
                 </ul>
               </div>
-              <div class="tags">
+ <!--             <div class="tags">
                 <div *ngIf="diary.status === 1; else public"><i style="font-size:24px" class="fa">&#xf183;</i> Only me</div>
                 <ng-template #public><br><i class="material-icons">&#xe80b;</i> Public</ng-template>
-              </div>
-            </div>
-            <div class="tags">
-              <ul *ngFor="let tag of tags">
-                <li>{{tag}}</li>
-              </ul>
+              </div>-->
             </div>
 
             <div class="single-post-content">
-              <div *ngIf="diary.description">
                 <blockquote>{{diary.description}}</blockquote>
-              </div>
               <div style="width: 100%">
                 <div [innerHTML]="diary.content | safeHtml"></div>
               </div>
@@ -84,7 +77,10 @@
             <!--start comment-->
             <section class="comment-sec-area pt-80 pb-80">
               <div class="container">
-                <h5 class="text-uppercase pb-80">{{comments.length}} Comments</h5>
+                <div *ngIf="comments; else noComment">
+                  <h5 class="text-uppercase pb-80">{{comments.length}} Comments</h5>
+                </div>
+                <ng-template #noComment><h5 class="text-uppercase pb-80"> Comments</h5></ng-template>
                 <div class="row flex-column" *ngFor="let comment of comments">
                   <br>
                   <div class="comment-list">
