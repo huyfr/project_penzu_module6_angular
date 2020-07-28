@@ -198,13 +198,14 @@
           </div>
         </div>
         <div>
-          <form action="">
+          <form [formGroup]="shareLinkGroupForm" (ngSubmit)="shareLinkEmail(diary.id)">
             <p class="font-weight-bold">2. Share via email</p>
             <div class="row container">
-              <input placeholder="email" class="col-9" type="text"><br>
+              <input placeholder="email" class="col-9" type="text" formControlName="email"><br>
               <i>&nbsp;&nbsp;&nbsp;</i>
-              <i class="btn btn-outline-dark col-2">Share</i>
+              <button type="submit" class="btn btn-outline-dark col-2">Share</button>
             </div>
+            <p class="text-danger" *ngIf="shareLinkGroupForm.get('email').hasError('email') && isSubmitted">Email is invalid</p>
           </form>
         </div>
       </div>
