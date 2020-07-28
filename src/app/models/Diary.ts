@@ -4,11 +4,11 @@ import {Reaction} from './Reaction';
 
 export interface Diary {
   id?: string;
-  title: string;
+  title?: string;
   createdate?: string;
   updatedate?: string;
-  description: string;
-  content: string;
+  description?: string;
+  content?: string;
   urlFile?: string;
   status?: number;
   tag?: Tag;

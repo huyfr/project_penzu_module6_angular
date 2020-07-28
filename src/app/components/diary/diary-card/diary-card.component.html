@@ -168,7 +168,7 @@
                       <textarea name="message" [(ngModel)]="comment" rows="5" cols="90" placeholder="What are you thinking?"></textarea>
                     </td>
                     <td class="col-2">
-                      <input class="btn btn-info" type="submit" value="Comment">
+                      <input class="btn btn-info" type="submit" value="Comment" (click)="createComments()">
                     </td>
                   </tr>
                 </table>

@@ -6,6 +6,8 @@ import {Tag} from '../../../models/Tag';
 import {TokenStorageService} from '../../../services/token-storage.service';
 import {User} from '../../../models/User';
 import {CommentService} from '../../../services/comment/comment.service';
+import {Comment} from "../../../models/Comment";
+import {UserService} from "../../../services/user/user.service";
 
 
 @Component({
@@ -26,7 +28,8 @@ export class DiaryCardComponent implements OnInit {
   page: number = 0;
   pages: Array<number>;
   constructor(private diaryService: DiaryService, private activatedRoute: ActivatedRoute, private router: Router,
-              private tokenStorageService: TokenStorageService, private commentService: CommentService) { }
+              private tokenStorageService: TokenStorageService, private commentService: CommentService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.getDiaryById();
@@ -66,12 +69,25 @@ export class DiaryCardComponent implements OnInit {
     }, error => {});
   }
 
-  createComments(content: string, status: number): void{
-    this.user.id = this.tokenStorageService.getUserId();
-    this.user.name = this.tokenStorageService.getName();
-    this.user.email = this.tokenStorageService.getEmail();
-    this.user.username = this.tokenStorageService.getUsername();
-    this.user.avatar = this.tokenStorageService.getAvatar();
-    this.user.status = +this.tokenStorageService.getUserStatus();
+  createComments(): void{
+    const contentInput = this.comment;
+    if (contentInput === '' || contentInput === null || contentInput === undefined) {
+      return;
+    }
+    this.userService.getUserById(+this.tokenStorageService.getUserId()).subscribe((result) => {
+      this.user = result;
+      const newComment: Comment = {
+        content: contentInput,
+        status: 1,
+        user: this.user,
+        diary: this.diary
+      };
+      console.log(newComment);
+      this.commentService.createComment(newComment).subscribe(result => {
+        this.comment = '';
+        this.getAllCommentByDiaryId(this.diary.id);
+        this.router.navigateByUrl('diary/detail/' + this.diary.id);
+      });
+    }, error => {console.log('404'); });
   }
 }
