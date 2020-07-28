@@ -77,9 +77,15 @@ export class AdminShowUserListComponent implements OnInit {
   }
 
   deleteUser(id: number): void {
-    if (confirm('Do you really want to delete this user ?')) {
-      this.usersService.deleteUser(id).subscribe(() => this.getAllUserList(), error => console.log(error));
-    }
+    this.usersService.getUserById(id).subscribe(result => {
+      if (result.status === 0) {
+        if (confirm('Do you really want to delete this user ?')) {
+          this.usersService.deleteUser(id).subscribe(() => this.getAllUserList(), error => console.log(error));
+        }
+      } else {
+        alert('Can not delete activating user');
+      }
+    });
   }
 
   blockUser(i: number): void {

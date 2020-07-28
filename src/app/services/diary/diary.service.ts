@@ -8,6 +8,7 @@ import {FileForm} from '../../models/file-form';
 import {SearchDiaryByTitleAndUserId} from '../../models/search-diary-by-title-and-user-id';
 import {SearchDiaryByTitle} from '../../models/search-diary-by-title';
 import {SearchDiaryByTagAndTitle} from '../../models/search-diary-by-tag-and-title';
+import {ShareDiaryByEmail} from '../../models/share-diary-by-email';
 
 const apiUrl = 'http://localhost:8080/api/sdu';
 
@@ -97,5 +98,17 @@ export class DiaryService {
 
   searchDiaryByTagId(id: string): Observable<Diary[]> {
     return this.http.get<Diary[]>(this.sduDiaryUrl + 'searchBy-TagId/' + id);
+  }
+
+  getShareLink(id: any): Observable<Diary>{
+    return this.http.get<Diary>(this.sduDiaryUrl + 'get-share-link/' + id);
+  }
+
+  getDiaryByShareURL(url: string): Observable<Diary> {
+    return this.http.get<Diary>('http://localhost:8080/show-diary?share=' + url);
+  }
+
+  shareDiaryByEmail(shareDiaryByEmail: ShareDiaryByEmail, id: any): Observable<Diary>{
+    return this.http.post<Diary>(this.sduDiaryUrl + 'share-link-via-email/' + id, shareDiaryByEmail);
   }
 }
