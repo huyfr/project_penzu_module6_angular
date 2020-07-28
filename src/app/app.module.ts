@@ -41,6 +41,7 @@ import { ShareDiaryComponent } from './components/share-diary/share-diary.compon
 import { DiaryDetailComponent } from './components/diary/diary-detail/diary-detail.component';
 import { SafeHtmlPipe } from './components/diary/diary-detail/safe-html.pipe';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
     CKEditorModule,
     NgbModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ChartsModule
   ],
   providers: [Permissions, CanActivateTeam, NotActivateTeam, IsAdmin, IsActive],
   bootstrap: [AppComponent]

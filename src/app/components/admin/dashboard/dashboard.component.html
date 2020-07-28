@@ -38,6 +38,17 @@
         <div class="col-6">
           <div class="border p-1">
             <p class="text-uppercase font-weight-bold text-center">Chart Title</p>
+            <div>
+              <div style="display: block">
+                <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                </canvas>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-6">
