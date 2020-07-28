@@ -63,25 +63,16 @@ export class ProfileComponent implements OnInit {
       email: this.token.getEmail(),
       avatar: this.token.getAvatar(),
     };
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || LOGIN;
-    this.getUser();
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
+    this.userService.getUserById(+this.token.getUserId()).subscribe(user => this.user = user);
+    this.authService.svShouldRefresh.subscribe(res => this.getUser().subscribe(user => this.user = user));
   }
 
-  getUser() {
-    /*    if (this.token) {
-          this.userService.getUserById(+this.token.getUserId()).subscribe(
-            result => {
-              this.user = result;
-              console.log('getUser', result);
-            }, error1 => {
-              console.log(error1);
-            }
-          );
-        }*/
-    return this.userService.getUserById(+this.token.getUserId());
-  }
+  getUser(): any {
+      return this.userService.getUserById(+this.token.getUserId());
+    }
 
-  updatePassword(closeButton: HTMLInputElement) {
+  updatePassword(closeButton: HTMLInputElement): any{
     const {currentPassword, newPassword, confirmPassword} = this.passForm.value;
     if (newPassword !== confirmPassword) {
       this.isError = true;
@@ -103,7 +94,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  updateUser(closeButton: HTMLInputElement) {
+  updateUser(closeButton: HTMLInputElement): any {
     const {name} = this.inputName.value;
 
     if (name === '') {
@@ -119,15 +110,15 @@ export class ProfileComponent implements OnInit {
         this.logout();
         alert(pleaseLogin);
         this.router.navigateByUrl(this.returnUrl);
+        this.authService.svShouldRefresh.next(true);
       }, error => {
-        console.log(this.isErrorUser, this.errorUser);
         this.isErrorUser = true;
         return this.errorUser = fail;
       }
     );
   }
 
-  logout() {
+  logout(): any {
     this.token.signOut();
     this.router.navigateByUrl(this.returnUrl);
   }
@@ -141,7 +132,7 @@ export class ProfileComponent implements OnInit {
     };
   }
 
-  saveAvatar(openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
+  saveAvatar(openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement): any {
     if (this.token) {
       const count = setInterval(() => {
         this.processValue += 10;
@@ -160,7 +151,7 @@ export class ProfileComponent implements OnInit {
           this.getUser();
           closeProcess.click();
           this.processValue = 0;
-          this.getUser().subscribe(user => {
+          this.getUser().subscribe( user => {
             this.token.saveAvatar(user.avatar);
             closeProcess.click();
             this.processValue = 0;

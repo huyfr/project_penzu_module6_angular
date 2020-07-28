@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {AuthLoginInfo} from '../components/auth/auth-login-info';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {JwtResponse} from '../components/auth/jwt-response';
 import {SignUpInfo} from '../components/auth/sign-up-info';
 import {UserForm} from './user/userForm/user-form';
@@ -20,6 +20,7 @@ export class AuthService {
   private svSignUpUrl = environment.signupUrl;
   private svUpdateProfileUrl = environment.updateProfileUrl;
   private svUpdatePasswordUrl = environment.updatePasswordUrl;
+  svShouldRefresh = new Subject<any>();
 
   constructor(private http: HttpClient) {
   }

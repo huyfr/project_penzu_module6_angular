@@ -98,8 +98,9 @@
             </tr>
             <tr>
               <td colspan="2"><small class="text-danger"
-                                     *ngIf="editForm.get('name').invalid && editForm.get('username').touched">Username
-                is required and must be at least 3 characters.</small></td>
+                                     *ngIf="editForm.get('name').invalid && editForm.get('name').touched">Username
+                is required and must be at least 3 characters.</small>
+              </td>
             </tr>
             <br>
             <tr>
@@ -107,32 +108,24 @@
               <td><input class="border-light" type="text" formControlName="username" name="username"></td>
             </tr>
             <tr>
-              <td colspan="2"><small class="text-danger"
-                                     *ngIf="editForm.get('username').invalid && editForm.get('username').touched">Username
-                is required and must be at least 3 characters.</small></td>
-            </tr>
-            <br>
+                            <td colspan="2"><small class="text-danger"
+                                                   *ngIf="editForm.get('username').invalid && editForm.get('username').touched">Username
+                              is required and must be at least 3 characters.</small></td>
+                          </tr>
+              <br>
             <tr>
               <td class="font-weight-bold">Email :</td>
               <td><input class="border-light" type="text" formControlName="email"></td>
             </tr>
-            <tr>
-              <td colspan="2"><small class="text-danger" *ngIf="editForm.get('email') && editForm.get('email').touched">Email
-                is invalid</small></td>
-            </tr>
-<!--            <br>-->
             <!--            <tr>-->
-            <!--              <td class="font-weight-bold">Role :</td>-->
-            <!--              <td><select formControlName="roles">-->
-            <!--                <option [selected]="pickUpUser.roles[0].id == 1" value="1">USER</option>-->
-            <!--                <option [selected]="pickUpUser.roles[0].id == 3" value="3">ADMIN</option>-->
-            <!--              </select></td>-->
+            <!--              <td colspan="2"><small class="text-danger" *ngIf="editForm.get('email') && editForm.get('email').touched">Email-->
+            <!--                is invalid</small></td>-->
             <!--            </tr>-->
           </table>
           <!--          <br>-->
           <div class="modal-footer">
             <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" (click)="changeInfor(closeModalRef)" class="btn btn-outline-primary">Update</button>
+            <button type="submit" class="btn btn-outline-primary">Update</button>
           </div>
         </form>
       </div>
