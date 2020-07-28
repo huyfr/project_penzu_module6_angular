@@ -23,7 +23,13 @@
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="single-page-post">
+            <div *ngIf="diary.urlFile.includes('.mp4'); else img">
+              <video class="img-fluid" [src]="diary.urlFile" controls></video>
+            </div>
+            <ng-template #img>
             <img class="img-fluid" [src]="diary.urlFile" alt="">
+            </ng-template>
+
             <div class="top-wrapper ">
               <div class="row d-flex justify-content-between">
                 <h2 class="col-lg-8 col-md-12 text-uppercase">
