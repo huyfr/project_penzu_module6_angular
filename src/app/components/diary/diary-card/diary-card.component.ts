@@ -4,6 +4,11 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Diary} from '../../../models/Diary';
 import {Tag} from '../../../models/Tag';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {TokenStorageService} from '../../../services/token-storage.service';
+import {User} from '../../../models/User';
+import {CommentService} from '../../../services/comment/comment.service';
+import {Comment} from "../../../models/Comment";
+import {UserService} from "../../../services/user/user.service";
 
 
 @Component({
@@ -13,23 +18,28 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class DiaryCardComponent implements OnInit {
 
+  avatar: string;
+  announcementShare: string;
+  comment: string;
+  shareLink: string;
+  announcementWaitWhileSendingEmail: string;
+  page: number = 0;
+  isSubmitted = false;
   diary: Diary;
   diaryToShare: Diary;
-  announcementShare: string;
+  user: User;
   diaries: Diary[];
   tags: Tag[];
-
-  page: number = 0;
+  comments: Comment[];
   pages: Array<number>;
-  shareLink: string;
   shareLinkGroupForm: FormGroup;
-  isSubmitted = false;
-  announcementWaitWhileSendingEmail: string;
 
   constructor(private diaryService: DiaryService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private tokenStorageService: TokenStorageService, private commentService: CommentService,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -45,6 +55,8 @@ export class DiaryCardComponent implements OnInit {
       .subscribe((result) => {
         this.diary = result;
         this.tags = this.diary.tag[''];
+        this.getAllCommentByDiaryId(this.diary.id);
+        this.avatar = this.tokenStorageService.getAvatar();
       }, error => {
         this.diary = null;
       });
@@ -65,9 +77,7 @@ export class DiaryCardComponent implements OnInit {
     this.router.navigate(['journals']);
   }
 
-  share(id: string): void {
-
-  }
+  share(id: string): void {}
 
   getShareLink(id: string): void {
     this.diaryService.getById(+id).subscribe(diaryResult => {
@@ -97,6 +107,37 @@ export class DiaryCardComponent implements OnInit {
       } else {
         this.announcementShare = 'Please change privacy to public';
       }
+    });
+  }
+
+  getAllCommentByDiaryId(id): void {
+    this.commentService.getAllCommentByDiaryId(id).subscribe((result) => {
+      this.comments = result;
+    }, error => {
+    });
+  }
+
+  createComments(): void {
+    const contentInput = this.comment;
+    if (contentInput === '' || contentInput === null || contentInput === undefined) {
+      return;
+    }
+    this.userService.getUserById(+this.tokenStorageService.getUserId()).subscribe((result) => {
+      this.user = result;
+      const newComment: Comment = {
+        content: contentInput,
+        status: 1,
+        user: this.user,
+        diary: this.diary
+      };
+      console.log(newComment);
+      this.commentService.createComment(newComment).subscribe(result => {
+        this.comment = '';
+        this.getAllCommentByDiaryId(this.diary.id);
+        this.router.navigateByUrl('diary/detail/' + this.diary.id);
+      });
+    }, error => {
+      console.log('404');
     });
   }
 }

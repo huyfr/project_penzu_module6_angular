@@ -101,54 +101,45 @@
                   </table>
             </div>
 
-            <!-- Start comment-sec Area -->
-            <section class="comment-sec-area pt-80 pb-80">
-              <div class="container">
-                <div class="row flex-column">
-                  <h5 class="text-uppercase pb-80">02 Comments</h5>
-                  <br>
-                  <div class="comment-list">
-                    <div class="single-comment justify-content-between d-flex">
-                      <div class="user justify-content-between d-flex">
-                        <div class="thumb">
-                          <img src="img/asset/c1.jpg" alt="">
+            <div class="container" style="clear: both">
+              <div class="row" *ngFor="let comment of comments">
+                <table style="max-width: 660px">
+                  <tr>
+                    <td>
+                      <img [src]="comment.user.avatar" width="40px" height="40px" style="border-radius: 50%; margin-top: 5px" alt="avatar-image">
+                    </td>
+                    <td  style="padding-left: 10px">
+                      <div class="card" style="width: 640px; border-radius: 20px">
+                        <div class="card-header">
+                          <b>{{comment.user.username}}</b>
                         </div>
-                        <div class="desc">
-                          <h5><a href="#">Emilly Blunt</a></h5>
-                          <p class="date">December 4, 2017 at 3:12 pm </p>
-                          <p class="comment">
-                            Never say goodbye till the end comes!
-                          </p>
+                        <div class="card-body">
+                          <p>{{comment.content}}</p>
+                          <i>{{comment.createdate}}</i>
                         </div>
                       </div>
-                      <div class="reply-btn">
-                        <a href="" class="btn-reply text-uppercase">reply</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="comment-list left-padding">
-                    <div class="single-comment justify-content-between d-flex">
-                      <div class="user justify-content-between d-flex">
-                        <div class="thumb">
-                          <img src="img/asset/c2.jpg" alt="">
-                        </div>
-                        <div class="desc">
-                          <h5><a href="#">Emilly Blunt</a></h5>
-                          <p class="date">December 4, 2017 at 3:12 pm </p>
-                          <p class="comment">
-                            Never say goodbye till the end comes!
-                          </p>
-                        </div>
-                      </div>
-                      <div class="reply-btn">
-                        <a href="" class="btn-reply text-uppercase">reply</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    </td>
+                  </tr>
+                </table>
+                <hr>
+                <hr>
               </div>
-            </section>
-            <!-- End comment-sec Area -->
+              <br><br>
+              <div class="row">
+                <table>
+                  <tr>
+                    <td class="col-10">
+                      <textarea name="message" [(ngModel)]="comment" rows="5" cols="90" placeholder="What are you thinking?"></textarea>
+                    </td>
+                    <td class="col-2">
+                      <input class="btn btn-info" type="submit" value="Comment" (click)="createComments()">
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <br><br><br><br>
+            <!--            End comments-->
           </div>
         </div>
         <div class="col-lg-4 sidebar-area ">
