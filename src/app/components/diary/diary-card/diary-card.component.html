@@ -64,82 +64,54 @@
 
             <div class="bottom-wrapper">
               <div class="row">
-                <div class="col-lg-3 single-b-wrap col-md-12">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                  02 likes
-                </div>
-                <div class="col-lg-3 single-b-wrap col-md-12">
-                  <i class="fa fa-comment-o" aria-hidden="true"></i> 06 comments
-                </div>
-                <div class="col-lg-3 single-b-wrap col-md-12">
-                  <i class="fa fa-share" aria-hidden="true"></i>
-                  <span style="cursor: pointer" data-toggle="modal"
-                        data-target="#sharePopup" data-whatever="@mdo"
-                        (click)="share(diary.id)">
-                    &nbsp;Share</span>
-                </div>
-                <div class="col-lg-3 single-b-wrap col-md-12">
+                <div class="col-lg-12 single-b-wrap col-md-12">
                   <ul class="social-icons">
-                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                    <li><i class="fa fa-share" style="cursor: pointer" title="Share" aria-hidden="true" data-toggle="modal" data-target="#sharePopup" data-whatever="@mdo" (click)="share(diary.id)"></i></li>
+                    <li><a [routerLink]="'/updateDiary/' + diary.id"><i title="Edit" class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+                    <li><i style="cursor: pointer" title="Delete" class="fa fa-times" aria-hidden="true" (click)="deleteDiary()"></i></li>
                   </ul>
+
                 </div>
               </div>
             </div>
 
-            <div class=" float-right">
-                  <table>
-                    <tr>
-                      <td>
-                        <button class="genric-btn primary circle" [routerLink]="'/updateDiary/' + diary.id">EDIT</button>
-                      </td>
-                      <td>
-                        <button class="genric-btn danger circle" (click)="deleteDiary()">DELETE</button>
-                      </td>
-                    </tr>
-                  </table>
-            </div>
-
-            <div class="container" style="clear: both">
-              <div class="row" *ngFor="let comment of comments">
-                <table style="max-width: 660px">
-                  <tr>
-                    <td>
-                      <img [src]="comment.user.avatar" width="40px" height="40px" style="border-radius: 50%; margin-top: 5px" alt="avatar-image">
-                    </td>
-                    <td  style="padding-left: 10px">
-                      <div class="card" style="width: 640px; border-radius: 20px">
-                        <div class="card-header">
-                          <b>{{comment.user.username}}</b>
+            <!--start comment-->
+            <section class="comment-sec-area pt-80 pb-80">
+              <div class="container">
+                <h5 class="text-uppercase pb-80">{{comments.length}} Comments</h5>
+                <div class="row flex-column" *ngFor="let comment of comments">
+                  <br>
+                  <div class="comment-list">
+                    <div class="single-comment justify-content-between d-flex">
+                      <div class="user justify-content-between d-flex">
+                        <div class="thumb">
+                          <img [src]="comment.user.avatar" width="62px" height="62px" alt="avatar-image">
                         </div>
-                        <div class="card-body">
-                          <p>{{comment.content}}</p>
-                          <i>{{comment.createdate}}</i>
+                        <div class="desc">
+                          <h5>{{comment.user.username}}</h5>
+                          <p class="date">{{comment.createdate}}</p>
+                          <p class="comment">{{comment.content}}</p>
                         </div>
                       </div>
-                    </td>
-                  </tr>
-                </table>
-                <hr>
-                <hr>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <br><br>
-              <div class="row">
-                <table>
-                  <tr>
-                    <td class="col-10">
-                      <textarea name="message" [(ngModel)]="comment" rows="5" cols="90" placeholder="What are you thinking?"></textarea>
-                    </td>
-                    <td class="col-2">
-                      <input class="btn btn-info" type="submit" value="Comment" (click)="createComments()">
-                    </td>
-                  </tr>
-                </table>
+            </section>
+
+            <section class="commentform-area  pb-120 pt-80 mb-100">
+              <div class="container">
+                <h5 class="text-uppercas pb-50">Leave a Reply</h5>
+                <div class="row flex-row d-flex">
+                  <div class="col-lg-12">
+                    <textarea [(ngModel)]="comment" class="form-control mb-10" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                    <button class="genric-btn primary circle float-right" type="submit" value="Comment" (click)="createComments()">Comment</button>
+                  </div>
+                </div>
               </div>
-            </div>
-            <br><br><br><br>
-            <!--            End comments-->
+            </section>
+            <!--End comments-->
+
           </div>
         </div>
         <div class="col-lg-4 sidebar-area ">
@@ -148,20 +120,21 @@
               <div class="input-group stylish-input-group">
                 <input type="text" class="form-control" placeholder="Search">
                 <span class="input-group-addon">
-                                        <button type="submit">
-                                            <span class="lnr lnr-magnifier"></span>
-                                        </button>
-                                    </span>
+                  <button type="submit">
+                    <span class="lnr lnr-magnifier"></span>
+                  </button>
+                </span>
               </div>
             </div>
           </div>
 
-          <div class="single_widget cat_widget">
-            <h4 class="text-uppercase pb-20">Tags</h4>
-            <ul *ngFor="let tag of tags">
-              <li>{{tag}}</li>
+          <div class="single_widget tag_widget">
+            <h4 class="text-uppercase pb-20">Tag</h4>
+            <ul>
+              <li *ngFor="let tag of tagList"><a href="">{{tag.name}}</a></li>
             </ul>
           </div>
+
         </div>
       </div>
     </div>
