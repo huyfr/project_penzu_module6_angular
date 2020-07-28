@@ -72,7 +72,6 @@ export class DiaryCardComponent implements OnInit {
 
   shareLinkEmail(id: string): void {
     this.isSubmitted = true;
-    console.log(this.shareLinkGroupForm.value);
     if (this.shareLinkGroupForm.valid) {
       this.diaryService.shareDiaryByEmail(this.shareLinkGroupForm.value, id).subscribe(
         () => alert('Shared to your registered email!')
