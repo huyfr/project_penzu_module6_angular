@@ -1,0 +1,38 @@
+.star {
+  font-size: 1.7rem;
+  color: #b0c4de;
+}
+.filled {
+  color: yellow;
+}
+.bad {
+  color: #deb0b0;
+}
+.filled.bad {
+  color: #ff1e1e;
+}
+
+
+.top {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 5px;
+  outline: none;
+}
+
+a.btn:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+a.btn {
+  -webkit-transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  -o-transform: scale(0.6);
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+}

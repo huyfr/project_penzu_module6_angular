@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Diary} from '../../../models/Diary';
 import {DiaryService} from '../../../services/diary/diary.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -12,14 +12,10 @@ import {TokenStorageService} from '../../../services/token-storage.service';
 export class DiaryShowComponent implements OnInit {
   currentUser: any;
   diary: Diary;
-  page: number = 0;
+  page = 0;
   listDiary: Array<any>;
   pages: Array<number>;
 
-  /*  constructor( private diaryService: DiaryService,
-                 private token: TokenStorageService) {
-    }
-    setPage(i, event: any){*/
   constructor(private diaryService: DiaryService,
               private router: Router,
               private activatedRoute: ActivatedRoute,

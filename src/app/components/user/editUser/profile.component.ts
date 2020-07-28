@@ -9,6 +9,14 @@ import {UserForm} from '../../../services/user/userForm/user-form';
 import {User} from '../../../models/User';
 import {DataSharingService} from '../../../services/dataSharing/data-sharing.service';
 
+const failNothingChange = 'Fail-Nothing Change';
+const passwordConfirmNotMatch = 'Password Confirm not Match';
+const changePasswordSuccessful = 'Change Password Successful!';
+const updatePasswordFail = 'Update Password Fail!';
+const pleaseLogin = 'Update Successful. Please Login!';
+const fail = 'Fail!';
+const LOGIN = '/login';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -61,16 +69,6 @@ export class ProfileComponent implements OnInit {
   }
 
   getUser(): any {
-/*    if (this.token) {
-      this.userService.getUserById(+this.token.getUserId()).subscribe(
-        result => {
-          this.user = result;
-          console.log('getUser', result);
-        }, error1 => {
-          console.log(error1);
-        }
-      );
-    }*/
       return this.userService.getUserById(+this.token.getUserId());
     }
 
@@ -78,7 +76,7 @@ export class ProfileComponent implements OnInit {
     const {currentPassword, newPassword, confirmPassword} = this.passForm.value;
     if (newPassword !== confirmPassword) {
       this.isError = true;
-      return this.error = 'Password confirm not match ';
+      return this.error = passwordConfirmNotMatch;
     }
 
     const formPass = new PassForm(this.info.userId, this.info.username, currentPassword, newPassword);
@@ -88,11 +86,10 @@ export class ProfileComponent implements OnInit {
         closeButton.click();
         this.logout();
         this.router.navigateByUrl(this.returnUrl);
-        alert('Change password successful!');
+        alert(changePasswordSuccessful);
       }, error1 => {
         this.isError = true;
-        this.error = 'Update password fail!';
-        // return console.error(error);
+        this.error = updatePasswordFail;
       }
     );
   }
@@ -102,20 +99,21 @@ export class ProfileComponent implements OnInit {
 
     if (name === '') {
       this.isErrorUser = true;
-      return this.errorUser = 'Fail! Nothing Change.';
+      return this.errorUser = failNothingChange;
     }
     const userForm = new UserForm(this.info.userId, name);
 
     this.authService.updateUser(userForm).subscribe(
       result => {
         closeButton.click();
-        // this.logout();
-        alert('Update successful. Please ReLogin !');
+        console.log(result);
+        this.logout();
+        alert(pleaseLogin);
+        this.router.navigateByUrl(this.returnUrl);
         this.authService.svShouldRefresh.next(true);
-        // this.router.navigateByUrl(this.returnUrl);
       }, error => {
         this.isErrorUser = true;
-        return this.errorUser = 'Fail!.';
+        return this.errorUser = fail;
       }
     );
   }
@@ -158,8 +156,6 @@ export class ProfileComponent implements OnInit {
             closeProcess.click();
             this.processValue = 0;
           });
-        }, error1 => {
-          console.log(error1);
         }
       );
     }

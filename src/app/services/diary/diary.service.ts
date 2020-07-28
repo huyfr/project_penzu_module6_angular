@@ -92,11 +92,11 @@ export class DiaryService {
   }
 
   searchDiaryByTagAndTitle(searchForm: SearchDiaryByTagAndTitle): Observable<Diary[]> {
-    return this.http.post<Diary[]>(this.sduDiaryUrl + 'search-by-tag-and-title' , searchForm);
+    return this.http.post<Diary[]>(this.sduDiaryUrl + 'search-by-tag-and-title', searchForm);
   }
 
   searchDiaryByTagId(id: string): Observable<Diary[]> {
-    return this.http.get<Diary[]>(this.sduDiaryUrl + 'searchBy-TagId/' + id );
+    return this.http.get<Diary[]>(this.sduDiaryUrl + 'searchBy-TagId/' + id);
   }
 
   getShareLink(id: any): Observable<Diary>{

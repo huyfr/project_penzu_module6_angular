@@ -8,6 +8,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Diary} from '../../../models/Diary';
 
 
+const fillDataFields = 'Fill Data Fields';
+
 @Component({
   selector: 'app-diary-create',
   templateUrl: './diary-create.component.html',
@@ -24,11 +26,17 @@ export class DiaryCreateComponent implements OnInit {
     description: new FormControl(''),
     content: new FormControl(''),
     tagId: new FormControl(''),
+    status: new FormControl(''),
     file: new FormControl(''),
   });
   returnUrl: string;
   filePath: any;
   processValue = 0;
+
+  privacy = [
+    { name: "Public", value: 2 },
+    { name: "Only me", value: 1 }
+  ]
 
   constructor(
     private token: TokenStorageService,
@@ -66,10 +74,10 @@ export class DiaryCreateComponent implements OnInit {
   }
 
   createDiary(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
-    const {title, description, content, tagId} = this.formDiary.value;
+    const {title, description, content, tagId, status} = this.formDiary.value;
 
-    if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null) {
-      return alert('Fill Data Fields !');
+    if (title === '' || description === '' || content === '' || tagId === '' || status === '' || this.fileUpload == null) {
+      return alert(fillDataFields);
     }
 
     const count = setInterval(() => {
@@ -84,6 +92,7 @@ export class DiaryCreateComponent implements OnInit {
       title,
       description,
       content,
+      status,
       user: {
         id: this.info.userId
       },
@@ -118,6 +127,6 @@ export class DiaryCreateComponent implements OnInit {
 
   preview(closeButton: HTMLInputElement) {
     closeButton.click();
-    return this.router.navigateByUrl('/diary/' + this.previewId);
+    return this.router.navigateByUrl('/diary/detail/' + this.previewId);
   }
 }
