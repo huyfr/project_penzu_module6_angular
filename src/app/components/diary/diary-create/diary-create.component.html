@@ -16,14 +16,18 @@
       <div class="menu-content pb-20 col-lg-8">
 
         <form [formGroup]="formDiary">
-          <label>Image</label>
+          <label>Image/Video</label>
           <div class="input-group mb-3">
-            <input type="file" placeholder="Image" class="form-control img-fluid" aria-label="Amount (to the nearest dollar)"
+            <input type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="form-control img-fluid" aria-label="Amount (to the nearest dollar)"
                    (change)="handleFileChooser($event.target.files)">
-            <div *ngIf="!filePath; else img">
+            <div *ngIf="filePath.includes('.mp4'); else img">
+              <video controls class="img-fluid">
+                <source src="{{filePath}}" type="video/mp4">
+              </video>
             </div>
             <ng-template #img>
-              <img src="{{filePath}}" class="img-fluid">
+              <img src="{{filePath}}" class="img-fluid" alt="">
             </ng-template>
           </div>
           <div class="mt-20">
