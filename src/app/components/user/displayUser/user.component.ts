@@ -26,10 +26,6 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.dataSharingService.isUserLoggedIn.subscribe(value => {
       this.isUserLoggedIn = value;
-      this.username = this.tokenStorageService.getUsername();
-      this.avatar = this.tokenStorageService.getAvatar();
-      this.fullName = this.tokenStorageService.getName();
-      this.email = this.tokenStorageService.getEmail();
     });
     if (window.sessionStorage.length > 0) {
       this.isUserLoggedIn = true;
