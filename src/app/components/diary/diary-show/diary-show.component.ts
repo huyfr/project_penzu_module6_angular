@@ -16,10 +16,6 @@ export class DiaryShowComponent implements OnInit {
   listDiary: Array<any>;
   pages: Array<number>;
 
-  /*  constructor( private diaryService: DiaryService,
-                 private token: TokenStorageService) {
-    }
-    setPage(i, event: any){*/
   constructor(private diaryService: DiaryService,
               private router: Router,
               private activatedRoute: ActivatedRoute,

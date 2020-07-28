@@ -26,11 +26,17 @@ export class DiaryCreateComponent implements OnInit {
     description: new FormControl(''),
     content: new FormControl(''),
     tagId: new FormControl(''),
+    status: new FormControl(''),
     file: new FormControl(''),
   });
   returnUrl: string;
   filePath: any;
   processValue = 0;
+
+  privacy = [
+    { name: "Public", value: 2 },
+    { name: "Only me", value: 1 }
+  ]
 
   constructor(
     private token: TokenStorageService,
@@ -68,9 +74,9 @@ export class DiaryCreateComponent implements OnInit {
   }
 
   createDiary(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
-    const {title, description, content, tagId} = this.formDiary.value;
+    const {title, description, content, tagId, status} = this.formDiary.value;
 
-    if (title === '' || description === '' || content === '' || tagId === '' || this.fileUpload == null) {
+    if (title === '' || description === '' || content === '' || tagId === '' || status === '' || this.fileUpload == null) {
       return alert(fillDataFields);
     }
 
@@ -86,6 +92,7 @@ export class DiaryCreateComponent implements OnInit {
       title,
       description,
       content,
+      status,
       user: {
         id: this.info.userId
       },
