@@ -14,5 +14,6 @@ export interface Diary {
   tag?: Tag;
   user?: User;
   reaction?: Reaction;
+  generatedUrl?: string;
 }
 

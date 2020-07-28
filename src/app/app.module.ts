@@ -37,6 +37,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { ShareDiaryComponent } from './components/share-diary/share-diary.component';
 import { DiaryDetailComponent } from './components/diary/diary-detail/diary-detail.component';
 import { SafeHtmlPipe } from './components/diary/diary-detail/safe-html.pipe';
 
@@ -67,7 +68,8 @@ import { SafeHtmlPipe } from './components/diary/diary-detail/safe-html.pipe';
     DiaryListOfUserComponent,
     BlockedAnnoucementComponent,
     ForgotPasswordComponent,
-    RecoverPasswordComponent
+    RecoverPasswordComponent,
+    ShareDiaryComponent
   ],
   imports: [
     BrowserModule,
