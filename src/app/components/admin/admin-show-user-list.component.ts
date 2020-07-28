@@ -13,7 +13,6 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./admin-show-user-list.component.scss']
 })
 export class AdminShowUserListComponent implements OnInit {
-  @ViewChild('closebutton') closebutton;
   userList: User[] = [];
   page = 0;
   pages: Array<number>;
@@ -47,8 +46,8 @@ export class AdminShowUserListComponent implements OnInit {
 
     this.editForm = this.formBuilder.group({
         username: ['', [Validators.minLength(3), Validators.required]],
+        name: ['', [Validators.minLength(3), Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        roles: [''],
       }
     );
 
@@ -68,7 +67,6 @@ export class AdminShowUserListComponent implements OnInit {
   private getAllUserList(): void {
     this.usersService.getAllUserPagination(this.page).subscribe(
       list => {
-        console.log(list);
         this.userList = list['content'];
         this.pages = new Array(list['totalPages']);
       },
@@ -112,7 +110,6 @@ export class AdminShowUserListComponent implements OnInit {
   }
 
   changeInfor(closeModalRef: HTMLButtonElement): void {
-    console.log(this.editForm.get('roles').value);
     const {value} = this.editForm;
 
     const data = {
@@ -120,17 +117,6 @@ export class AdminShowUserListComponent implements OnInit {
       ...value
     };
 
-    if (this.editForm.get('roles').value == 1) {
-      data.roles = [{
-        id: '1',
-        name: 'ROLE_USER'
-      }];
-    } else {
-      data.roles = [{
-        id: '3',
-        name: 'ROLE_ADMIN'
-      }];
-    }
     this.usersService.editUser(data)
       .subscribe(() => {
         this.usersService.shouldRefresh.next();
