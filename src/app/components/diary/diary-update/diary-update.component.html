@@ -17,10 +17,10 @@
 
         <div *ngIf="diary">
           <form [formGroup]="formDiary" (ngSubmit)="updateDiary(openModal, openProcessBar , closeProcess)">
-            <div *ngIf="filePath; else url">
-              <img src="{{filePath}}" class="img-fluid">
+            <div *ngIf="diary.urlFile.includes('.mp4'); else image">
+              <video src="{{diary.urlFile}}" class="img-fluid" controls></video>
             </div>
-            <ng-template #url>
+            <ng-template #image>
               <img src="{{diary.urlFile}}" class="img-fluid">
             </ng-template>
 
