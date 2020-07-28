@@ -51,7 +51,7 @@
                 <blockquote>{{diary.description}}</blockquote>
               </div>
               <div style="width: 100%">
-                <div [innerHTML]="diary.content"></div>
+                <div [innerHTML]="diary.content | safeHtml"></div>
               </div>
 
             </div>
