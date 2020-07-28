@@ -3,6 +3,7 @@ import {DiaryService} from '../../../services/diary/diary.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Diary} from '../../../models/Diary';
 import {Tag} from '../../../models/Tag';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -19,14 +20,20 @@ export class DiaryCardComponent implements OnInit {
   page: number = 0;
   pages: Array<number>;
   shareLink: string;
+  shareLinkGroupForm: FormGroup;
+  isSubmitted = false;
 
   constructor(private diaryService: DiaryService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
     this.getDiaryById();
+    this.shareLinkGroupForm = this.formBuilder.group({
+      email: ['', [Validators.email]]
+    });
   }
 
   getDiaryById(): void {
@@ -51,7 +58,7 @@ export class DiaryCardComponent implements OnInit {
     }
   }
 
-  loadPage() {
+  loadPage(): void {
     this.router.navigate(['journals']);
   }
 
@@ -61,5 +68,15 @@ export class DiaryCardComponent implements OnInit {
 
   getShareLink(id: string): void {
     this.diaryService.getShareLink(id).subscribe(result => this.shareLink = 'http://localhost:4200/show-diary?share=' + result.generatedUrl);
+  }
+
+  shareLinkEmail(id: string): void {
+    this.isSubmitted = true;
+    console.log(this.shareLinkGroupForm.value);
+    if (this.shareLinkGroupForm.valid) {
+      this.diaryService.shareDiaryByEmail(this.shareLinkGroupForm.value, id).subscribe(
+        () => alert('Shared to your registered email!')
+      );
+    }
   }
 }
