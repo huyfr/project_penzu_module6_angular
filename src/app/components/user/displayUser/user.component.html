@@ -48,7 +48,7 @@
 
           <div class="single_widget about_widget">
             <img *ngIf="isUserLoggedIn" [src]="avatar" width="100px" height="100px" alt="">
-            <h2 class="text-uppercase" *ngIf="isUserLoggedIn">{{username}}</h2>
+            <a routerLink="/app/account"><h2 class="text-uppercase" *ngIf="isUserLoggedIn">{{username}}</h2></a>
             <span>Fullname: </span><span *ngIf="isUserLoggedIn">{{fullName}}</span><br>
             <span>Email: </span><span *ngIf="isUserLoggedIn">{{email}}</span>
           </div>
