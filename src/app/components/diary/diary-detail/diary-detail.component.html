@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div class="container-fluid" style="background: lightgray;  padding-top: 4.8rem;">
+
+  <div class="row">
+    <div class="col-lg-1">
+    </div>
+    <div class="col-lg-8" *ngIf="diary">
+      <h1 class="mt-4" [innerText]="diary.title"></h1>
+      <p class="lead ">
+        by
+        <label class="text-warning">{{diary.user.name}}</label>
+      </p>
+      <hr>
+      <h5>Tag: <a [routerLink]="'diary' + diary.tag.id">{{diary.tag.name}}</a></h5>
+      <ng-template #other3>
+        <h6><p class="text-dark">{{diary.updatedate}}</p></h6>
+      </ng-template>
+      <hr>
+      <img src="{{diary.urlFile}}" style="width: 100%; height: 700px">
+      <hr>
+      <h4><strong [innerText]="diary.description"></strong></h4>
+      <br/>
+      <div [innerHTML]="diary.content | safeHtml"></div>
+      <br/>
+      <hr>
+      <br/>
+      <h3 class="text-secondary text-center">
+        Did You Enjoy This Article?
+      </h3>
+      <div class="text-center">
+        <ngb-rating [(rate)]="currentRate">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
+        <pre>Rate: <b>{{currentRate}}</b></pre>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+</div>
+<button class="top" *ngIf="isShow" (click)="gotoTop()">👆Top</button>

@@ -37,6 +37,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { DiaryDetailComponent } from './components/diary/diary-detail/diary-detail.component';
+import { SafeHtmlPipe } from './components/diary/diary-detail/safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,9 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
     DiaryCardComponent,
     DiaryCreateComponent,
     DiaryUpdateComponent,
+    DiaryListOfUserComponent,
+    DiaryDetailComponent,
+    SafeHtmlPipe,
     DiaryListOfUserComponent,
     BlockedAnnoucementComponent,
     ForgotPasswordComponent,

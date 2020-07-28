@@ -102,7 +102,6 @@ export class DiaryUpdateComponent implements OnInit {
     this.diaryService.updateDiary(diary).subscribe(
       result => {
         if (this.fileUpload === null || this.fileUpload === undefined) {
-          console.log('create diary ok');
           openModal.click();
           this.previewId = result.id;
         } else {
@@ -115,10 +114,9 @@ export class DiaryUpdateComponent implements OnInit {
 
               setTimeout(() => {
                 closeProcess.click();
-                console.log('upload file ok');
                 openModal.click();
                 this.previewId = result.id;
-              }, 3000);
+              }, 500);
             }
           );
         }
@@ -128,6 +126,6 @@ export class DiaryUpdateComponent implements OnInit {
 
   preview(previewId: any, closeModalRef1: HTMLButtonElement) {
     closeModalRef1.click();
-    return this.router.navigateByUrl('/diary/' + previewId);
+    return this.router.navigateByUrl('/diary/detail/' + previewId);
   }
 }
