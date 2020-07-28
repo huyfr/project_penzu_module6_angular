@@ -21,10 +21,7 @@
             <input type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="form-control img-fluid" aria-label="Amount (to the nearest dollar)"
                    (change)="handleFileChooser($event.target.files)">
-            <div *ngIf="filePath.includes('.mp4'); else img">
-              <video controls class="img-fluid">
-                <source src="{{filePath}}" type="video/mp4">
-              </video>
+            <div *ngIf="!filePath; else img">
             </div>
             <ng-template #img>
               <img src="{{filePath}}" class="img-fluid" alt="">
