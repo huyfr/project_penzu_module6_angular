@@ -40,6 +40,7 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
 import { ShareDiaryComponent } from './components/share-diary/share-diary.component';
 import { DiaryDetailComponent } from './components/diary/diary-detail/diary-detail.component';
 import { SafeHtmlPipe } from './components/diary/diary-detail/safe-html.pipe';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { SafeHtmlPipe } from './components/diary/diary-detail/safe-html.pipe';
     BlockedAnnoucementComponent,
     ForgotPasswordComponent,
     RecoverPasswordComponent,
-    ShareDiaryComponent
+    ShareDiaryComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
