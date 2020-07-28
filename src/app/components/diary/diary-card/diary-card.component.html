@@ -32,7 +32,12 @@
                 <div class="col-lg-4 col-md-12 right-side d-flex justify-content-end">
                   <div class="desc">
                     <h2>{{diary.user.username}}</h2>
-                    <h3>{{diary.createdate}}</h3>
+                    <div *ngIf="diary.updatedate > diary.createdate ; else other3">
+                      <h6><p class="text-dark">{{diary.updatedate}}</p></h6>
+                    </div>
+                    <ng-template #other3>
+                      <h6><p class="text-dark">{{diary.createdate}}</p></h6>
+                    </ng-template>
                   </div>
                   <div class="user-img">
                     <img src="img/user.jpg" alt="">

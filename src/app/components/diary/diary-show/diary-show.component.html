@@ -1,9 +1,14 @@
 <!--Huynh-->
 <div class="single-list flex-row d-flex" *ngFor="let diary of listDiary; index as i">
   <div class="detail">
-<!--    <a routerLink="/diary/detail/{{diary.id}}">{{diary.title}}</a>-->
     <a [routerLink]="'/diary/detail/' + diary.id">{{diary.title.slice(0,65)}}...</a>
-    <h6 class="pb-10" style="color: black">{{diary.createdate}}</h6>
+<!--    <h6 class="pb-10" style="color: black">{{diary.createdate}}</h6>-->
+    <div *ngIf="diary.updatedate > diary.createdate ; else other3">
+      <h6><p class="text-dark">{{diary.updatedate}}</p></h6>
+    </div>
+    <ng-template #other3>
+      <h6><p class="text-dark">{{diary.createdate}}</p></h6>
+    </ng-template>
     <p>
       {{diary.description}}
     </p>
