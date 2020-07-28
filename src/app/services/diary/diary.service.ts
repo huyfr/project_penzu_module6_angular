@@ -98,4 +98,12 @@ export class DiaryService {
   searchDiaryByTagId(id: string): Observable<Diary[]> {
     return this.http.get<Diary[]>(this.sduDiaryUrl + 'searchBy-TagId/' + id );
   }
+
+  getShareLink(id: any): Observable<Diary>{
+    return this.http.get<Diary>(this.sduDiaryUrl + 'get-share-link/' + id);
+  }
+
+  getDiaryByShareURL(url: string): Observable<Diary> {
+    return this.http.get<Diary>('http://localhost:8080/show-diary?share=' + url);
+  }
 }
