@@ -18,11 +18,42 @@
 
   <div id="page-content-wrapper">
     <div class="container">
-      <!--      <h1 class="mt-4">User List</h1>-->
+      <h1 class="mt-4">Dashboard</h1>
+      <div class="mt-5 mb-5">
+        <form [formGroup]="reportForm" (ngSubmit)="report()" class="row">
+          <div class="col-4  text-center">
+            <label for="fromDate" class="font-weight-bold">From :&nbsp;</label>
+            <input style="width: 230px" type="datetime-local" id="fromDate" formControlName="fromDate" class="ml-3">
+          </div>
+          <div class="col-4  text-center">
+            <label for="toDate" class="font-weight-bold">To :&nbsp;</label>
+            <input style="width: 230px" type="datetime-local" id="toDate" formControlName="toDate" class="ml-3">
+          </div>
+          <div class="col-4  text-center">
+            <input style="width: 70%; border-radius: 5px" type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="border p-1">
+            <p class="text-uppercase font-weight-bold text-center">Chart Title</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="border p-1">
+            <p class="text-uppercase font-weight-bold text-center">Chart Title</p>
+          </div>
+        </div>
+      </div>
+      <div class="border mt-2">
+        <p class="text-uppercase font-weight-bold text-center">Title</p>
+      </div>
       <!--      <button data-toggle="modal"-->
       <!--              data-target="#createUser"-->
       <!--              data-whatever="@mdo"-->
-      <!--              class="btn btn-outline-dark fa fa-pencil float-right mr-2 mb-2"></button>-->
+      <!--              class="btn btn-outline-dark fa fa-pencil float-right mr-2 mb-2">
+                </button>-->
       <!--      <table class="table table-hover">-->
       <!--        <tr>-->
       <!--          <th>ID</th>-->
