@@ -21,6 +21,7 @@ import {IsActive} from './auth-guard/is-active';
 import {BlockedAnnoucementComponent} from './components/blocked-annoucement/blocked-annoucement.component';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {RecoverPasswordComponent} from './components/recover-password/recover-password.component';
+import {ShareDiaryComponent} from './components/share-diary/share-diary.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'no-access', component: NoHaveAccessAnnoucementComponent},
   {path: 'blocked-account', component: BlockedAnnoucementComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'show-diary', component: ShareDiaryComponent},
   {path: 'recover-password', component: RecoverPasswordComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'register', component: RegisterComponent},

@@ -37,6 +37,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { ShareDiaryComponent } from './components/share-diary/share-diary.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
     DiaryListOfUserComponent,
     BlockedAnnoucementComponent,
     ForgotPasswordComponent,
-    RecoverPasswordComponent
+    RecoverPasswordComponent,
+    ShareDiaryComponent
   ],
   imports: [
     BrowserModule,
