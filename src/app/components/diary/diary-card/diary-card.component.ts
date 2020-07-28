@@ -15,10 +15,12 @@ import {CommentService} from '../../../services/comment/comment.service';
 })
 export class DiaryCardComponent implements OnInit {
 
+  avatar: string;
   diary: Diary;
   diaries: Diary[];
   tags: Tag[];
   user: User;
+  comment: string;
   comments: Comment[];
 
   page: number = 0;
@@ -37,6 +39,7 @@ export class DiaryCardComponent implements OnInit {
       this.diary = result;
       this.tags = this.diary.tag[''];
       this.getAllCommentByDiaryId(this.diary.id);
+      this.avatar = this.tokenStorageService.getAvatar();
     }, error => {
       this.diary = null;
     });
@@ -63,11 +66,12 @@ export class DiaryCardComponent implements OnInit {
     }, error => {});
   }
 
-  // createComments(content: string, status: number): void{
-  //   this.user.id = this.tokenStorageService.getUserId();
-  //   this.user.name = this.tokenStorageService.getName();
-  //   this.user.email = this.tokenStorageService.getEmail();
-  //   this.user.username = this.tokenStorageService.getUsername();
-  //   this.user.avatar = this.tokenStorageService.getAvatar();
-  // }
+  createComments(content: string, status: number): void{
+    this.user.id = this.tokenStorageService.getUserId();
+    this.user.name = this.tokenStorageService.getName();
+    this.user.email = this.tokenStorageService.getEmail();
+    this.user.username = this.tokenStorageService.getUsername();
+    this.user.avatar = this.tokenStorageService.getAvatar();
+    this.user.status = +this.tokenStorageService.getUserStatus();
+  }
 }
