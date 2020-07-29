@@ -26,24 +26,47 @@
             <div>
               <div style="display: block">
                 <canvas baseChart
-                        [datasets]="barChartData"
-                        [labels]="barChartLabels"
-                        [options]="barChartOptions"
-                        [legend]="barChartLegend"
-                        [chartType]="barChartType">
+                        [datasets]="barChartData1"
+                        [labels]="barChartLabels1"
+                        [options]="barChartOptions1"
+                        [legend]="barChartLegend1"
+                        [colors]="barChartColors1"
+                        [chartType]="barChartType1">
                 </canvas>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-6">
-          <div class="border p-1 row">
-            <p class="col-6 text-uppercase font-weight-bold text-center">User registration summary in </p>
-            <span class="col-6">
-                <select name="" id="">
-                  <option value="1"></option>
+        <div class="col-6 border">
+          <form [formGroup]="monthChartReportForm">
+            <div class="row">
+              <p class="col-8 text-uppercase font-weight-bold text-right">User registration summary in </p>
+              <span class="col-3 text-left ml-0 pl-0">
+                <select formControlName="monthSelection">
+                  <option value="01" [selected]="true">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
                 </select>
               </span>
+            </div>
+          </form>
+          <div style="display: block">
+            <canvas baseChart
+                    [datasets]="barChartData2"
+                    [labels]="barChartLabels2"
+                    [options]="barChartOptions2"
+                    [legend]="barChartLegend2"
+                    [chartType]="barChartType2">
+            </canvas>
           </div>
         </div>
       </div>
