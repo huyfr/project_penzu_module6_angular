@@ -7,10 +7,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TokenStorageService} from '../../../services/token-storage.service';
 import {User} from '../../../models/User';
 import {CommentService} from '../../../services/comment/comment.service';
-import {Comment} from "../../../models/Comment";
-import {UserService} from "../../../services/user/user.service";
-import {TagService} from "../../../services/tag/tag.service";
-
+import {Comment} from '../../../models/Comment';
+import {UserService} from '../../../services/user/user.service';
+import {TagService} from '../../../services/tag/tag.service';
 
 @Component({
   selector: 'app-diary-card',
@@ -86,7 +85,8 @@ export class DiaryCardComponent implements OnInit {
     this.router.navigate(['journals']);
   }
 
-  share(id: string): void {}
+  share(id: string): void {
+  }
 
   getShareLink(id: string): void {
     this.diaryService.getById(+id).subscribe(diaryResult => {
