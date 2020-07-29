@@ -22,23 +22,51 @@
       <div class="row mt-5">
         <div class="col-6">
           <div class="border p-1">
-            <p class="text-uppercase font-weight-bold text-center">Chart Title</p>
+            <p class="text-uppercase font-weight-bold text-center">User registration summary 2020</p>
             <div>
               <div style="display: block">
                 <canvas baseChart
-                        [datasets]="barChartData"
-                        [labels]="barChartLabels"
-                        [options]="barChartOptions"
-                        [legend]="barChartLegend"
-                        [chartType]="barChartType">
+                        [datasets]="barChartData1"
+                        [labels]="barChartLabels1"
+                        [options]="barChartOptions1"
+                        [legend]="barChartLegend1"
+                        [colors]="barChartColors1"
+                        [chartType]="barChartType1">
                 </canvas>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-6">
-          <div class="border p-1">
-            <p class="text-uppercase font-weight-bold text-center">Chart Title</p>
+        <div class="col-6 border">
+          <form [formGroup]="monthChartReportForm">
+            <div class="row">
+              <p class="col-8 text-uppercase font-weight-bold text-right">User registration summary in </p>
+              <span class="col-3 text-left ml-0 pl-0">
+                <select formControlName="monthSelection">
+                  <option value="01" [selected]="true">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+              </span>
+            </div>
+          </form>
+          <div style="display: block">
+            <canvas baseChart
+                    [datasets]="barChartData2"
+                    [labels]="barChartLabels2"
+                    [options]="barChartOptions2"
+                    [legend]="barChartLegend2"
+                    [chartType]="barChartType2">
+            </canvas>
           </div>
         </div>
       </div>
@@ -54,11 +82,14 @@
             <input style="width: 230px" type="datetime-local" id="toDate" formControlName="toDate" class="ml-3">
           </div>
           <div class="col-2  text-center">
-            <input class="font-weight-bold" style="width: 70%; border-radius: 5px; border: 1px solid black; background-color: white" type="submit" value="Submit">
+            <input class="font-weight-bold"
+                   style="width: 70%; border-radius: 5px; border: 1px solid black; background-color: white"
+                   type="submit" value="Submit">
           </div>
           <div class="col-2  text-center">
             <div style="width: 70%;  border-radius: 5px; border: 1px solid black; cursor: pointer">
-              <span style="width: 100%; border-radius: 5px" class="fa fa-arrow-circle-up font-weight-bold">&nbsp;PDF</span>
+              <span style="width: 100%; border-radius: 5px"
+                    class="fa fa-arrow-circle-up font-weight-bold">&nbsp;PDF</span>
             </div>
           </div>
         </form>
