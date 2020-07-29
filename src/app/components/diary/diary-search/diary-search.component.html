@@ -1,0 +1,23 @@
+<section class="top-section-area section-gap">
+  <div class="container">
+    <div class="row justify-content-center align-items-center d-flex">
+      <div class="col-lg-8">
+        <div id="imaginary_container">
+          <div class="input-group stylish-input-group">
+<!--            <input type="text" class="form-control" (keyup)="searchDiary($event.currentTarget.value)" placeholder="Search Diary" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Addictionwhen gambling '" required="">-->
+<!--            <span class="input-group-addon">-->
+<!--                                        <button type="submit" [routerLink]="['/search-diary-info',titleSearch]">-->
+<!--                                            <span class="lnr lnr-magnifier"></span>-->
+<!--                                        </button>-->
+<!--                                    </span>-->
+            <form>
+              <input  class="search" placeholder="Tên bài viết cần tìm" (keyup)="searchDiary($event.currentTarget)">
+              <button class="search" [routerLink]="['/search-diary-info',this.titleSearch]">Tìm kiếm</button>
+            </form>
+          </div>
+        </div>
+        <p class="mt-20 text-center text-white">169 results found for “Addictionwhen gambling”</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -41,7 +41,16 @@
         <div class="col-lg-8">
           <div class="post-lists search-list">
 
-            <app-diary-show></app-diary-show>
+            <div class="single-list flex-row d-flex" *ngFor="let diary of diaryList; index as i">
+              <div class="detail">
+                <a [routerLink]="'/diary/detail/' + diary.id"><h4>{{diary.title}}</h4></a>
+                <small>{{diary.updatedate}}</small>
+                <p class="pt-20" style="color:black">
+                  {{diary.description}}
+                </p>
+              </div>
+            </div>
+            <div class="justify-content-center d-flex">
 
           </div>
         </div>
@@ -54,11 +63,26 @@
             <span>Email: </span><span *ngIf="isUserLoggedIn">{{email}}</span>
           </div>
 
-          <app-tag-show></app-tag-show>
+          <div class="single_widget cat_widget">
+            <h4 class="text-uppercase pb-20">categories</h4>
+            <ul>
+              <li>
+                <a href="#">Technology <span>37</span></a>
+              </li>
+              <li>
+                <a href="#">Lifestyle <span>37</span></a>
+              </li>
+              <li>
+                <a href="#">Fashion <span>37</span></a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
+    </div>
   </section>
+
   <!-- End post Area -->
 </div>
 <!-- End post Area -->
