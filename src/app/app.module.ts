@@ -45,6 +45,8 @@ import {ChartsModule} from 'ng2-charts';
 import {RouterExtServiceService} from './services/router-ext-service.service';
 import { DiarySearchComponent } from './components/diary/diary-search/diary-search.component';
 import { DiarySearchInfoComponent } from './components/diary/diary-search-info/diary-search-info.component';
+import { AlbumByUserComponent } from './components/album/album-by-user/album-by-user.component';
+import { AlbumDetailComponent } from './components/album/album-detail/album-detail.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import { DiarySearchInfoComponent } from './components/diary/diary-search-info/d
     ShareDiaryComponent,
     DiarySearchComponent,
     DiarySearchInfoComponent,
-    DashboardComponent
+    DashboardComponent,
+    AlbumByUserComponent,
+    AlbumDetailComponent
   ],
   imports: [
     BrowserModule,
