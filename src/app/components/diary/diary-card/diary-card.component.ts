@@ -33,7 +33,6 @@ export class DiaryCardComponent implements OnInit {
   comments: Comment[];
   tagList: Tag[];
   pages: Array<number>;
-  checkLogin: boolean;
   shareLinkGroupForm: FormGroup;
 
   constructor(private diaryService: DiaryService,

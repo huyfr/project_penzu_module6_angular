@@ -7,6 +7,7 @@ import {AuthLoginInfo} from '../auth/auth-login-info';
 import {DataSharingService} from '../../services/dataSharing/data-sharing.service';
 import {RouterExtServiceService} from '../../services/router-ext-service.service';
 import {Location} from '@angular/common';
+import {CheckLoginService} from "../../services/checkLogin/check-login.service";
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private dataSharingService: DataSharingService,
-    private routerExtService: RouterExtServiceService, private location: Location
+    private routerExtService: RouterExtServiceService, private location: Location,
   ) {
   }
 

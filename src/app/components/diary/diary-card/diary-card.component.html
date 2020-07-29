@@ -83,11 +83,11 @@
                 <ng-template #noComment><h5 class="text-uppercase pb-80"> Comments</h5></ng-template>
                 <div class="row flex-column" *ngFor="let comment of comments">
                   <br>
-                  <div class="comment-list">
+                  <div>
                     <div class="single-comment justify-content-between d-flex">
                       <div class="user justify-content-between d-flex">
                         <div class="thumb">
-                          <img [src]="comment.user.avatar" width="55px" height="55px" alt="avatar-image">
+                          <img style="border-radius: 50%" [src]="comment.user.avatar" width="55px" height="55px" alt="avatar-image">
                         </div>
                         <div class="desc" style="width: 650px; word-wrap: break-word" >
                           <h5>{{comment.user.username}}</h5>
