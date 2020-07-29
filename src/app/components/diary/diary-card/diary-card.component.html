@@ -81,7 +81,7 @@
                   <h5 class="text-uppercase pb-80">{{comments.length}} Comments</h5>
                 </div>
                 <ng-template #noComment><h5 class="text-uppercase pb-80"> Comments</h5></ng-template>
-                <div class="row flex-column" *ngFor="let comment of comments">
+                <div class="row flex-column" *ngFor="let comment of showCommentList">
                   <br>
                   <div>
                     <div class="single-comment justify-content-between d-flex">
@@ -98,6 +98,9 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div *ngIf="disableLoadmore">
+                <input style="margin-top: 20px" type="button" class="btn btn-outline-info" (click)="getAllCommentByDiaryIdPagination(diary.id)" value="Load more...">
               </div>
             </section>
 
