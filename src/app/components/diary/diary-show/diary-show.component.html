@@ -15,7 +15,7 @@
     <ul class="nav nav-pills">
       <li class="nav-item" *ngFor="let p of pages;let y=index">
         <a class="nav-link" href="" (click)="setPage(y,$event)"
-           [ngClass]="{'active': y==page}">{{ y }}</a>
+           [ngClass]="{'active': y==page}">{{ y + 1 }}</a>
       </li>
     </ul>
   </nav>
