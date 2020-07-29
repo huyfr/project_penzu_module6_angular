@@ -88,15 +88,33 @@
           </div>
           <div class="col-2  text-center">
             <div style="width: 70%;  border-radius: 5px; border: 1px solid black; cursor: pointer">
-              <span style="width: 100%; border-radius: 5px"
-                    class="fa fa-arrow-circle-up font-weight-bold">&nbsp;PDF</span>
+
+              <span style="width: 100%; border-radius: 5px" class="fa fa-arrow-circle-up font-weight-bold" (click)="exportPDF()">&nbsp;PDF</span>
             </div>
           </div>
         </form>
       </div>
-      <div class="border mt-2">
-        <p class="text-uppercase font-weight-bold text-center">Title</p>
+      <hr>
+        <p class="text-uppercase font-weight-bold text-center">Statistics</p>
+      <table class="table" id="content">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Name</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Created date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of userList; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{user.name}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+        </tr>
+        </tbody>
+      </table>
       </div>
     </div>
   </div>
-</div>
