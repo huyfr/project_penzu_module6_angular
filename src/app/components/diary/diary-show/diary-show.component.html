@@ -3,6 +3,8 @@
   <div class="detail">
     <a [routerLink]="'/diary/detail/' + diary.id"><h4>{{diary.title}}</h4></a>
     <small>{{diary.updatedate}}</small>
+    <div *ngIf="diary.status === 1; else public"><i style="font-size:24px" class="fa">&#xf183;</i></div>
+    <ng-template #public><br><i class="material-icons">&#xe80b;</i></ng-template>
     <p class="pt-20" style="color:black">
       {{diary.description}}
     </p>
@@ -13,7 +15,7 @@
     <ul class="nav nav-pills">
       <li class="nav-item" *ngFor="let p of pages;let y=index">
         <a class="nav-link" href="" (click)="setPage(y,$event)"
-           [ngClass]="{'active': y==page}">{{ y }}</a>
+           [ngClass]="{'active': y==page}">{{ y + 1 }}</a>
       </li>
     </ul>
   </nav>

@@ -7,11 +7,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TokenStorageService} from '../../../services/token-storage.service';
 import {User} from '../../../models/User';
 import {CommentService} from '../../../services/comment/comment.service';
-
-import {UserService} from '../../../services/user/user.service';
 import {Comment} from '../../../models/Comment';
-import {LoginComponent} from '../../login/login.component';
-
+import {UserService} from '../../../services/user/user.service';
+import {TagService} from '../../../services/tag/tag.service';
 
 @Component({
   selector: 'app-diary-card',
@@ -33,6 +31,7 @@ export class DiaryCardComponent implements OnInit {
   diaries: Diary[];
   tags: Tag[];
   comments: Comment[];
+  tagList: Tag[];
   pages: Array<number>;
   checkLogin: boolean;
   shareLinkGroupForm: FormGroup;
@@ -41,8 +40,10 @@ export class DiaryCardComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder,
-              private tokenStorageService: TokenStorageService, private commentService: CommentService,
-              private userService: UserService) {
+              private tokenStorageService: TokenStorageService,
+              private commentService: CommentService,
+              private userService: UserService,
+              private tagService: TagService) {
   }
 
   ngOnInit(): void {
@@ -50,6 +51,11 @@ export class DiaryCardComponent implements OnInit {
     this.shareLinkGroupForm = this.formBuilder.group({
       email: ['', [Validators.email]]
     });
+
+    this.tagService.getTagList().subscribe(
+      result => {
+        this.tagList = result;
+      });
   }
 
   getDiaryById(): void {
@@ -134,7 +140,6 @@ export class DiaryCardComponent implements OnInit {
         user: this.user,
         diary: this.diary
       };
-      console.log(newComment);
       this.commentService.createComment(newComment).subscribe(result => {
         this.comment = '';
         this.getAllCommentByDiaryId(this.diary.id);

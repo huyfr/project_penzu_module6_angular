@@ -5,6 +5,7 @@
   <div class="bg-light border-right" id="sidebar-wrapper">
     <div class="sidebar-heading">Admin</div>
     <div class="list-group list-group-flush">
+      <a routerLink="/admin/dashboard" class="list-group-item list-group-item-action bg-light">Dashboard</a>
       <a routerLink="/admin/user-list" class="list-group-item list-group-item-action bg-light">User List</a>
       <a routerLink="/admin/dairy-list" class="list-group-item list-group-item-action bg-light">Dairy List</a>
       <a routerLink="/admin/album-list" href="#" class="list-group-item list-group-item-action bg-light">Album List</a>
@@ -133,6 +134,7 @@
     </div>
   </div>
 </div>
+<button type="submit" (click)="testQuery()">test</button>
 
 
 <div class="modal fade" id="createUser" tabindex="-1" role="dialog"
