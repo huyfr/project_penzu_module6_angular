@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Tag} from "../../../models/Tag";
+import {TagService} from "../../../services/tag/tag.service";
 
 @Component({
   selector: 'app-tag-show',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TagShowComponent implements OnInit {
 
-  constructor() { }
+  tagList: Tag[];
+
+  constructor(private tagService: TagService) { }
 
   ngOnInit(): void {
+    this.getAllTag();
+  }
+
+  getAllTag() {
+    this.tagService.getTagList().subscribe(
+      result => {
+        this.tagList = result;
+    });
   }
 
 }

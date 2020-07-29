@@ -43,4 +43,8 @@ export class AdminUserService {
   editUser(data: User): Observable<User> {
     return this.http.put<User>(apiUrl + 'admin/edit/' + data.id, data);
   }
+
+  testQuery(): Observable<any>{
+    return this.http.get(apiUrl + 'user/search-by-query');
+  }
 }

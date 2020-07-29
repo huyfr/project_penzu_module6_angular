@@ -23,6 +23,7 @@ import {BlockedAnnoucementComponent} from './components/blocked-annoucement/bloc
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {RecoverPasswordComponent} from './components/recover-password/recover-password.component';
 import {ShareDiaryComponent} from './components/share-diary/share-diary.component';
+import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
 import {DiarySearchInfoComponent} from "./components/diary/diary-search-info/diary-search-info.component";
 
 
@@ -40,6 +41,11 @@ const routes: Routes = [
   {// phục vụ chức năng admin
     path: 'admin/user-list',
     component: AdminShowUserListComponent,
+    canActivate: [CanActivateTeam, IsAdmin]
+  },
+  {// phục vụ chức năng admin
+    path: 'admin/dashboard',
+    component: DashboardComponent,
     canActivate: [CanActivateTeam, IsAdmin]
   },
   {// phục vụ chức năng admin

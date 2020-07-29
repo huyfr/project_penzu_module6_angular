@@ -40,6 +40,9 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
 import { ShareDiaryComponent } from './components/share-diary/share-diary.component';
 import { DiaryDetailComponent } from './components/diary/diary-detail/diary-detail.component';
 import { SafeHtmlPipe } from './components/diary/diary-detail/safe-html.pipe';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import {ChartsModule} from 'ng2-charts';
+import {RouterExtServiceService} from './services/router-ext-service.service';
 import { DiarySearchComponent } from './components/diary/diary-search/diary-search.component';
 import { DiarySearchInfoComponent } from './components/diary/diary-search-info/diary-search-info.component';
 
@@ -73,7 +76,8 @@ import { DiarySearchInfoComponent } from './components/diary/diary-search-info/d
     RecoverPasswordComponent,
     ShareDiaryComponent,
     DiarySearchComponent,
-    DiarySearchInfoComponent
+    DiarySearchInfoComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -86,10 +90,15 @@ import { DiarySearchInfoComponent } from './components/diary/diary-search-info/d
     CKEditorModule,
     NgbModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ChartsModule
   ],
   providers: [Permissions, CanActivateTeam, NotActivateTeam, IsAdmin, IsActive],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(
+    private routerExtService: RouterExtServiceService
+  ) {
+  }
 }

@@ -5,6 +5,8 @@ import {TokenStorageService} from '../../services/token-storage.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthLoginInfo} from '../auth/auth-login-info';
 import {DataSharingService} from '../../services/dataSharing/data-sharing.service';
+import {RouterExtServiceService} from '../../services/router-ext-service.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +29,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private dataSharingService: DataSharingService
+    private dataSharingService: DataSharingService,
+    private routerExtService: RouterExtServiceService, private location: Location
   ) {
   }
 
@@ -48,7 +51,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const {username, password} = this.loginForm.value;
       const authLoginInfo = new AuthLoginInfo(username, password);
-
+      const previous = this.routerExtService.getPreviousUrl();
       this.authService.attemptAuth(authLoginInfo).subscribe(
         data => {
           this.token.saveToken(data.accessToken);
@@ -64,8 +67,10 @@ export class LoginComponent implements OnInit {
           this.roles = this.token.getAuthorities();
           if (this.roles[0] == 'ROLE_ADMIN') {
             this.router.navigateByUrl('/admin/user-list');
-          }else {
-            this.router.navigateByUrl(this.returnUrl);
+          } else {
+            if (previous) {
+              this.routerExtService.router.navigateByUrl(previous);
+            }
           }
           this.dataSharingService.isUserLoggedIn.next(true);
         },
@@ -79,5 +84,9 @@ export class LoginComponent implements OnInit {
 
   get rfc(): any {
     return this.loginForm.controls;
+  }
+
+  public back(): void {
+    this.location.back();
   }
 }
