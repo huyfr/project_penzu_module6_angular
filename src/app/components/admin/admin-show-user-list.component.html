@@ -29,12 +29,11 @@
           <th class="w-20">Full Name</th>
           <th>User Name</th>
           <th>Email</th>
-          <!--          <th>Access</th>-->
           <th class="text-center">Status</th>
           <th class="text-center">Action</th>
         </tr>
-        <tr *ngFor="let user of userList; index as i">
-          <td>{{i + 1}}</td>
+        <tr *ngFor="let user of userList;">
+          <td>{{user.id}}</td>
           <td>{{user.name}}</td>
           <td>{{user.username}}</td>
           <td>{{user.email}}</td>
@@ -68,7 +67,7 @@
       </table>
       <ul class="nav nav-pills">
         <li class="nav-item" *ngFor="let p of pages;let i=index">
-          <a class="nav-link" (click)="setPage(i, $event)"
+          <a class="nav-link" (click)="setPage(i, $event)" style="cursor: pointer"
              [ngClass]="{'active': i==page}">{{ i + 1 }}</a>
         </li>
       </ul>
