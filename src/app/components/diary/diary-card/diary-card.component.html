@@ -77,7 +77,7 @@
             <!--start comment-->
             <section class="comment-sec-area pt-80 pb-80">
               <div class="container">
-                <div *ngIf="comments; else noComment">
+                <div *ngIf="showCommentList; else noComment">
                   <h5 class="text-uppercase pb-80">{{comments.length}} Comments</h5>
                 </div>
                 <ng-template #noComment><h5 class="text-uppercase pb-80"> Comments</h5></ng-template>

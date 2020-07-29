@@ -127,7 +127,7 @@ export class DiaryCardComponent implements OnInit {
       this.comments = result;
       this.disableLoadmore = true;
       this.showCommentIndex += 5;
-      if (this.showCommentIndex > this.comments.length){
+      if (this.showCommentIndex >= this.comments.length){
         this.showCommentIndex = this.comments.length;
         this.disableLoadmore = false;
       }
@@ -138,6 +138,13 @@ export class DiaryCardComponent implements OnInit {
       this.showCommentList = tempCommentList;
       this.router.navigateByUrl('diary/detail/' + this.diary.id);
     }, error => {
+    });
+  }
+
+  getAllCommentByDiaryId(id): void{
+    this.commentService.getAllCommentByDiaryId(id).subscribe((result) => {
+      this.comments = result;
+      this.showCommentList = result;
     });
   }
 
@@ -156,7 +163,9 @@ export class DiaryCardComponent implements OnInit {
       };
       this.commentService.createComment(newComment).subscribe(result => {
         this.comment = '';
-        this.getAllCommentByDiaryIdPagination(this.diary.id);
+        // this.getAllCommentByDiaryIdPagination(this.diary.id);
+        this.getAllCommentByDiaryId(this.diary.id);
+        this.disableLoadmore = false;
         this.router.navigateByUrl('diary/detail/' + this.diary.id);
       });
     }, error => {
