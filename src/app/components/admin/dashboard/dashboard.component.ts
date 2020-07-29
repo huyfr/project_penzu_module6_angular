@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AdminUserService} from '../../../services/admin/admin-user.service';
+import {User} from "../../../models/User";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +11,7 @@ import {AdminUserService} from '../../../services/admin/admin-user.service';
 export class DashboardComponent implements OnInit {
   reportForm: FormGroup;
   dataFollowMonth: [] = [];
+  userList: User[];
 
   constructor(private formBuilder: FormBuilder,
               private adminUserService: AdminUserService) {
@@ -42,7 +44,12 @@ export class DashboardComponent implements OnInit {
 
   report(): void {
     this.adminUserService.searchByCreateDate(this.reportForm.value).subscribe(
-      res => console.log(res)
-    );
+      res => {
+          this.userList = res;
+          console.log(res);
+      }, error => {
+        console.log("ERROR at searchByCreateDate() in dashboard.component.ts")
+      });
   }
 }
+
