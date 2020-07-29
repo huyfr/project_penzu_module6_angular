@@ -22,7 +22,7 @@
       <div class="row mt-5">
         <div class="col-6">
           <div class="border p-1">
-            <p class="text-uppercase font-weight-bold text-center">Chart Title</p>
+            <p class="text-uppercase font-weight-bold text-center">User registration summary 2020</p>
             <div>
               <div style="display: block">
                 <canvas baseChart
@@ -37,8 +37,13 @@
           </div>
         </div>
         <div class="col-6">
-          <div class="border p-1">
-            <p class="text-uppercase font-weight-bold text-center">Chart Title</p>
+          <div class="border p-1 row">
+            <p class="col-6 text-uppercase font-weight-bold text-center">User registration summary in </p>
+            <span class="col-6">
+                <select name="" id="">
+                  <option value="1"></option>
+                </select>
+              </span>
           </div>
         </div>
       </div>
@@ -54,18 +59,45 @@
             <input style="width: 230px" type="datetime-local" id="toDate" formControlName="toDate" class="ml-3">
           </div>
           <div class="col-2  text-center">
-            <input class="font-weight-bold" style="width: 70%; border-radius: 5px; border: 1px solid black; background-color: white" type="submit" value="Submit">
+            <input class="font-weight-bold"
+                   style="width: 70%; border-radius: 5px; border: 1px solid black; background-color: white"
+                   type="submit" value="Submit">
           </div>
           <div class="col-2  text-center">
             <div style="width: 70%;  border-radius: 5px; border: 1px solid black; cursor: pointer">
+
               <span style="width: 100%; border-radius: 5px" class="fa fa-arrow-circle-up font-weight-bold">&nbsp;PDF</span>
             </div>
           </div>
         </form>
       </div>
-      <div class="border mt-2">
-        <p class="text-uppercase font-weight-bold text-center">Title</p>
+      <hr>
+        <p class="text-uppercase font-weight-bold text-center">Statistics</p>
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Name</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Status</th>
+          <th scope="col">Created date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of userList; index as i">
+          <th scope="row">{{i}}</th>
+          <td>{{user.name}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <div [ngSwitch]="user.status">
+            <td *ngSwitchCase="1">Active</td>
+            <td *ngSwitchCase="0">Block</td>
+            <td *ngSwitchCase="-1">Deleted</td>
+          </div>
+        </tr>
+        </tbody>
+      </table>
       </div>
     </div>
   </div>
-</div>
