@@ -1,0 +1,31 @@
+<div class="container-fluid" style="background: lightgray;  padding-top: 5rem;">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+      <div>
+        <img class="Images img-fluid" src="{{album.avatar}}" style="width:100px" height="100px">
+        <hr>
+        <h1 class="mt-4">{{album.title}}</h1>
+        <p class="lead">
+          by
+          <a class="text-primary">{{album.user.name}}</a>
+        </p>
+        <hr>
+        <p>{{album.createdate}}</p>
+      </div>
+      <hr>
+      <div *ngIf="listImage">
+        <div *ngFor="let image of listImage| paginate: { itemsPerPage: 5, currentPage: p }">
+          <img src="{{image.url}}" class="Images img-fluid" style="width:100px" height="100px">
+          <br/>
+          <br/>
+          <hr>
+          <br/>
+        </div>
+      </div>
+      <pagination-controls class="text-center"  (pageChange)="p = $event"></pagination-controls>
+      <hr>
+    </div>
+  </div>
+</div>
