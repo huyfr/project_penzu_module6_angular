@@ -42,6 +42,7 @@ import { DiaryDetailComponent } from './components/diary/diary-detail/diary-deta
 import { SafeHtmlPipe } from './components/diary/diary-detail/safe-html.pipe';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import {ChartsModule} from 'ng2-charts';
+import {RouterExtServiceService} from './services/router-ext-service.service';
 
 @NgModule({
   declarations: [
@@ -92,4 +93,8 @@ import {ChartsModule} from 'ng2-charts';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(
+    private routerExtService: RouterExtServiceService
+  ) {
+  }
 }
