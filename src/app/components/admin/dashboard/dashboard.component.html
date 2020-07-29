@@ -19,22 +19,7 @@
   <div id="page-content-wrapper">
     <div class="container">
       <h1 class="mt-4">Dashboard</h1>
-      <div class="mt-5 mb-5">
-        <form [formGroup]="reportForm" (ngSubmit)="report()" class="row">
-          <div class="col-4  text-center">
-            <label for="fromDate" class="font-weight-bold">From :&nbsp;</label>
-            <input style="width: 230px" type="datetime-local" id="fromDate" formControlName="fromDate" class="ml-3">
-          </div>
-          <div class="col-4  text-center">
-            <label for="toDate" class="font-weight-bold">To :&nbsp;</label>
-            <input style="width: 230px" type="datetime-local" id="toDate" formControlName="toDate" class="ml-3">
-          </div>
-          <div class="col-4  text-center">
-            <input style="width: 70%; border-radius: 5px" type="submit" value="Submit">
-          </div>
-        </form>
-      </div>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-6">
           <div class="border p-1">
             <p class="text-uppercase font-weight-bold text-center">Chart Title</p>
@@ -57,123 +42,30 @@
           </div>
         </div>
       </div>
+      <hr class="mt-5">
+      <div class="mt-5 mb-5">
+        <form [formGroup]="reportForm" (ngSubmit)="report()" class="row">
+          <div class="col-4  text-center">
+            <label for="fromDate" class="font-weight-bold">From :&nbsp;</label>
+            <input style="width: 230px" type="datetime-local" id="fromDate" formControlName="fromDate" class="ml-3">
+          </div>
+          <div class="col-4  text-center">
+            <label for="toDate" class="font-weight-bold">To :&nbsp;</label>
+            <input style="width: 230px" type="datetime-local" id="toDate" formControlName="toDate" class="ml-3">
+          </div>
+          <div class="col-2  text-center">
+            <input class="font-weight-bold" style="width: 70%; border-radius: 5px; border: 1px solid black; background-color: white" type="submit" value="Submit">
+          </div>
+          <div class="col-2  text-center">
+            <div style="width: 70%;  border-radius: 5px; border: 1px solid black; cursor: pointer">
+              <span style="width: 100%; border-radius: 5px" class="fa fa-arrow-circle-up font-weight-bold">&nbsp;PDF</span>
+            </div>
+          </div>
+        </form>
+      </div>
       <div class="border mt-2">
         <p class="text-uppercase font-weight-bold text-center">Title</p>
       </div>
-      <!--      <button data-toggle="modal"-->
-      <!--              data-target="#createUser"-->
-      <!--              data-whatever="@mdo"-->
-      <!--              class="btn btn-outline-dark fa fa-pencil float-right mr-2 mb-2">
-                </button>-->
-      <!--      <table class="table table-hover">-->
-      <!--        <tr>-->
-      <!--          <th>ID</th>-->
-      <!--          <th class="w-20">Full Name</th>-->
-      <!--          <th>User Name</th>-->
-      <!--          <th>Email</th>-->
-      <!--          &lt;!&ndash;          <th>Access</th>&ndash;&gt;-->
-      <!--          <th class="text-center">Status</th>-->
-      <!--          <th class="text-center">Action</th>-->
-      <!--        </tr>-->
-      <!--        <tr *ngFor="let user of userList; index as i">-->
-      <!--          <td>{{i + 1}}</td>-->
-      <!--          <td>{{user.name}}</td>-->
-      <!--          <td>{{user.username}}</td>-->
-      <!--          <td>{{user.email}}</td>-->
-      <!--          &lt;!&ndash;          <td *ngIf="user.roles[0]">{{user.roles[0].name}}</td>&ndash;&gt;-->
-      <!--          &lt;!&ndash;          <td *ngIf="!user.roles[0]"></td>&ndash;&gt;-->
-      <!--          <td class="text-center">-->
-      <!--            <span style="font-size: 25px" *ngIf="user.status == 1" class="fa fa-check text-success"></span>-->
-      <!--            <span style="font-size: 25px" *ngIf="user.status == 0" class="fa fa-lock text-danger"></span>-->
-      <!--          </td>-->
-
-      <!--          <td class="text-center">-->
-      <!--            &lt;!&ndash;          nút edit user&ndash;&gt;-->
-      <!--            <span style="font-size: 20px; cursor: pointer" data-toggle="modal"-->
-      <!--                  data-target="#editUser" data-whatever="@mdo"-->
-      <!--                  class="fa fa-eye text-primary" (click)="showDetailUser(user.id)">-->
-      <!--            </span> |-->
-
-      <!--            &lt;!&ndash;            nút delete user&ndash;&gt;-->
-      <!--            <span class="fa fa-remove text-danger" style="font-size: 20px; cursor: pointer"-->
-      <!--                  (click)="deleteUser(+user.id)">-->
-      <!--            </span> |-->
-
-      <!--            <span *ngIf="user.status == 1" class="fa fa-lock text-black-50" (click)="blockUser(+user.id)"-->
-      <!--                  style="font-size: 20px; cursor: pointer"></span>-->
-      <!--            <span *ngIf="user.status == 0" class="fa fa-unlock text-black-50" (click)="activeUser(+user.id)"-->
-      <!--                  style="font-size: 20px; cursor: pointer"></span>-->
-      <!--          </td>-->
-
-
-      <!--        </tr>-->
-      <!--      </table>-->
-      <!--      <ul class="nav nav-pills">-->
-      <!--        <li class="nav-item" *ngFor="let p of pages;let i=index">-->
-      <!--          <a class="nav-link" (click)="setPage(i, $event)"-->
-      <!--             [ngClass]="{'active': i==page}">{{ i + 1 }}</a>-->
-      <!--        </li>-->
-      <!--      </ul>-->
-      <!--    </div>-->
-      <!--  </div>-->
-      <!--</div>-->
-
-      <!--<div class="modal fade" id="editUser" tabindex="-1" role="dialog"-->
-      <!--     aria-labelledby="exampleModalLabel"-->
-      <!--     aria-hidden="true">-->
-      <!--  <div class="modal-dialog" role="document">-->
-      <!--    <div *ngIf="pickUpUser" class="modal-content">-->
-      <!--      <div class="modal-header">-->
-      <!--        <h5 class="modal-title" id="exampleModalLabel"><strong>{{pickUpUser.name}}</strong></h5>-->
-      <!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-      <!--          <span aria-hidden="true">&times;</span>-->
-      <!--        </button>-->
-      <!--      </div>-->
-      <!--      <div class="modal-body">-->
-      <!--        <img src="{{pickUpUser.avatar}}" alt="" width="120px" height="140px" class="float-left border-dark"-->
-      <!--             style="margin-right: 10px">-->
-      <!--        <form [formGroup]="editForm" (ngSubmit)="changeInfor(closeModalRef)" class="float-right"-->
-      <!--              style="margin-right: 20px">-->
-      <!--          <table class="container" style="margin-left: 30px">-->
-      <!--            <tr>-->
-      <!--              <td class="font-weight-bold">Full name :</td>-->
-      <!--              <td><input class="border-light" type="text" formControlName="name" name="name"></td>-->
-      <!--            </tr>-->
-      <!--            <tr>-->
-      <!--              <td colspan="2"><small class="text-danger"-->
-      <!--                                     *ngIf="editForm.get('name').invalid && editForm.get('name').touched">Username-->
-      <!--                is required and must be at least 3 characters.</small>-->
-      <!--              </td>-->
-      <!--            </tr>-->
-      <!--            <br>-->
-      <!--            <tr>-->
-      <!--              <td class="font-weight-bold">User name :</td>-->
-      <!--              <td><input class="border-light" type="text" formControlName="username" name="username"></td>-->
-      <!--            </tr>-->
-      <!--            <tr>-->
-      <!--              <td colspan="2"><small class="text-danger"-->
-      <!--                                     *ngIf="editForm.get('username').invalid && editForm.get('username').touched">Username-->
-      <!--                is required and must be at least 3 characters.</small></td>-->
-      <!--            </tr>-->
-      <!--            <br>-->
-      <!--            <tr>-->
-      <!--              <td class="font-weight-bold">Email :</td>-->
-      <!--              <td><input class="border-light" type="text" formControlName="email"></td>-->
-      <!--            </tr>-->
-      <!--            <tr>-->
-      <!--              <td colspan="2"><small class="text-danger"-->
-      <!--                                     *ngIf="editForm.get('email') && editForm.get('email').touched">Email-->
-      <!--                is invalid</small></td>-->
-      <!--            </tr>-->
-      <!--          </table>-->
-      <!--          &lt;!&ndash;          <br>&ndash;&gt;-->
-      <!--          <div class="modal-footer">-->
-      <!--            <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>-->
-      <!--            <button type="submit" class="btn btn-outline-primary">Update</button>-->
-      <!--          </div>-->
-      <!--        </form>-->
-      <!--      </div>-->
-      <!--    </div>-->
     </div>
   </div>
 </div>
