@@ -1,1 +1,6 @@
-<p>tag-show works!</p>
+<div class="single_widget tag_widget">
+  <h4 class="text-uppercase pb-20">Tag</h4>
+  <ul>
+    <li *ngFor="let tag of tagList"><a href="">{{tag.name}}</a></li>
+  </ul>
+</div>
