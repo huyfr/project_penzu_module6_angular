@@ -1,10 +1,9 @@
 <!--Huynh-->
 <div class="single-list flex-row d-flex" *ngFor="let diary of listDiary; index as i">
   <div class="detail">
-<!--    <a routerLink="/diary/detail/{{diary.id}}">{{diary.title}}</a>-->
-    <a [routerLink]="'/diary/detail/' + diary.id">{{diary.title.slice(0,65)}}...</a>
-    <h6 class="pb-10" style="color: black">{{diary.createdate}}</h6>
-    <p>
+    <a [routerLink]="'/diary/detail/' + diary.id"><h4>{{diary.title}}</h4></a>
+    <small>{{diary.updatedate}}</small>
+    <p class="pt-20" style="color:black">
       {{diary.description}}
     </p>
   </div>

@@ -13,6 +13,7 @@ export const environment = {
   diaryUrl: 'http://localhost:8080/api/sdu/diary/',
   diaryUploadFileUrl: 'http://localhost:8080/api/sdu/diary-file/',
   tagUrl: 'http://localhost:8080/api/sdu/tag/',
+  commentUrl: 'localhost:8080/api/sdu/comments'
 };
 
 /*

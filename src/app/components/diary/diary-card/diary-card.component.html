@@ -23,7 +23,13 @@
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="single-page-post">
+            <div *ngIf="diary.urlFile.includes('.mp4'); else img">
+              <video class="img-fluid" [src]="diary.urlFile" controls></video>
+            </div>
+            <ng-template #img>
             <img class="img-fluid" [src]="diary.urlFile" alt="">
+            </ng-template>
+
             <div class="top-wrapper ">
               <div class="row d-flex justify-content-between">
                 <h2 class="col-lg-8 col-md-12 text-uppercase">
@@ -32,7 +38,7 @@
                 <div class="col-lg-4 col-md-12 right-side d-flex justify-content-end">
                   <div class="desc">
                     <h2>{{diary.user.username}}</h2>
-                    <h3>{{diary.createdate}}</h3>
+                    <p class="text-dark">{{diary.updatedate}}</p>
                   </div>
                   <div class="user-img">
                     <img src="img/user.jpg" alt="">
@@ -51,7 +57,7 @@
                 <blockquote>{{diary.description}}</blockquote>
               </div>
               <div style="width: 100%">
-                <div [innerHTML]="diary.content"></div>
+                <div [innerHTML]="diary.content | safeHtml"></div>
               </div>
 
             </div>
@@ -83,66 +89,57 @@
             </div>
 
             <div class=" float-right">
-              <table>
-                <tr>
-                  <td>
-                    <button class="btn btn-outline-info" [routerLink]="'/updateDiary/' + diary.id">EDIT</button>
-                  </td>
-                  <td>
-                    <button class="btn btn-outline-danger" (click)="deleteDiary()">DELETE</button>
-                  </td>
-                </tr>
-              </table>
+                  <table>
+                    <tr>
+                      <td>
+                        <button class="genric-btn primary circle" [routerLink]="'/updateDiary/' + diary.id">EDIT</button>
+                      </td>
+                      <td>
+                        <button class="genric-btn danger circle" (click)="deleteDiary()">DELETE</button>
+                      </td>
+                    </tr>
+                  </table>
             </div>
 
-            <!-- Start comment-sec Area -->
-            <section class="comment-sec-area pt-80 pb-80">
-              <div class="container">
-                <div class="row flex-column">
-                  <h5 class="text-uppercase pb-80">02 Comments</h5>
-                  <br>
-                  <div class="comment-list">
-                    <div class="single-comment justify-content-between d-flex">
-                      <div class="user justify-content-between d-flex">
-                        <div class="thumb">
-                          <img src="img/asset/c1.jpg" alt="">
+            <div class="container" style="clear: both">
+              <div class="row" *ngFor="let comment of comments">
+                <table style="max-width: 660px">
+                  <tr>
+                    <td>
+                      <img [src]="comment.user.avatar" width="40px" height="40px" style="border-radius: 50%; margin-top: 5px" alt="avatar-image">
+                    </td>
+                    <td  style="padding-left: 10px">
+                      <div class="card" style="width: 640px; border-radius: 20px">
+                        <div class="card-header">
+                          <b>{{comment.user.username}}</b>
                         </div>
-                        <div class="desc">
-                          <h5><a href="#">Emilly Blunt</a></h5>
-                          <p class="date">December 4, 2017 at 3:12 pm </p>
-                          <p class="comment">
-                            Never say goodbye till the end comes!
-                          </p>
+                        <div class="card-body">
+                          <p>{{comment.content}}</p>
+                          <i>{{comment.createdate}}</i>
                         </div>
                       </div>
-                      <div class="reply-btn">
-                        <a href="" class="btn-reply text-uppercase">reply</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="comment-list left-padding">
-                    <div class="single-comment justify-content-between d-flex">
-                      <div class="user justify-content-between d-flex">
-                        <div class="thumb">
-                          <img src="img/asset/c2.jpg" alt="">
-                        </div>
-                        <div class="desc">
-                          <h5><a href="#">Emilly Blunt</a></h5>
-                          <p class="date">December 4, 2017 at 3:12 pm </p>
-                          <p class="comment">
-                            Never say goodbye till the end comes!
-                          </p>
-                        </div>
-                      </div>
-                      <div class="reply-btn">
-                        <a href="" class="btn-reply text-uppercase">reply</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    </td>
+                  </tr>
+                </table>
+                <hr>
+                <hr>
               </div>
-            </section>
-            <!-- End comment-sec Area -->
+              <br><br>
+              <div class="row">
+                <table>
+                  <tr>
+                    <td class="col-10">
+                      <textarea name="message" [(ngModel)]="comment" rows="5" cols="90" placeholder="What are you thinking?"></textarea>
+                    </td>
+                    <td class="col-2">
+                      <input class="btn btn-info" type="submit" value="Comment" (click)="createComments()">
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <br><br><br><br>
+            <!--            End comments-->
           </div>
         </div>
         <div class="col-lg-4 sidebar-area ">
@@ -172,10 +169,6 @@
   <!-- End post Area -->
 </div>
 <!-- End post Area -->
-
-
-
-
 
 <div class="modal fade" id="sharePopup" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel"

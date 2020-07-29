@@ -106,10 +106,6 @@ export class ProfileComponent implements OnInit {
     this.authService.updateUser(userForm).subscribe(
       result => {
         closeButton.click();
-        console.log(result);
-        this.logout();
-        alert(pleaseLogin);
-        this.router.navigateByUrl(this.returnUrl);
         this.authService.svShouldRefresh.next(true);
       }, error => {
         this.isErrorUser = true;

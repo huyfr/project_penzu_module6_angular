@@ -6,7 +6,9 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {TokenStorageService} from '../../../services/token-storage.service';
 import {DiaryService} from '../../../services/diary/diary.service';
 import {TagService} from '../../../services/tag/tag.service';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from '@angular/forms';
+
+const FillDataFields = 'Fill Data Fields!';
 
 @Component({
   selector: 'app-diary-update',
@@ -35,9 +37,9 @@ export class DiaryUpdateComponent implements OnInit {
   });
 
   privacy = [
-    { name: "Public", value: 2 },
-    { name: "Only me", value: 1 }
-  ]
+    { name: 'Public', value: 2 },
+    { name: 'Only me', value: 1 }
+  ];
 
   constructor(private activatedRoute: ActivatedRoute,
               private domSanitizer: DomSanitizer,
@@ -89,7 +91,7 @@ export class DiaryUpdateComponent implements OnInit {
   updateDiary(openModal: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
 
     if (this.diary.title === '' || this.diary.description === '' || this.diary.content === '') {
-      return alert('Fill Data Fields !');
+      return alert(FillDataFields);
     }
 
     if (this.fileUpload !== null && this.fileUpload !== undefined) {
