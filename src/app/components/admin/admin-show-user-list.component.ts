@@ -162,34 +162,4 @@ export class AdminShowUserListComponent implements OnInit {
       );
     }
   }
-
-  testQuery() {
-    this.usersService.testQuery().subscribe(
-      result => {
-        this.userArray = result;
-        for (let i = 0; i < this.userArray.length; i++) {
-          this.monthArray.push(result[i][0][1]);
-          this.qtyArray.push(result[i][1]);
-        }
-        console.log(this.monthArray);
-        console.log(this.qtyArray);
-
-        this.finalMonthArray = Array.from(new Set(this.monthArray));
-        console.log(this.finalMonthArray);
-
-
-
-        for (let i = 0; i < this.finalMonthArray.length; i++) {
-        // for (let i = 0; i < 2; i++) {
-          this.finalQtyArray.push(this.qtyArray[i]);
-          for (let j = 1; j < this.monthArray.length; j++) {
-            if (this.finalMonthArray[i] === this.monthArray[j]) {
-              this.finalQtyArray[i] += this.qtyArray[i];
-            }
-          }
-        }
-
-        console.log(this.finalQtyArray);
-      });
-  }
 }
