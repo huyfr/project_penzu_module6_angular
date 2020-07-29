@@ -3,8 +3,8 @@ import {Diary} from '../../../models/Diary';
 import {DiaryService} from '../../../services/diary/diary.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TokenStorageService} from '../../../services/token-storage.service';
-import {Tag} from "../../../models/Tag";
-import {TagService} from "../../../services/tag/tag.service";
+import {Tag} from '../../../models/Tag';
+import {TagService} from '../../../services/tag/tag.service';
 
 @Component({
   selector: 'app-diary-show',
@@ -18,6 +18,7 @@ export class DiaryShowComponent implements OnInit {
   listDiary: Array<any>;
   pages: Array<number>;
   tagList: Tag[];
+  p = 1;
 
   constructor(private diaryService: DiaryService,
               private router: Router,
@@ -26,15 +27,14 @@ export class DiaryShowComponent implements OnInit {
               private tagService: TagService) {
   }
 
-  setPage(i, event: any): void {
-    event.preventDefault();
-    this.page = i;
-    this.getAllDiary();
-  }
+  // setPage(i, event: any): void {
+  //   event.preventDefault();
+  //   this.page = i;
+  //   this.getAllDiary();
+  // }
 
   ngOnInit(): void {
     this.getAllDiary();
-
     this.getAllTag();
   }
 
