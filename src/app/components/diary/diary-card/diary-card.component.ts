@@ -7,8 +7,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TokenStorageService} from '../../../services/token-storage.service';
 import {User} from '../../../models/User';
 import {CommentService} from '../../../services/comment/comment.service';
-import {Comment} from "../../../models/Comment";
-import {UserService} from "../../../services/user/user.service";
+
+import {UserService} from '../../../services/user/user.service';
+import {Comment} from '../../../models/Comment';
 
 
 @Component({
