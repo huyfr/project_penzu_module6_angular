@@ -10,6 +10,7 @@ import {CommentService} from '../../../services/comment/comment.service';
 
 import {UserService} from '../../../services/user/user.service';
 import {Comment} from '../../../models/Comment';
+import {LoginComponent} from '../../login/login.component';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class DiaryCardComponent implements OnInit {
   tags: Tag[];
   comments: Comment[];
   pages: Array<number>;
+  checkLogin: boolean;
   shareLinkGroupForm: FormGroup;
 
   constructor(private diaryService: DiaryService,
@@ -78,7 +80,8 @@ export class DiaryCardComponent implements OnInit {
     this.router.navigate(['journals']);
   }
 
-  share(id: string): void {}
+  share(id: string): void {
+  }
 
   getShareLink(id: string): void {
     this.diaryService.getById(+id).subscribe(diaryResult => {
