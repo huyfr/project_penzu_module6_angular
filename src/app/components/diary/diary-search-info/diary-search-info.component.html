@@ -52,34 +52,34 @@
             </div>
             <div class="justify-content-center d-flex">
 
+            </div>
           </div>
-        </div>
-        <div class="col-lg-4 sidebar-area">
+          <div class="col-lg-4 sidebar-area">
 
-          <div class="single_widget about_widget">
-            <img *ngIf="isUserLoggedIn" [src]="avatar" width="100px" height="100px" alt="">
-            <a routerLink="/app/account"><h2 class="text-uppercase" *ngIf="isUserLoggedIn">{{username}}</h2></a>
-            <span>Fullname: </span><span *ngIf="isUserLoggedIn">{{fullName}}</span><br>
-            <span>Email: </span><span *ngIf="isUserLoggedIn">{{email}}</span>
-          </div>
+            <div class="single_widget about_widget">
+              <img *ngIf="isUserLoggedIn" [src]="avatar" width="100px" height="100px" alt="">
+              <a routerLink="/app/account"><h2 class="text-uppercase" *ngIf="isUserLoggedIn">{{username}}</h2></a>
+              <span>Fullname: </span><span *ngIf="isUserLoggedIn">{{fullName}}</span><br>
+              <span>Email: </span><span *ngIf="isUserLoggedIn">{{email}}</span>
+            </div>
 
-          <div class="single_widget cat_widget">
-            <h4 class="text-uppercase pb-20">categories</h4>
-            <ul>
-              <li>
-                <a href="#">Technology <span>37</span></a>
-              </li>
-              <li>
-                <a href="#">Lifestyle <span>37</span></a>
-              </li>
-              <li>
-                <a href="#">Fashion <span>37</span></a>
-              </li>
-            </ul>
+            <div class="single_widget cat_widget">
+              <h4 class="text-uppercase pb-20">categories</h4>
+              <ul>
+                <li>
+                  <a href="#">Technology <span>37</span></a>
+                </li>
+                <li>
+                  <a href="#">Lifestyle <span>37</span></a>
+                </li>
+                <li>
+                  <a href="#">Fashion <span>37</span></a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   </section>
 
