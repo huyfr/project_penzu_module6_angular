@@ -20,6 +20,10 @@ export class ShareDiaryComponent implements OnInit {
   comments: Comment[];
   user: User;
   messageLogin: boolean;
+  showCommentIndex = 0;
+  disableLoadmore: boolean;
+  showCommentList: Comment[];
+  loadPage: string;
   constructor(private activatedRoute: ActivatedRoute,
               private diaryService: DiaryService,
               private commentService: CommentService,
@@ -28,6 +32,7 @@ export class ShareDiaryComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+    this.loadPage = this.router.url;
     if (window.sessionStorage.length > 0){
       this.messageLogin = true;
     } else {
@@ -40,14 +45,7 @@ export class ShareDiaryComponent implements OnInit {
     this.diaryService.getDiaryByShareURL(this.shareCode).subscribe(result2 => {
       this.diaryShare = result2;
       console.log(this.diaryShare);
-      this.getAllCommentByDiaryId(this.diaryShare.id);
-    });
-  }
-
-  getAllCommentByDiaryId(id): void {
-    this.commentService.getAllCommentByDiaryId(id).subscribe((result) => {
-      this.comments = result;
-    }, error => {
+      this.getAllCommentByDiaryIdPagination(this.diaryShare.id);
     });
   }
 
@@ -68,10 +66,37 @@ export class ShareDiaryComponent implements OnInit {
         this.commentService.createComment(newComment).subscribe(result => {
           this.comment = '';
           this.getAllCommentByDiaryId(this.diaryShare.id);
-          this.router.navigateByUrl('diary/detail/' + this.diaryShare.id);
+          this.disableLoadmore = false;
+          this.router.navigateByUrl(this.loadPage);
         });
       }, error => {
         console.log('404');
       });
     }
+
+  getAllCommentByDiaryIdPagination(id): void {
+    this.commentService.getAllCommentByDiaryId(id).subscribe((result) => {
+      this.comments = result;
+      this.disableLoadmore = true;
+      this.showCommentIndex += 5;
+      if (this.showCommentIndex >= this.comments.length){
+        this.showCommentIndex = this.comments.length;
+        this.disableLoadmore = false;
+      }
+      const tempCommentList = new Array(this.showCommentIndex);
+      for (let i = 0; i < this.showCommentIndex; i++){
+        tempCommentList[i] = this.comments[i];
+      }
+      this.showCommentList = tempCommentList;
+      this.router.navigateByUrl(this.loadPage);
+    }, error => {
+    });
+  }
+
+  getAllCommentByDiaryId(id): void{
+    this.commentService.getAllCommentByDiaryId(id).subscribe((result) => {
+      this.comments = result;
+      this.showCommentList = result;
+    });
+  }
 }
