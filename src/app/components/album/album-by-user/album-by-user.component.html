@@ -1,0 +1,56 @@
+<app-diary-search></app-diary-search>
+
+<!-- Start post Area -->
+<div class="post-wrapper pt-100">
+  <!-- Start post Area -->
+  <section class="post-area">
+    <div class="container">
+      <div class="row justify-content-center d-flex">
+        <div class="col-lg-8">
+          <div class="post-lists search-list">
+
+            <div class="row" *ngIf="albumList">
+              <div class="col-md-4" *ngFor="let album of albumList | paginate: { itemsPerPage: 5, currentPage: p }">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top" src="{{album.avatar}}" style="width: 100% ;height: 225px" alt="Card image cap" [routerLink]="'/album-detail/' + album.id" >
+                  <div class="card-body">
+                    <h5 class="card-text"><strong>{{album.title}}</strong></h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" [routerLink]="'/album-detail/' + album.id"  class="btn btn-sm btn-outline-success">View &rarr;</button>
+                      </div>
+                      <small class="text-muted">{{album.createdate}}</small>
+                    </div>
+                    <div class="text-right">
+                      <small class="text-right text-primary">{{album.tag.name}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <pagination-controls  class="text-center" (pageChange)="p = $event"></pagination-controls>
+
+          </div>
+        </div>
+        <div class="col-lg-4 sidebar-area">
+
+          <div class="single_widget about_widget">
+            <img *ngIf="isUserLoggedIn" [src]="avatar" width="100px" height="100px" alt="">
+            <a routerLink="/app/account"><h2 class="text-uppercase" *ngIf="isUserLoggedIn">{{username}}</h2></a>
+            <span>Fullname: </span><span *ngIf="isUserLoggedIn">{{fullName}}</span><br>
+            <span>Email: </span><span *ngIf="isUserLoggedIn">{{email}}</span>
+          </div>
+
+          <app-tag-show></app-tag-show>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End post Area -->
+</div>
+<!-- End post Area -->
+
+
+
+
