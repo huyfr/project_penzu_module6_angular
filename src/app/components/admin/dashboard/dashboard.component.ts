@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AdminUserService} from '../../../services/admin/admin-user.service';
 import {User} from "../../../models/User";
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable'
+import autoTable from "jspdf-autotable";
 
 @Component({
   selector: 'app-dashboard',
@@ -45,11 +48,16 @@ export class DashboardComponent implements OnInit {
   report(): void {
     this.adminUserService.searchByCreateDate(this.reportForm.value).subscribe(
       res => {
-          this.userList = res;
-          console.log(res);
+        this.userList = res;
       }, error => {
         console.log("ERROR at searchByCreateDate() in dashboard.component.ts")
       });
   }
-}
 
+  exportPDF(): void {
+    let currentTime = new Date();
+    const doc = new jsPDF();
+    autoTable(doc,{html: '#content'})
+    doc.save(currentTime + '.pdf');
+  }
+}
