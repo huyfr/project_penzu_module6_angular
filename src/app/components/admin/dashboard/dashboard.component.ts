@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AdminUserService} from '../../../services/admin/admin-user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,8 +9,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
   reportForm: FormGroup;
+  dataFollowMonth: [] = [];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private adminUserService: AdminUserService) {
   }
 
   public barChartOptions = {
@@ -29,9 +32,17 @@ export class DashboardComponent implements OnInit {
       fromDate: ['', [Validators.required]],
       toDate: ['', [Validators.required]]
     });
+
+    const adminReportForm = {
+      fromDate: '2020-01-01T00:00:00.000',
+      toDate: '2020-01-31T23:59:59.000',
+    };
+    this.adminUserService.searchByCreateDate(adminReportForm).subscribe(res => console.log('thang1 : ' + res.length));
   }
 
   report(): void {
-    console.log(this.reportForm);
+    this.adminUserService.searchByCreateDate(this.reportForm.value).subscribe(
+      res => console.log(res)
+    );
   }
 }

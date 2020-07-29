@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {User} from '../../models/User';
 import {Diary} from '../../models/Diary';
+import {AdminReportForm} from '../../models/AdminReportForm';
 
 const apiUrl = 'http://localhost:8080/api/sdu/';
 
@@ -44,7 +45,7 @@ export class AdminUserService {
     return this.http.put<User>(apiUrl + 'admin/edit/' + data.id, data);
   }
 
-  testQuery(): Observable<any>{
-    return this.http.get(apiUrl + 'user/search-by-query');
+  searchByCreateDate(adminReportForm: AdminReportForm): Observable<any>{
+    return this.http.post(apiUrl + 'user/search-by-date', adminReportForm);
   }
 }
