@@ -19,7 +19,7 @@
           <label>Image/Video <small style="color: grey">(Max 100MB)</small></label>
           <div class="input-group mb-3">
             <input type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
-text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="form-control img-fluid" aria-label="Amount (to the nearest dollar)"
+text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="form-control-file img-fluid" aria-label="Amount (to the nearest dollar)"
                    (change)="handleFileChooser($event.target.files)">
             <div *ngIf="!filePath; else img">
             </div>
@@ -61,16 +61,16 @@ text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="
             <ck-editor id="editor" name="editor" formControlName="content" skin="moono-lisa" language="vi"
                        [fullPage]="false"></ck-editor>
           </div>
-          <div class="float-left mt-20">
-            <label for="basic-url">
-              <button (click)="backClicked()" class="genric-btn dark circle">Back</button>
-            </label>
-          </div>
           <div class="float-right mt-20">
             <label for="basic-url">
               <button type="button" class="genric-btn success circle"
                       (click)="createDiary(openModalRef, openProcessBar, closeProcess)">Save
               </button>
+            </label>
+          </div>
+          <div class="float-right mt-20 mr-15">
+            <label for="basic-url">
+              <button (click)="backClicked()" class="genric-btn dark circle">Back</button>
             </label>
           </div>
         </form>
