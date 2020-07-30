@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DataSharingService} from '../../services/dataSharing/data-sharing.service';
 import {Router} from '@angular/router';
 import {TokenStorageService} from '../../services/token-storage.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +15,14 @@ export class HeaderComponent implements OnInit {
 
   constructor(private dataSharingService: DataSharingService,
               private router: Router,
-              private tokenStorageService: TokenStorageService) {
+              private tokenStorageService: TokenStorageService,
+              private authService: AuthService) {
     this.dataSharingService.isUserLoggedIn.subscribe(value => {
       this.isUserLoggedIn = value;
       this.username = this.tokenStorageService.getUsername();
+    });
+    this.authService.svShouldRefresh.subscribe(() => {
+      this.isUserLoggedIn = false;
     });
   }
 

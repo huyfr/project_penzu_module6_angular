@@ -16,7 +16,7 @@
       <div class="menu-content pb-20 col-lg-8">
 
         <form [formGroup]="formDiary">
-          <label>Image/Video (Maximum 100MB)</label>
+          <label>Image/Video (Maximum 100MB)<small style="color: grey">(Max 100MB)</small></label>
           <div class="input-group mb-3">
             <input type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="form-control img-fluid" aria-label="Amount (to the nearest dollar)"
@@ -60,6 +60,11 @@ text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="
             <label>Content</label>
             <ck-editor id="editor" name="editor" formControlName="content" skin="moono-lisa" language="vi"
                        [fullPage]="false"></ck-editor>
+          </div>
+          <div class="float-left mt-20">
+            <label for="basic-url">
+              <button (click)="backClicked()" class="genric-btn dark circle">Back</button>
+            </label>
           </div>
           <div class="float-right mt-20">
             <label for="basic-url">
@@ -130,3 +135,4 @@ text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="
       </div>
     </div>
   </div>
+</div>
