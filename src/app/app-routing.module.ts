@@ -40,7 +40,7 @@ const routes: Routes = [
   {path: 'recover-password', component: RecoverPasswordComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'journals', component: UserComponent}, // để show trang user
+  {path: 'journals', component: UserComponent, canActivate:  [IsActive]}, // để show trang user
 
   {// phục vụ chức năng admin
     path: 'admin/user-list',
@@ -69,8 +69,8 @@ const routes: Routes = [
   },
   {path: 'admin/user/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
   {path: 'admin/user/block/:id', component: AdminShowUserListComponent}, // phục vụ chức năng admin
-  {path: 'app/account', component: ProfileComponent, canActivate: [CanActivateTeam]},
-  {path: 'diary/create', component: DiaryCreateComponent, canActivate: [CanActivateTeam]},
+  {path: 'app/account', component: ProfileComponent, canActivate: [CanActivateTeam, IsActive]},
+  {path: 'diary/create', component: DiaryCreateComponent, canActivate: [CanActivateTeam, IsActive]},
 
   {path: 'diary/listUserDiary', component: DiaryListOfUserComponent, canActivate: [CanActivateTeam, IsActive]},
   {path: 'updateDiary/:id', component: DiaryUpdateComponent, canActivate: [CanActivateTeam, IsActive]},
