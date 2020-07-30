@@ -36,7 +36,7 @@
         </div>
         <div class="col-lg-4 sidebar-area">
 
-          <div class="single_widget about_widget">
+          <div class="single_widget about_widget" style="border:1px lightgrey solid; box-shadow: lightgrey 5px 5px">
             <img *ngIf="isUserLoggedIn" [src]="avatar" width="100px" height="100px" alt="">
             <a routerLink="/app/account"><h2 class="text-uppercase" *ngIf="isUserLoggedIn">{{username}}</h2></a>
             <span>Fullname: </span><span *ngIf="isUserLoggedIn">{{fullName}}</span><br>
