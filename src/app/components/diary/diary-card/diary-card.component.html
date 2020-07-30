@@ -6,8 +6,8 @@
         <h1 class="text-white mb-20">{{diary.title}}</h1>
         <ul>
           <li><a routerLink="/journals">Home</a><span class="lnr lnr-arrow-right"></span></li>
-          <li><a routerLink="/diary/category">Tag</a><span class="lnr lnr-arrow-right"></span></li>
-          <li><a routerLink="/diary/detail/{{diary.tag}}">{{diary.tag.name}}</a></li>
+          <li><a style="cursor: pointer; color: white">Tag</a><span class="lnr lnr-arrow-right"></span></li>
+          <li><a style="cursor: pointer; color: white">{{diary.tag.name}}</a></li>
         </ul>
       </div>
     </div>
@@ -27,7 +27,7 @@
               <video class="img-fluid" [src]="diary.urlFile" controls></video>
             </div>
             <ng-template #img>
-              <img class="img-fluid" [src]="diary.urlFile" alt="">
+              <img style="border: 1px solid black" class="img-fluid" [src]="diary.urlFile" alt="">
             </ng-template>
 
             <div class="top-wrapper ">
@@ -44,7 +44,7 @@
               </div>
               <div class="tags">
                 <ul>
-                  <li><a href="#">{{diary.tag.name}}</a></li>
+                  <li><a style="cursor: pointer">{{diary.tag.name}}</a></li>
                 </ul>
               </div>
               <!--             <div class="tags">
