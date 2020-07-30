@@ -4,6 +4,8 @@ import {AuthService} from '../../services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SignUpInfo} from '../auth/sign-up-info';
 import {MustMatch} from '../../util/validate';
+import {Location} from '@angular/common';
+import {RouterExtServiceService} from '../../services/router-ext-service.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +25,8 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private routerExtService: RouterExtServiceService, private location: Location,
   ) {
   }
 
@@ -45,14 +48,15 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       const {name, username, email, password} = this.registerForm.value;
       const signUpInfoForm = new SignUpInfo(name, username, email, password);
-
+      const previous = this.routerExtService.getPreviousUrl();
       this.authService.signUp(signUpInfoForm).subscribe(
         data => {
           console.log(data);
           this.isSignedUp = true;
           this.isSignUpFailed = false;
           alert('Register Successful !');
-          this.router.navigateByUrl(this.returnUrl);
+          this.routerExtService.router.navigateByUrl(previous);
+          // this.router.navigateByUrl(this.returnUrl);
         },
         error => {
           console.log(error);

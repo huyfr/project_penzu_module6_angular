@@ -6,6 +6,7 @@ import {DiaryService} from '../../../services/diary/diary.service';
 import {TagService} from '../../../services/tag/tag.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Diary} from '../../../models/Diary';
+import {Location} from '@angular/common';
 
 
 const fillDataFields = 'Fill Data Fields';
@@ -43,7 +44,8 @@ export class DiaryCreateComponent implements OnInit {
     private diaryService: DiaryService,
     private tagService: TagService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private location1: Location) {
   }
 
   ngOnInit(): void {
@@ -128,5 +130,9 @@ export class DiaryCreateComponent implements OnInit {
   preview(closeButton: HTMLInputElement) {
     closeButton.click();
     return this.router.navigateByUrl('/diary/detail/' + this.previewId);
+  }
+
+  backClicked() {
+    this.location1.back();
   }
 }

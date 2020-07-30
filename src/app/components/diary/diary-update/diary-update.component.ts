@@ -7,6 +7,7 @@ import {TokenStorageService} from '../../../services/token-storage.service';
 import {DiaryService} from '../../../services/diary/diary.service';
 import {TagService} from '../../../services/tag/tag.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Location} from '@angular/common';
 
 const FillDataFields = 'Fill Data Fields!';
 
@@ -47,7 +48,8 @@ export class DiaryUpdateComponent implements OnInit {
               private diaryService: DiaryService,
               private tagService: TagService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private location1: Location) {
   }
 
   ngOnInit(): void {
@@ -156,4 +158,9 @@ export class DiaryUpdateComponent implements OnInit {
     closeModalRef1.click();
     return this.router.navigateByUrl('/diary/detail/' + previewId);
   }
+
+  backClicked() {
+    this.location1.back();
+  }
+
 }
