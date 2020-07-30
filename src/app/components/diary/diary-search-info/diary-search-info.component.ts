@@ -23,6 +23,7 @@ export class DiarySearchInfoComponent implements OnInit {
   avatar: string;
   user: User;
   p = 1;
+  currendUser: any;
 
   constructor(private route: ActivatedRoute,
               private diaryService: DiaryService,
@@ -31,6 +32,7 @@ export class DiarySearchInfoComponent implements OnInit {
               private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.currendUser = this.tokenStorageService.getUsername();
     this.dataSharingService.isUserLoggedIn.subscribe(value => {
       this.isUserLoggedIn = value;
     });

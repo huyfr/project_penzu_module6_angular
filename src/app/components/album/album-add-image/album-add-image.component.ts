@@ -74,9 +74,9 @@ export class AlbumAddImageComponent implements OnInit {
   }
 
   updateAlbum(openModalRef: HTMLButtonElement) {
-    // if ( this.album.title === null) {
-    //   alert('Fill Data Fields !');
-    // }
+    if ( this.album.title === null) {
+      alert('Fill Data Fields !');
+    }
     if ( this.tagId === '') {
       this.tagId = this.album.tag.id;
     }

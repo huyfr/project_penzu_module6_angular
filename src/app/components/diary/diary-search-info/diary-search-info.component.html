@@ -11,9 +11,9 @@
           <div class="post-lists search-list" *ngFor="let diary of diaryList | paginate: { itemsPerPage: 6, currentPage: p }">
             <div class="single-list flex-row d-flex">
               <div class="detail">
-                <a [routerLink]="'/diary/detail/' + diary.id"><h4>{{diary.title}}</h4></a>
-                <small>{{diary.updatedate}}</small>
-                <p class="pt-20" style="color:black">
+                <a [routerLink]="'/diary/detail/' + diary.id"><h4 *ngIf="diary.user.username == currendUser">{{diary.title}}</h4></a>
+               <small *ngIf="diary.user.username == currendUser">{{diary.updatedate}}</small>
+                <p *ngIf="diary.user.username == currendUser" class="pt-20" style="color:black">
                   {{diary.description}}
                 </p>
               </div>
