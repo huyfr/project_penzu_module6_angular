@@ -40,7 +40,7 @@ const routes: Routes = [
   {path: 'recover-password', component: RecoverPasswordComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'journals', component: UserComponent, canActivate: [CanActivateTeam, IsActive]}, // để show trang user
+  {path: 'journals', component: UserComponent}, // để show trang user
 
   {// phục vụ chức năng admin
     path: 'admin/user-list',

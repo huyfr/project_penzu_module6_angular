@@ -21,10 +21,10 @@
               <video src="{{diary.urlFile}}" class="img-fluid" controls></video>
             </div>
             <ng-template #image>
-              <img src="{{diary.urlFile}}" class="img-fluid">
+              <img style="border: 1px solid black" src="{{diary.urlFile}}" class="img-fluid">
             </ng-template>
 
-            <label>Image</label>
+            <label class="mt-5">Image/Video <small style="color:grey;"> (Max 100MB) </small></label>
             <div class="input-group mb-3">
               <input type="file" class="form-control" aria-label="Amount (to the nearest dollar)"
                      (change)="handleFileChooser($event.target.files)">
@@ -60,6 +60,11 @@
             <label>Content</label>
             <ck-editor name="editor1" skin="moono-lisa" formControlName="content" language="en" [fullPage]="false"></ck-editor>
 
+            <div class="float-left mt-20">
+              <label for="basic-url">
+                <button (click)="backClicked()" class="genric-btn dark circle">Back</button>
+              </label>
+            </div>
             <div class="float-right mt-20">
             <label for="basic-url">
               <button type="submit" class="genric-btn success circle">Update</button>

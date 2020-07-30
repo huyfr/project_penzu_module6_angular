@@ -6,8 +6,8 @@
         <h1 class="text-white mb-20">{{diary.title}}</h1>
         <ul>
           <li><a routerLink="/journals">Home</a><span class="lnr lnr-arrow-right"></span></li>
-          <li><a routerLink="/diary/category">Tag</a><span class="lnr lnr-arrow-right"></span></li>
-          <li><a routerLink="/diary/detail/{{diary.tag}}">{{diary.tag.name}}</a></li>
+          <li><a style="cursor: pointer; color: white">Tag</a><span class="lnr lnr-arrow-right"></span></li>
+          <li><a style="cursor: pointer; color: white">{{diary.tag.name}}</a></li>
         </ul>
       </div>
     </div>
@@ -27,7 +27,7 @@
               <video class="img-fluid" [src]="diary.urlFile" controls></video>
             </div>
             <ng-template #img>
-              <img class="img-fluid" [src]="diary.urlFile" alt="">
+              <img style="border: 1px solid black" class="img-fluid" [src]="diary.urlFile" alt="">
             </ng-template>
 
             <div class="top-wrapper ">
@@ -44,13 +44,9 @@
               </div>
               <div class="tags">
                 <ul>
-                  <li><a href="#">{{diary.tag.name}}</a></li>
+                  <li><a>{{diary.tag.name}}</a></li>
                 </ul>
               </div>
-              <!--             <div class="tags">
-                             <div *ngIf="diary.status === 1; else public"><i style="font-size:24px" class="fa">&#xf183;</i> Only me</div>
-                             <ng-template #public><br><i class="material-icons">&#xe80b;</i> Public</ng-template>
-                           </div>-->
             </div>
 
             <div class="single-post-content">
@@ -65,9 +61,13 @@
               <div class="row">
                 <div class="col-lg-12 single-b-wrap col-md-12">
                   <ul class="social-icons">
-                    <li><i class="fa fa-share" style="cursor: pointer" title="Share" aria-hidden="true" data-toggle="modal" data-target="#sharePopup" data-whatever="@mdo" (click)="share(diary.id)"></i></li>
-                    <li><a [routerLink]="'/updateDiary/' + diary.id"><i title="Edit" class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
-                    <li><i style="cursor: pointer" title="Delete" class="fa fa-times" aria-hidden="true" (click)="deleteDiary()"></i></li>
+                    <li><i class="fa fa-share fa-3x" style="cursor: pointer" title="Share" aria-hidden="true"
+                           data-toggle="modal" data-target="#sharePopup" data-whatever="@mdo"
+                           (click)="share(diary.id)"></i></li>
+                    <li><a [routerLink]="'/updateDiary/' + diary.id"><i title="Edit" class="fa fa-pencil-square-o fa-3x"
+                                                                        aria-hidden="true"></i></a></li>
+                    <li><i style="cursor: pointer" title="Delete" class="fa fa-times fa-3x" aria-hidden="true"
+                           (click)="deleteDiary()"></i></li>
                   </ul>
 
                 </div>
@@ -77,19 +77,20 @@
             <!--start comment-->
             <section class="comment-sec-area pt-80 pb-80">
               <div class="container">
-                <div *ngIf="comments; else noComment">
+                <div *ngIf="showCommentList; else noComment">
                   <h5 class="text-uppercase pb-80">{{comments.length}} Comments</h5>
                 </div>
                 <ng-template #noComment><h5 class="text-uppercase pb-80"> Comments</h5></ng-template>
-                <div class="row flex-column" *ngFor="let comment of comments">
+                <div class="row flex-column" *ngFor="let comment of showCommentList">
                   <br>
                   <div>
                     <div class="single-comment justify-content-between d-flex">
                       <div class="user justify-content-between d-flex">
                         <div class="thumb">
-                          <img style="border-radius: 50%" [src]="comment.user.avatar" width="55px" height="55px" alt="avatar-image">
+                          <img style="border-radius: 50%" [src]="comment.user.avatar" width="55px" height="55px"
+                               alt="avatar-image">
                         </div>
-                        <div class="desc" style="width: 650px; word-wrap: break-word" >
+                        <div class="desc" style="width: 650px; word-wrap: break-word">
                           <h5>{{comment.user.username}}</h5>
                           <p class="date">{{comment.createdate}}</p>
                           <p class="comment">{{comment.content}}</p>
@@ -99,6 +100,9 @@
                   </div>
                 </div>
               </div>
+              <div *ngIf="disableLoadmore">
+                <input style="margin-top: 20px" type="button" class="btn btn-outline-info" (click)="getAllCommentByDiaryIdPagination(diary.id)" value="Load more...">
+              </div>
             </section>
 
             <section class="commentform-area  pb-120 pt-80 mb-100" style="margin-top: -50px">
@@ -106,8 +110,12 @@
                 <h5 class="text-uppercas pb-50">Leave a Reply</h5>
                 <div class="row flex-row d-flex">
                   <div class="col-lg-12">
-                    <textarea [(ngModel)]="comment" class="form-control mb-10" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
-                    <button class="genric-btn primary circle float-right" type="submit" value="Comment" (click)="createComments()">Comment</button>
+                    <textarea [(ngModel)]="comment" class="form-control mb-10" name="message" placeholder="Messege"
+                              onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"
+                              required=""></textarea>
+                    <button class="genric-btn primary circle float-right" type="submit" value="Comment"
+                            (click)="createComments()">Comment
+                    </button>
                   </div>
                 </div>
               </div>
@@ -149,9 +157,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><strong>Share Dairy</strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <p class="text-danger" *ngIf="announcementShare">{{announcementShare}}</p>

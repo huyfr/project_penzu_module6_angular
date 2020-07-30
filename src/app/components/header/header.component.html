@@ -2,8 +2,8 @@
 <header class="default-header">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand" *ngIf="!isUserLoggedIn" routerLink="/">Penzu</a>
-      <a class="navbar-brand" *ngIf="isUserLoggedIn" routerLink="/journals">Penzu</a>
+      <a class="navbar-brand" *ngIf="!isUserLoggedIn" routerLink="/"><img src="..\assets\blogger\img\logo.jpg" height="50px" alt="logo"></a>
+      <a class="navbar-brand" *ngIf="isUserLoggedIn" routerLink="/journals"><img src="..\assets\blogger\img\logo.jpg" height="50px" alt="logo"></a>
       <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li *ngIf="!isUserLoggedIn"><a routerLink="/login">Login</a></li>

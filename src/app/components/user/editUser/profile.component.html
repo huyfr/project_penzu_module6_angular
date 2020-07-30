@@ -27,22 +27,24 @@
                             <img src="{{filePath}}" style="width: 150px; height: 150px" class="img-thumbnail"/>
                           </div>
                           <ng-template #other>
-                            <img *ngIf="user" src="{{user.avatar}}" style="width: 150px; height: 150px" class="img-thumbnail"/>
+                            <img *ngIf="user" src="{{user.avatar}}" style="width: 150px; height: 150px"
+                                 class="img-thumbnail"/>
                           </ng-template>
                           <div class="middle">
                             <input (change)="handleFileChooser($event.target.files)" type="file"
-                                   class="btn border-0 btn-outline-light btn-sm" style="width: 100px" id="btnChangePicture"
+                                   class="btn border-0 btn-outline-light btn-sm" style="width: 100px"
+                                   id="btnChangePicture"
                                    value="Change"/>
                           </div>
                         </div>
                         <div class="userData ml-3">
                           <h2 class="d-block" style="font-size: 1.5rem">{{user.name}}</h2>
-                          <h6 class="d-block"><a href="javascript:void(0)">1,500</a> File Uploads</h6>
-                          <h6 class="d-block"><a href="javascript:void(0)">300</a> Diary Posts</h6>
+<!--                          <h6 class="d-block"><a href="javascript:void(0)">1,500</a> File Uploads</h6>-->
+<!--                          <h6 class="d-block"><a href="javascript:void(0)">300</a> Diary Posts</h6>-->
                           <button type="button" class="btn btn-link border-0" data-toggle="modal"
                                   data-target="#exampleModal" data-whatever="@mdo">Edit Profile
                           </button>
-                          &nbsp;
+                          &nbsp;<br>
                           <button type="button" class="btn btn-link border-0" data-toggle="modal"
                                   data-target="#changpass" data-whatever="@mdo">Change Password
                           </button>
@@ -63,7 +65,8 @@
 
                         </ul>
                         <div class="tab-content ml-1" id="myTabContent">
-                          <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                          <div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
+                               aria-labelledby="basicInfo-tab">
 
 
                             <div class="row">
@@ -129,8 +132,10 @@
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-primary" (click)="updateUser(closeModalRef)">Update</button>
+                    <button #closeModalRef type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" (click)="updateUser(closeModalRef)">Update
+                    </button>
                   </div>
                 </div>
               </div>
@@ -149,37 +154,40 @@
                   <div class="modal-body">
                     <form [formGroup]="passForm">
                       <div class="form-group">
-                        <label class="col-form-label">Current Password </label>
-                        <input id="currentPassword" type="password" class="form-control" formControlName="currentPassword">
-                      </div>
-                      <div class="alert alert-warning" role="alert"
-                           *ngIf="passForm.get('currentPassword').invalid &&passForm.get('currentPassword').touched">
-                        Password invalid(must longer 6 and smaller 36 character)
+                        <label class="col-form-label">Current Password </label> &nbsp;
+                        <span class="mt-0 pt-0" style="color:red">
+                        <small
+                          *ngIf="rfcp.currentPassword.errors && passForm.controls.currentPassword.touched">Current Password is required.
+                        </small>
+                      </span>
+                        <input id="currentPassword" type="password" class="form-control mt-2"
+                               formControlName="currentPassword">
                       </div>
                       <div class="form-group">
-                        <label class="col-form-label">New Password</label>
+                        <label class="col-form-label">New Password</label>&nbsp;
+                        <span class="mt-0 pt-0" style="color:red" *ngIf="rfcp.newPassword.errors">
+                          <small *ngIf="rfcp.newPassword.errors.required && rfcp.newPassword.touched">Password is required.</small>
+                          <small
+                            *ngIf="rfcp.newPassword.errors.minlength">Password must included at least 6 characters</small>
+                        </span>
                         <input type="password" class="form-control" formControlName="newPassword">
                       </div>
-                      <div class="alert alert-warning" role="alert"
-                           *ngIf="passForm.get('newPassword').invalid &&passForm.get('newPassword').touched">
-                        Password invalid(must longer 6 and smaller 36 character)
-                      </div>
                       <div class="form-group">
-                        <label class="col-form-label">Confirm Password</label>
+                        <label class="col-form-label">Confirm Password</label>&nbsp;
+                        <span class="mt-0 pt-0" style="color:red" *ngIf="rfcp.confirmPassword.errors">
+                          <small
+                            *ngIf="passForm.controls.confirmPassword.errors.required && passForm.controls.confirmPassword.touched">Confirm Password is required.</small>
+                          <small *ngIf="rfcp.confirmPassword.errors.mustMatch">Confirm Password is not match.</small>
+                        </span>
                         <input type="password" class="form-control" formControlName="confirmPassword">
-                      </div>
-                      <div class="alert alert-warning" role="alert"
-                           *ngIf="passForm.get('confirmPassword').invalid &&passForm.get('confirmPassword').touched">
-                        Password invalid(must longer 6 and smaller 36 character)
-                      </div>
-                      <div class="alert alert-warning" role="alert" *ngIf="isError">
-                        {{error}}
                       </div>
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button #closeModalRef1 type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-info" (click)="updatePassword(closeModalRef1)">Change Password
+                    <button #closeModalRef1 type="button" class="btn btn-outline-dark" data-dismiss="modal">Close
+                    </button>
+                    <button type="button" class="btn btn-outline-info" (click)="updatePassword(closeModalRef1)">Change
+                      Password
                     </button>
                   </div>
                 </div>
@@ -206,7 +214,8 @@
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button #closeProcess type="button" hidden class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button #closeProcess type="button" hidden class="btn btn-secondary" data-dismiss="modal">Close
+                    </button>
                     <button type="button" hidden class="btn btn-primary">Save changes</button>
                   </div>
                 </div>
@@ -214,7 +223,7 @@
             </div>
           </div>
         </div>
+      </div>
     </div>
-  </div>
   </div>
 </section>

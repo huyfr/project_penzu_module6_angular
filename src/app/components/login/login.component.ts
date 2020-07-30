@@ -1,5 +1,5 @@
-import {Component, Injectable, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {TokenStorageService} from '../../services/token-storage.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -7,7 +7,6 @@ import {AuthLoginInfo} from '../auth/auth-login-info';
 import {DataSharingService} from '../../services/dataSharing/data-sharing.service';
 import {RouterExtServiceService} from '../../services/router-ext-service.service';
 import {Location} from '@angular/common';
-import {CheckLoginService} from "../../services/checkLogin/check-login.service";
 
 @Component({
   selector: 'app-login',
@@ -68,7 +67,7 @@ export class LoginComponent implements OnInit {
           this.isLoggedIn = true;
           this.roles = this.token.getAuthorities();
           if (this.roles[0] == 'ROLE_ADMIN') {
-            this.router.navigateByUrl('/admin/user-list');
+            this.router.navigateByUrl('/admin/dashboard');
           } else {
             if (previous) {
               this.routerExtService.router.navigateByUrl(previous);
