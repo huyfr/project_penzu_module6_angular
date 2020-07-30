@@ -9,7 +9,6 @@ import {UserForm} from '../../../services/user/userForm/user-form';
 import {User} from '../../../models/User';
 import {DataSharingService} from '../../../services/dataSharing/data-sharing.service';
 import {MustMatch} from '../../../util/validate';
-import {encode} from 'punycode';
 
 const failNothingChange = 'Fail-Nothing Change';
 const passwordConfirmNotMatch = 'Password Confirm not Match';
