@@ -61,6 +61,11 @@ text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="
             <ck-editor id="editor" name="editor" formControlName="content" skin="moono-lisa" language="vi"
                        [fullPage]="false"></ck-editor>
           </div>
+          <div class="float-left mt-20">
+            <label for="basic-url">
+              <button (click)="backClicked()" class="genric-btn dark circle">Back</button>
+            </label>
+          </div>
           <div class="float-right mt-20">
             <label for="basic-url">
               <button type="button" class="genric-btn success circle"
@@ -130,3 +135,4 @@ text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="
       </div>
     </div>
   </div>
+</div>
