@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row justify-content-center d-flex">
         <div class="col-lg-8">
-          <div class="post-lists search-list" *ngFor="let diary of diaryList; index as i">
+          <div class="post-lists search-list" *ngFor="let diary of diaryList | paginate: { itemsPerPage: 6, currentPage: p }">
             <div class="single-list flex-row d-flex">
               <div class="detail">
                 <a [routerLink]="'/diary/detail/' + diary.id"><h4>{{diary.title}}</h4></a>
@@ -19,7 +19,9 @@
               </div>
             </div>
           </div>
+          <pagination-controls  class="text-center" (pageChange)="p = $event"></pagination-controls>
         </div>
+
         <div class="col-lg-4 sidebar-area">
           <div class="single_widget about_widget" style="border:1px lightgrey solid; box-shadow: lightgrey 5px 5px">
             <img style="border-radius: 50%" *ngIf="isUserLoggedIn" [src]="avatar" width="150px" height="150px" alt="">

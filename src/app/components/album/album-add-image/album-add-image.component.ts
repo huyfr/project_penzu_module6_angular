@@ -32,6 +32,7 @@ export class AlbumAddImageComponent implements OnInit {
   tagList: Tag[] = [];
   imageList: Image[] = [];
   processValue = 0;
+  p = 1;
 
   ngOnInit(): void{
     this.getAlbumById();
@@ -129,7 +130,7 @@ export class AlbumAddImageComponent implements OnInit {
   uploadImageOfAlbum(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
     if ( this.fileList.length > 0) {
       const count = setInterval(() => {
-        this.processValue += 11;
+        this.processValue += 33;
         if (this.processValue === 99) {
           clearInterval(count);
         }

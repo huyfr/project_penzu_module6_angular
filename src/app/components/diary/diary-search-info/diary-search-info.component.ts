@@ -22,6 +22,7 @@ export class DiarySearchInfoComponent implements OnInit {
   email: string;
   avatar: string;
   user: User;
+  p = 1;
 
   constructor(private route: ActivatedRoute,
               private diaryService: DiaryService,

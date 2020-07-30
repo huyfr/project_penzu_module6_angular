@@ -10,11 +10,9 @@
     </p>
   </div>
 </div>
+<!--<pagination-controls  class="text-center" (pageChange)="p = $event"></pagination-controls>&ndash;&gt;-->
 <div class="justify-content-center d-flex">
   <nav aria-label="Page navigation example">
-<!--    <ul class="nav nav-pills">-->
-<!--      <pagination-controls  class="text-center" (pageChange)="p = $event"></pagination-controls>-->
-<!--    </ul>-->
     <ul class="nav nav-pills">
       <li class="nav-item" *ngFor="let p of pages;let i=index">
         <a class="nav-link" href="" (click)="setPage(i,$event)"
