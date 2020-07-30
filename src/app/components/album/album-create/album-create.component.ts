@@ -77,7 +77,7 @@ export class AlbumCreateComponent implements OnInit {
     }
 
     const count = setInterval(() => {
-      this.processValue += 11;
+      this.processValue += 33;
       if (this.processValue === 99) {
         clearInterval(count);
       }

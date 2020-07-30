@@ -32,6 +32,7 @@ export class AlbumAddImageComponent implements OnInit {
   tagList: Tag[] = [];
   imageList: Image[] = [];
   processValue = 0;
+  p = 1;
 
   ngOnInit(): void{
     this.getAlbumById();
@@ -73,9 +74,9 @@ export class AlbumAddImageComponent implements OnInit {
   }
 
   updateAlbum(openModalRef: HTMLButtonElement) {
-    // if ( this.album.title === null) {
-    //   alert('Fill Data Fields !');
-    // }
+    if ( this.album.title === null) {
+      alert('Fill Data Fields !');
+    }
     if ( this.tagId === '') {
       this.tagId = this.album.tag.id;
     }
@@ -129,7 +130,7 @@ export class AlbumAddImageComponent implements OnInit {
   uploadImageOfAlbum(openModalRef: HTMLButtonElement, openProcessBar: HTMLButtonElement, closeProcess: HTMLButtonElement) {
     if ( this.fileList.length > 0) {
       const count = setInterval(() => {
-        this.processValue += 11;
+        this.processValue += 33;
         if (this.processValue === 99) {
           clearInterval(count);
         }

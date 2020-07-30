@@ -11,14 +11,14 @@
 
             <div *ngIf="album">
               <div class="form-group">
-                <h3 class="text-secondary"><strong><label>Images</label></strong></h3>
+                <h3 class="text-secondary"><strong><label>Album Avatar</label></strong></h3>
                 <div *ngIf="!filePath; else img">
-                  <img src="{{album.avatar}}" style="width: 100%; height: 640px">
+                  <img src="{{album.avatar}}" style="width: 100%; height: 250px">
                 </div>
                 <ng-template #img>
                   <img src="{{filePath}}" width="100%" height="640px">
                 </ng-template>
-                <input type="file" class="form-control" (change)="handleFileChooser($event.target.files)">
+                <input type="file" class="form-control-file" (change)="handleFileChooser($event.target.files)">
               </div>
               <div class="form-group">
                 <h3 class="text-secondary"><strong><label>Title</label></strong></h3>
@@ -36,23 +36,35 @@
             <div class="form-group">
               <h3 class="text-secondary"><strong><label>Image</label></strong></h3>
             </div>
+            <table>
+              <tr>
+                <td><input class="form-control-file" type='file' (change)="onSelectFile($event)" multiple>
+                </td>
+                <td class="float-right"><button class="btn btn-outline-info btn-lg "
+                            (click)="uploadImageOfAlbum(openModalRef,openProcessBar,closeProcess)">
+                  Save
+                </button></td>
+              </tr>
+            </table>
+            <div class="row">
+              <div class="col-md-4"
+                   *ngFor="let url of urls ;index as i">
+                <div class="card mb-4 box-shadow">
+                  <div class="text-success"><strong>Preview #{{i + 1}}</strong></div>
+                  <div class="text-right">
+                    <button (click)="removePreviewImage(i)" class="close text-danger">
+                      X
+                    </button>
+                  </div>
+                  <img class="card-img-top" src="{{url}}" style="width: 100% ;height: 225px" alt="Card image cap">
+                </div>
+              </div>
+            </div>
             <br/>
-            <!--            <div *ngIf="imageList">-->
-            <!--              <div *ngFor='let image of imageList; index as i'>-->
-            <!--                <p># {{i + 1}}</p>-->
-            <!--                <img [src]="image.url" style="width: 100% ;height: 225px">-->
-            <!--                <br/>-->
-            <!--                <br/>-->
-            <!--                <button (click)="getImageId(image.id)" class="btn btn-outline-danger text-dark" data-toggle="modal"-->
-            <!--                        data-target="#exampleModal1">-->
-            <!--                  Delete-->
-            <!--                </button>-->
-            <!--                <br/>-->
-            <!--                <hr>-->
-            <!--              </div>-->
-            <!--            </div>-->
+
             <div class="row" *ngIf="imageList">
-              <div class="col-md-4" *ngFor="let image of imageList;index as i">
+              <div class="col-md-4"
+                   *ngFor="let image of imageList| paginate: { itemsPerPage: 6, currentPage: p };index as i">
                 <div class="card mb-4 box-shadow">
                   <img class="card-img-top" src="{{image.url}}" style="width: 100% ;height: 225px" alt="Card image cap"
                        [routerLink]="'/album-detail/' + album.id">
@@ -63,26 +75,12 @@
                 </div>
               </div>
             </div>
-            <div *ngFor='let url of urls; index as i'>
-              <p class="text-success"><strong>Preview #{{i + 1}}</strong></p>
 
-              <div class="text-right">
-                <button (click)="removePreviewImage(i)" class="close text-danger">
-                  X
-                </button>
-              </div>
-              <img [src]="url" style="height: 640px ; width: 100%;">
-              <br/>
-              <hr>
-            </div>
-            <input type='file' class="form-control" (change)="onSelectFile($event)" multiple>
+            <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+
             <br/>
             <br/>
             <br/>
-            <button class="btn btn-outline-info btn-lg"
-                    (click)="uploadImageOfAlbum(openModalRef,openProcessBar,closeProcess)">
-              Save
-            </button>
             <br/>
             <br/>
 
