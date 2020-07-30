@@ -44,13 +44,9 @@
               </div>
               <div class="tags">
                 <ul>
-                  <li><a style="cursor: pointer">{{diary.tag.name}}</a></li>
+                  <li><a>{{diary.tag.name}}</a></li>
                 </ul>
               </div>
-              <!--             <div class="tags">
-                             <div *ngIf="diary.status === 1; else public"><i style="font-size:24px" class="fa">&#xf183;</i> Only me</div>
-                             <ng-template #public><br><i class="material-icons">&#xe80b;</i> Public</ng-template>
-                           </div>-->
             </div>
 
             <div class="single-post-content">
@@ -65,9 +61,13 @@
               <div class="row">
                 <div class="col-lg-12 single-b-wrap col-md-12">
                   <ul class="social-icons">
-                    <li><i class="fa fa-share" style="cursor: pointer" title="Share" aria-hidden="true" data-toggle="modal" data-target="#sharePopup" data-whatever="@mdo" (click)="share(diary.id)"></i></li>
-                    <li><a [routerLink]="'/updateDiary/' + diary.id"><i title="Edit" class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
-                    <li><i style="cursor: pointer" title="Delete" class="fa fa-times" aria-hidden="true" (click)="deleteDiary()"></i></li>
+                    <li><i class="fa fa-share fa-3x" style="cursor: pointer" title="Share" aria-hidden="true"
+                           data-toggle="modal" data-target="#sharePopup" data-whatever="@mdo"
+                           (click)="share(diary.id)"></i></li>
+                    <li><a [routerLink]="'/updateDiary/' + diary.id"><i title="Edit" class="fa fa-pencil-square-o fa-3x"
+                                                                        aria-hidden="true"></i></a></li>
+                    <li><i style="cursor: pointer" title="Delete" class="fa fa-times fa-3x" aria-hidden="true"
+                           (click)="deleteDiary()"></i></li>
                   </ul>
 
                 </div>
@@ -87,9 +87,10 @@
                     <div class="single-comment justify-content-between d-flex">
                       <div class="user justify-content-between d-flex">
                         <div class="thumb">
-                          <img style="border-radius: 50%" [src]="comment.user.avatar" width="55px" height="55px" alt="avatar-image">
+                          <img style="border-radius: 50%" [src]="comment.user.avatar" width="55px" height="55px"
+                               alt="avatar-image">
                         </div>
-                        <div class="desc" style="width: 650px; word-wrap: break-word" >
+                        <div class="desc" style="width: 650px; word-wrap: break-word">
                           <h5>{{comment.user.username}}</h5>
                           <p class="date">{{comment.createdate}}</p>
                           <p class="comment">{{comment.content}}</p>
@@ -109,8 +110,12 @@
                 <h5 class="text-uppercas pb-50">Leave a Reply</h5>
                 <div class="row flex-row d-flex">
                   <div class="col-lg-12">
-                    <textarea [(ngModel)]="comment" class="form-control mb-10" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
-                    <button class="genric-btn primary circle float-right" type="submit" value="Comment" (click)="createComments()">Comment</button>
+                    <textarea [(ngModel)]="comment" class="form-control mb-10" name="message" placeholder="Messege"
+                              onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"
+                              required=""></textarea>
+                    <button class="genric-btn primary circle float-right" type="submit" value="Comment"
+                            (click)="createComments()">Comment
+                    </button>
                   </div>
                 </div>
               </div>
@@ -152,9 +157,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><strong>Share Dairy</strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <p class="text-danger" *ngIf="announcementShare">{{announcementShare}}</p>
