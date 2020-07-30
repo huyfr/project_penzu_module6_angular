@@ -13,7 +13,11 @@ export const environment = {
   diaryUrl: 'http://localhost:8080/api/sdu/diary/',
   diaryUploadFileUrl: 'http://localhost:8080/api/sdu/diary-file/',
   tagUrl: 'http://localhost:8080/api/sdu/tag/',
-  commentUrl: 'localhost:8080/api/sdu/comments'
+  commentUrl: 'localhost:8080/api/sdu/comments',
+  albumUrl: 'http://localhost:8080/api/sdu/album',
+  albumUploadAvatarUrl: 'http://localhost:8080/api/sdu/album-avatar',
+  imageUrl: 'http://localhost:8080/api/sdu/image',
+  albumUploadImageUrl: 'http://localhost:8080/api/sdu/album-add-image',
 };
 
 /*

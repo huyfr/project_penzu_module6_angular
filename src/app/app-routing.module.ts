@@ -25,6 +25,10 @@ import {RecoverPasswordComponent} from './components/recover-password/recover-pa
 import {ShareDiaryComponent} from './components/share-diary/share-diary.component';
 import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
 import {DiarySearchInfoComponent} from "./components/diary/diary-search-info/diary-search-info.component";
+import {AlbumDetailComponent} from "./components/album/album-detail/album-detail.component";
+import {AlbumByUserComponent} from "./components/album/album-by-user/album-by-user.component";
+import {AlbumCreateComponent} from "./components/album/album-create/album-create.component";
+import {AlbumAddImageComponent} from "./components/album/album-add-image/album-add-image.component";
 
 
 const routes: Routes = [
@@ -76,6 +80,14 @@ const routes: Routes = [
   {path: 'diary/:id', component: DiaryDetailComponent},
 
   {path: 'search-diary-info/:title', component: DiarySearchInfoComponent, canActivate: [CanActivateTeam, IsActive]},
+
+  {path: 'albums', component: AlbumByUserComponent, canActivate: [CanActivateTeam, IsActive]},
+
+  {path: 'album-create', component: AlbumCreateComponent, canActivate: [CanActivateTeam, IsActive]},
+
+  {path: 'album-add-image/:id', component: AlbumAddImageComponent, canActivate: [CanActivateTeam, IsActive]},
+
+  {path: 'album-detail/:id', component: AlbumDetailComponent, canActivate: [CanActivateTeam, IsActive]},
 ];
 
 @NgModule({

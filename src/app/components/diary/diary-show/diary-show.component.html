@@ -1,5 +1,5 @@
 <!--Huynh-->
-<div class="single-list flex-row d-flex" *ngFor="let diary of listDiary; index as i">
+<div class="single-list flex-row d-flex" *ngFor="let diary of listDiary | paginate: { itemsPerPage: 5, currentPage: p }">
   <div class="detail">
     <a [routerLink]="'/diary/detail/' + diary.id"><h4>{{diary.title}}</h4></a>
     <small>{{diary.updatedate}}</small>
@@ -12,10 +12,13 @@
 </div>
 <div class="justify-content-center d-flex">
   <nav aria-label="Page navigation example">
+<!--    <ul class="nav nav-pills">-->
+<!--      <pagination-controls  class="text-center" (pageChange)="p = $event"></pagination-controls>-->
+<!--    </ul>-->
     <ul class="nav nav-pills">
-      <li class="nav-item" *ngFor="let p of pages;let y=index">
-        <a class="nav-link" href="" (click)="setPage(y,$event)"
-           [ngClass]="{'active': y==page}">{{ y + 1 }}</a>
+      <li class="nav-item" *ngFor="let p of pages;let i=index">
+        <a class="nav-link" href="" (click)="setPage(i,$event)"
+           [ngClass]="{'active': i==page}">{{ i + 1 }}</a>
       </li>
     </ul>
   </nav>
