@@ -26,7 +26,7 @@
 
             <label class="mt-5">Image/Video <small style="color:grey;"> (Max 100MB) </small></label>
             <div class="input-group mb-3">
-              <input type="file" class="form-control" aria-label="Amount (to the nearest dollar)"
+              <input type="file" class="form-control-file" aria-label="Amount (to the nearest dollar)"
                      (change)="handleFileChooser($event.target.files)">
             </div>
 
@@ -60,15 +60,15 @@
             <label>Content</label>
             <ck-editor name="editor1" skin="moono-lisa" formControlName="content" language="en" [fullPage]="false"></ck-editor>
 
-            <div class="float-left mt-20">
-              <label for="basic-url">
-                <button (click)="backClicked()" class="genric-btn dark circle">Back</button>
-              </label>
-            </div>
             <div class="float-right mt-20">
             <label for="basic-url">
               <button type="submit" class="genric-btn success circle">Update</button>
             </label>
+            </div>
+            <div class="float-right mt-20 mr-15">
+              <label for="basic-url">
+                <button (click)="backClicked()" class="genric-btn dark circle">Back</button>
+              </label>
             </div>
           </form>
         </div>

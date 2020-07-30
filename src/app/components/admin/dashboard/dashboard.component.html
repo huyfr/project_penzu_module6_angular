@@ -21,23 +21,6 @@
     <div class="container">
       <h1 class="mt-4">Dashboard</h1>
       <div class="row mt-5">
-        <div class="col-6">
-          <div class="border p-1">
-            <p class="text-uppercase font-weight-bold text-center">User registration summary 2020</p>
-            <div>
-              <div style="display: block">
-                <canvas baseChart
-                        [datasets]="barChartData1"
-                        [labels]="barChartLabels1"
-                        [options]="barChartOptions1"
-                        [legend]="barChartLegend1"
-                        [colors]="barChartColors1"
-                        [chartType]="barChartType1">
-                </canvas>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="col-6 border">
           <form [formGroup]="monthChartReportForm">
             <div class="row">
@@ -70,6 +53,24 @@
             </canvas>
           </div>
         </div>
+        <div class="col-6">
+          <div class="border p-1">
+            <p class="text-uppercase font-weight-bold text-center">User registration summary 2020</p>
+            <div>
+              <div style="display: block">
+                <canvas baseChart
+                        [datasets]="barChartData1"
+                        [labels]="barChartLabels1"
+                        [options]="barChartOptions1"
+                        [legend]="barChartLegend1"
+                        [colors]="barChartColors1"
+                        [chartType]="barChartType1">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       <hr class="mt-5">
       <div class="mt-5 mb-5">
