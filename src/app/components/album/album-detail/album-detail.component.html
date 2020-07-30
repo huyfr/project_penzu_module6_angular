@@ -15,13 +15,11 @@
         <p>{{album.createdate}}</p>
       </div>
       <hr>
-      <div *ngIf="listImage">
-        <div *ngFor="let image of listImage| paginate: { itemsPerPage: 5, currentPage: p }">
-          <img src="{{image.url}}" class="Images img-fluid" style="width:100px" height="100px">
-          <br/>
-          <br/>
-          <hr>
-          <br/>
+      <div class="row" *ngIf="listImage">
+        <div class="col-md-4" *ngFor="let image of listImage| paginate: { itemsPerPage: 6, currentPage: p }">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" src="{{image.url}}" style="width: 100% ;height: 225px" alt="Card image cap" [routerLink]="'/album-detail/' + album.id" >
+          </div>
         </div>
       </div>
       <pagination-controls class="text-center"  (pageChange)="p = $event"></pagination-controls>
