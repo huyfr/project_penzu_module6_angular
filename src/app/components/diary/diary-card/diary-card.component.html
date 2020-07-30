@@ -61,12 +61,12 @@
               <div class="row">
                 <div class="col-lg-12 single-b-wrap col-md-12">
                   <ul class="social-icons">
-                    <li><i class="fa fa-share" style="cursor: pointer" title="Share" aria-hidden="true"
+                    <li><i class="fa fa-share fa-3x" style="cursor: pointer" title="Share" aria-hidden="true"
                            data-toggle="modal" data-target="#sharePopup" data-whatever="@mdo"
                            (click)="share(diary.id)"></i></li>
-                    <li><a [routerLink]="'/updateDiary/' + diary.id"><i title="Edit" class="fa fa-pencil-square-o"
+                    <li><a [routerLink]="'/updateDiary/' + diary.id"><i title="Edit" class="fa fa-pencil-square-o fa-3x"
                                                                         aria-hidden="true"></i></a></li>
-                    <li><i style="cursor: pointer" title="Delete" class="fa fa-times" aria-hidden="true"
+                    <li><i style="cursor: pointer" title="Delete" class="fa fa-times fa-3x" aria-hidden="true"
                            (click)="deleteDiary()"></i></li>
                   </ul>
 
@@ -154,9 +154,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><strong>Share Dairy</strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <p class="text-danger" *ngIf="announcementShare">{{announcementShare}}</p>
