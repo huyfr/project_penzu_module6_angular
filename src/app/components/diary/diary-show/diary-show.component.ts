@@ -40,13 +40,13 @@ export class DiaryShowComponent implements OnInit {
     this.getAllTag();
   }
 
-  getAllDiary() {
+  getAllDiary(): void {
     this.currentUser = this.token.getUserId();
     this.diaryService.getAllByUser(this.page, this.currentUser).subscribe(
       list => {
-        // if (list != null){
-        //   this.noDiary = false;
-        // }
+        if (list != null){
+          this.noDiary = false;
+        }
         this.listDiary = list['content'];
         this.pages = new Array(list['totalPages']);
       },
@@ -56,7 +56,7 @@ export class DiaryShowComponent implements OnInit {
     );
   }
 
-  getAllTag()  {
+  getAllTag(): void  {
     this.tagService.getTagList().subscribe(
       result => {
         this.tagList = result;
