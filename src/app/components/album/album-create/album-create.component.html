@@ -16,10 +16,10 @@
       <div class="menu-content pb-20 col-lg-8">
 
         <form [formGroup]="formAlbum">
-          <label>Image/Video</label>
+          <label>Thumbnails</label>
           <div class="input-group mb-3">
             <input type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
-text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="form-control img-fluid" aria-label="Amount (to the nearest dollar)"
+text/plain, application/pdf, image/*, video/*" placeholder="Image/Video" class="form-control-file img-fluid" aria-label="Amount (to the nearest dollar)"
                    (change)="handleFileChooser($event.target.files)">
             <div *ngIf="!filePath; else img">
             </div>
