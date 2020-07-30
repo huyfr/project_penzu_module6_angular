@@ -52,6 +52,9 @@ export class ProfileComponent implements OnInit {
     private dataSharingService: DataSharingService,
     private formBuilder: FormBuilder
   ) {
+    this.authService.svShouldRefreshBody.subscribe(userid => {
+      this.userService.getUserById(userid).subscribe(result => this.user = result);
+    });
   }
 
   ngOnInit(): void {
@@ -120,7 +123,7 @@ export class ProfileComponent implements OnInit {
     this.authService.updateUser(userForm).subscribe(
       result => {
         closeButton.click();
-        this.authService.svShouldRefresh.next(true);
+        this.authService.svShouldRefreshBody.next(this.info.userId);
       }, error => {
         this.isErrorUser = true;
         return this.errorUser = fail;
