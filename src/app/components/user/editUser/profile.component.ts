@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {TokenStorageService} from '../../../services/token-storage.service';
 import {AuthService} from '../../../services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -8,6 +8,8 @@ import {PassForm} from '../../../services/user/passForm/pass-form';
 import {UserForm} from '../../../services/user/userForm/user-form';
 import {User} from '../../../models/User';
 import {DataSharingService} from '../../../services/dataSharing/data-sharing.service';
+import {MustMatch} from '../../../util/validate';
+import {encode} from 'punycode';
 
 const failNothingChange = 'Fail-Nothing Change';
 const passwordConfirmNotMatch = 'Password Confirm not Match';
@@ -36,12 +38,11 @@ export class ProfileComponent implements OnInit {
   error = '';
   isErrorUser = false;
   errorUser = '';
-  passForm = new FormGroup({
-    currentPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(36)]),
-    newPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(36)]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(36)])
-  });
+  passForm: FormGroup;
   processValue = 0;
+  submitted = false;
+  messageCheckCurrentPass: string;
+  currentPassMatch: boolean;
 
   constructor(
     private token: TokenStorageService,
@@ -49,11 +50,20 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private dataSharingService: DataSharingService
+    private dataSharingService: DataSharingService,
+    private formBuilder: FormBuilder
   ) {
   }
 
   ngOnInit(): void {
+    this.passForm = this.formBuilder.group({
+      currentPassword: ['', [Validators.required]],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]],
+    }, {
+      validators: MustMatch('newPassword', 'confirmPassword')
+    });
+
     this.info = {
       name: this.token.getName(),
       token: this.token.getToken(),
@@ -63,35 +73,40 @@ export class ProfileComponent implements OnInit {
       email: this.token.getEmail(),
       avatar: this.token.getAvatar(),
     };
+
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/login';
     this.userService.getUserById(+this.token.getUserId()).subscribe(user => this.user = user);
     this.authService.svShouldRefresh.subscribe(res => this.getUser().subscribe(user => this.user = user));
   }
 
   getUser(): any {
-      return this.userService.getUserById(+this.token.getUserId());
-    }
+    return this.userService.getUserById(+this.token.getUserId());
+  }
 
-  updatePassword(closeButton: HTMLInputElement): any{
+  get rfcp(): any {
+    return this.passForm.controls;
+  }
+
+  updatePassword(closeButton: HTMLInputElement): any {
+    console.log(this.passForm);
+    this.submitted = true;
     const {currentPassword, newPassword, confirmPassword} = this.passForm.value;
-    if (newPassword !== confirmPassword) {
-      this.isError = true;
-      return this.error = passwordConfirmNotMatch;
+    if (this.passForm.valid) {
+      const formPass = new PassForm(this.info.userId, this.info.username, currentPassword, newPassword);
+      this.authService.updatePassword(formPass).subscribe(
+        result => {
+          closeButton.click();
+          this.logout();
+          window.sessionStorage.clear();
+          this.authService.svShouldRefresh.next(true);
+          this.router.navigateByUrl(this.returnUrl);
+          alert(changePasswordSuccessful);
+        }, error1 => {
+          this.isError = true;
+          this.error = updatePasswordFail;
+        }
+      );
     }
-
-    const formPass = new PassForm(this.info.userId, this.info.username, currentPassword, newPassword);
-    this.authService.updatePassword(formPass).subscribe(
-      result => {
-        console.log(result);
-        closeButton.click();
-        this.logout();
-        this.router.navigateByUrl(this.returnUrl);
-        alert(changePasswordSuccessful);
-      }, error1 => {
-        this.isError = true;
-        this.error = updatePasswordFail;
-      }
-    );
   }
 
   updateUser(closeButton: HTMLInputElement): any {
@@ -147,7 +162,7 @@ export class ProfileComponent implements OnInit {
           this.getUser();
           closeProcess.click();
           this.processValue = 0;
-          this.getUser().subscribe( user => {
+          this.getUser().subscribe(user => {
             this.token.saveAvatar(user.avatar);
             closeProcess.click();
             this.processValue = 0;
