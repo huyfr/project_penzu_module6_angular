@@ -31,9 +31,12 @@ export class DiaryCardComponent implements OnInit {
   diaries: Diary[];
   tags: Tag[];
   comments: Comment[];
+  showCommentList: Comment[];
   tagList: Tag[];
   pages: Array<number>;
   shareLinkGroupForm: FormGroup;
+  showCommentIndex = 0;
+  disableLoadmore: boolean;
 
   constructor(private diaryService: DiaryService,
               private activatedRoute: ActivatedRoute,
@@ -63,7 +66,7 @@ export class DiaryCardComponent implements OnInit {
       .subscribe((result) => {
         this.diary = result;
         this.tags = this.diary.tag[''];
-        this.getAllCommentByDiaryId(this.diary.id);
+        this.getAllCommentByDiaryIdPagination(this.diary.id);
         this.avatar = this.tokenStorageService.getAvatar();
       }, error => {
         this.diary = null;
@@ -119,10 +122,29 @@ export class DiaryCardComponent implements OnInit {
     });
   }
 
-  getAllCommentByDiaryId(id): void {
+  getAllCommentByDiaryIdPagination(id): void {
     this.commentService.getAllCommentByDiaryId(id).subscribe((result) => {
       this.comments = result;
+      this.disableLoadmore = true;
+      this.showCommentIndex += 5;
+      if (this.showCommentIndex >= this.comments.length){
+        this.showCommentIndex = this.comments.length;
+        this.disableLoadmore = false;
+      }
+      const tempCommentList = new Array(this.showCommentIndex);
+      for (let i = 0; i < this.showCommentIndex; i++){
+        tempCommentList[i] = this.comments[i];
+      }
+      this.showCommentList = tempCommentList;
+      this.router.navigateByUrl('diary/detail/' + this.diary.id);
     }, error => {
+    });
+  }
+
+  getAllCommentByDiaryId(id): void{
+    this.commentService.getAllCommentByDiaryId(id).subscribe((result) => {
+      this.comments = result;
+      this.showCommentList = result;
     });
   }
 
@@ -141,7 +163,9 @@ export class DiaryCardComponent implements OnInit {
       };
       this.commentService.createComment(newComment).subscribe(result => {
         this.comment = '';
+        // this.getAllCommentByDiaryIdPagination(this.diary.id);
         this.getAllCommentByDiaryId(this.diary.id);
+        this.disableLoadmore = false;
         this.router.navigateByUrl('diary/detail/' + this.diary.id);
       });
     }, error => {
