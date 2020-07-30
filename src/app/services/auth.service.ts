@@ -21,6 +21,7 @@ export class AuthService {
   private svUpdateProfileUrl = environment.updateProfileUrl;
   private svUpdatePasswordUrl = environment.updatePasswordUrl;
   svShouldRefresh = new Subject<any>();
+  svShouldRefreshBody = new Subject<number>();
 
   constructor(private http: HttpClient) {
   }
