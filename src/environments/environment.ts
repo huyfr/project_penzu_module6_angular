@@ -15,7 +15,9 @@ export const environment = {
   tagUrl: 'http://localhost:8080/api/sdu/tag/',
   commentUrl: 'localhost:8080/api/sdu/comments',
   albumUrl: 'http://localhost:8080/api/sdu/album',
-  imageUrl: 'http://localhost:8080/api/sdu/image'
+  albumUploadAvatarUrl: 'http://localhost:8080/api/sdu/album-avatar',
+  imageUrl: 'http://localhost:8080/api/sdu/image',
+  albumUploadImageUrl: 'http://localhost:8080/api/sdu/album-add-image',
 };
 
 /*

@@ -1,3 +1,4 @@
+<script src="../../diary/diary-create/diary-create.component.ts"></script>
 <app-diary-search></app-diary-search>
 
 <!-- Start post Area -->
@@ -10,14 +11,14 @@
           <div class="post-lists search-list">
 
             <div class="row" *ngIf="albumList">
-              <div class="col-md-4" *ngFor="let album of albumList | paginate: { itemsPerPage: 5, currentPage: p }">
+              <div class="col-md-4" *ngFor="let album of albumList | paginate: { itemsPerPage: 6, currentPage: p }">
                 <div class="card mb-4 box-shadow">
                   <img class="card-img-top" src="{{album.avatar}}" style="width: 100% ;height: 225px" alt="Card image cap" [routerLink]="'/album-detail/' + album.id" >
                   <div class="card-body">
                     <h5 class="card-text"><strong>{{album.title}}</strong></h5>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                        <button type="button" [routerLink]="'/album-detail/' + album.id"  class="btn btn-sm btn-outline-success">View &rarr;</button>
+                        <button type="button" [routerLink]="'/album-add-image/' + album.id"  class="btn btn-sm btn-outline-success">View &rarr;</button>
                       </div>
                       <small class="text-muted">{{album.createdate}}</small>
                     </div>

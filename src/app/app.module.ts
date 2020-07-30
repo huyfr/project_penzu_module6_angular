@@ -47,6 +47,8 @@ import { DiarySearchComponent } from './components/diary/diary-search/diary-sear
 import { DiarySearchInfoComponent } from './components/diary/diary-search-info/diary-search-info.component';
 import { AlbumByUserComponent } from './components/album/album-by-user/album-by-user.component';
 import { AlbumDetailComponent } from './components/album/album-detail/album-detail.component';
+import { AlbumCreateComponent } from './components/album/album-create/album-create.component';
+import { AlbumAddImageComponent } from './components/album/album-add-image/album-add-image.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { AlbumDetailComponent } from './components/album/album-detail/album-deta
     DiarySearchInfoComponent,
     DashboardComponent,
     AlbumByUserComponent,
-    AlbumDetailComponent
+    AlbumDetailComponent,
+    AlbumCreateComponent,
+    AlbumAddImageComponent
   ],
   imports: [
     BrowserModule,

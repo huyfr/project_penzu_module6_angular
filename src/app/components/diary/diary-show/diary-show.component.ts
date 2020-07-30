@@ -27,11 +27,11 @@ export class DiaryShowComponent implements OnInit {
               private tagService: TagService) {
   }
 
-  // setPage(i, event: any): void {
-  //   event.preventDefault();
-  //   this.page = i;
-  //   this.getAllDiary();
-  // }
+  setPage(i, event: any): void {
+    event.preventDefault();
+    this.page = i;
+    this.getAllDiary();
+  }
 
   ngOnInit(): void {
     this.getAllDiary();
