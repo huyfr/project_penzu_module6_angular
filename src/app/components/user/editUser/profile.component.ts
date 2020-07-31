@@ -93,6 +93,7 @@ export class ProfileComponent implements OnInit {
   updatePassword(closeButton: HTMLInputElement): any {
     this.submitted = true;
     const {currentPassword, newPassword, confirmPassword} = this.passForm.value;
+    console.log(currentPassword);
     if (this.passForm.valid) {
       const formPass = new PassForm(this.info.userId, this.info.username, currentPassword, newPassword);
       this.authService.updatePassword(formPass).subscribe(
@@ -104,10 +105,11 @@ export class ProfileComponent implements OnInit {
           this.router.navigateByUrl(this.returnUrl);
           alert(changePasswordSuccessful);
         }, error1 => {
-          if (error1.status == 404){
+          if (error1.status === 500){
             this.messageNotFoundCurrentPass = 'Current Password is wrong!';
             this.isError = true;
             this.error = updatePasswordFail;
+            this.passForm.reset();
           }
         }
       );
