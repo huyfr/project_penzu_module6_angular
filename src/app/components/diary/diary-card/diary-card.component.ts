@@ -127,6 +127,9 @@ export class DiaryCardComponent implements OnInit {
       this.comments = result;
       this.disableLoadmore = true;
       this.showCommentIndex += 5;
+      if (this.comments === null){
+        this.disableLoadmore = false;
+      }
       if (this.showCommentIndex >= this.comments.length){
         this.showCommentIndex = this.comments.length;
         this.disableLoadmore = false;
