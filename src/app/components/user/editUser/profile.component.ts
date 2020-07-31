@@ -42,6 +42,7 @@ export class ProfileComponent implements OnInit {
   submitted = false;
   messageCheckCurrentPass: string;
   currentPassMatch: boolean;
+  messageNotFoundCurrentPass: string;
 
   constructor(
     private token: TokenStorageService,
@@ -90,7 +91,6 @@ export class ProfileComponent implements OnInit {
   }
 
   updatePassword(closeButton: HTMLInputElement): any {
-    console.log(this.passForm);
     this.submitted = true;
     const {currentPassword, newPassword, confirmPassword} = this.passForm.value;
     if (this.passForm.valid) {
@@ -104,8 +104,11 @@ export class ProfileComponent implements OnInit {
           this.router.navigateByUrl(this.returnUrl);
           alert(changePasswordSuccessful);
         }, error1 => {
-          this.isError = true;
-          this.error = updatePasswordFail;
+          if (error1.status == 404){
+            this.messageNotFoundCurrentPass = 'Current Password is wrong!';
+            this.isError = true;
+            this.error = updatePasswordFail;
+          }
         }
       );
     }

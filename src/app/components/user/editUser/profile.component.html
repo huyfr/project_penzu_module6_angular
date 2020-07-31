@@ -159,6 +159,7 @@
                         <small
                           *ngIf="rfcp.currentPassword.errors && passForm.controls.currentPassword.touched">Current Password is required.
                         </small>
+                          <small *ngIf="messageNotFoundCurrentPass">{{messageNotFoundCurrentPass}}</small>
                       </span>
                         <input id="currentPassword" type="password" class="form-control mt-2"
                                formControlName="currentPassword">
