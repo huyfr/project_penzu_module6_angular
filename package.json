@@ -27,7 +27,7 @@
     "chart.js": "^2.9.3",
     "express": "^4.17.1",
     "html2canvas": "^1.0.0-rc.5",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "jspdf-autotable": "^3.5.6",
     "ng2-charts": "^2.3.2",
     "ngx-ckeditor": "^8.0.0",
